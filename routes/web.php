@@ -31,7 +31,7 @@ Auth::routes();
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'customer'], function () {
+Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
     Route::get('dashboard',[CustomerDashboardController::class, 'dashboard'])->name('customer.dashboard');
 });
 
