@@ -12,6 +12,11 @@ class StaffDashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('staff.staffdashboard');
+        return view('staff.dashboard');
+    }
+
+    public function dashboard()
+    {
+        return view('staff.dashboard');
     }
 }

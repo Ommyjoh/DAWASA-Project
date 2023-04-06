@@ -4,5 +4,5 @@
       #DawasaTunawahitaji
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2023 <a href="https://www.dawasa.go.tz/en" target="_blank">DAWASA</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="https://www.dawasa.go.tz/en" target="_blank">DAWASA</a>.</strong> All rights reserved.
   </footer>
