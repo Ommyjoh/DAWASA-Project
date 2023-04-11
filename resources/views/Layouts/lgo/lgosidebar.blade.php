@@ -24,7 +24,7 @@
               with font-awesome or any other icon font library -->
           <h5 class="text-info ml-2">Navigations</h4>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('lgo.dashboard')}}" class="nav-link {{ request()->is('lgo/dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard

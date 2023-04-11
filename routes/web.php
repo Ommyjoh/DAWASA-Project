@@ -51,4 +51,4 @@ Route::group(['prefix' => 'staff'], function () {
 |                      *** LGO ROUTES ***
 |--------------------------------------------------------------------------
 */
-Route::get('lgo/dashboard', LGODashboardController::class);
+Route::get('lgo/dashboard', LGODashboardController::class)->name('lgo.dashboard');
