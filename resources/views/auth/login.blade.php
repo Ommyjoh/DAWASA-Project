@@ -76,45 +76,43 @@
 
 @section('content')
     <div class="login-box">
-        <div class="login-logo">
-            <a href="#"><b>DAWASA</b></a>
+        <div class="register-logo">
+            <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="100" width="130" class="rounded">
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Login to your <b>DAWASA</b> account</p>
 
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-4">
                         <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus placeholder="phone">
-
-                        @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-phone"></span>
                             </div>
                         </div>
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-4">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                     </div>
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -137,7 +135,7 @@
                 </p>
                 @endif
                 <p class="mb-0">
-                    <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+                    <a href="{{ route('register') }}" class="text-center">Register as new <b>DAWASA</b> customer</a>
                 </p>
             </div>
             <!-- /.login-card-body -->

@@ -81,12 +81,12 @@
 @section('content')
     <div class="register-box">
         <div class="register-logo">
-            <a href="../../index2.html"><b>DAWASA</b></a>
+            <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="100" width="130" class="rounded">
         </div>
 
         <div class="card">
             <div class="card-body register-card-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg">Register as new <b>DAWASA</b> customer</p>
 
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
@@ -104,7 +104,7 @@
                         @enderror
                     </div>
                     <div class="input-group mb-3">
-                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="phone">
+                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Start with 255XXX">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-phone"></span>
@@ -157,7 +157,7 @@
                 </form>
 
 
-                <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+                <a href="{{ route('login') }}" class="text-center">I am a customer already</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->

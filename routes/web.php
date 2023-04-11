@@ -46,7 +46,9 @@ Route::group(['prefix' => 'staff'], function () {
 });
 
 
+/*
+|--------------------------------------------------------------------------
+|                      *** LGO ROUTES ***
+|--------------------------------------------------------------------------
+*/
 Route::get('lgo/dashboard', LGODashboardController::class);
-Route::get('staff/dashboard', StaffDashboardController::class);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
