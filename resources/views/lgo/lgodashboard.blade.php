@@ -143,7 +143,7 @@
                   </div>
                   <!-- /.card-body -->
                 </div>
-          </div>
+            </div>
         </div>
     </div>
   </section>

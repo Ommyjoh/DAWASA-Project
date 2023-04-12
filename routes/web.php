@@ -3,6 +3,8 @@
 use App\Http\Controllers\Customer\CustomerDashboardController;
 use App\Http\Controllers\LGO\LGODashboardController;
 use App\Http\Controllers\Staff\StaffDashboardController;
+use App\Http\Livewire\Staff\Users\ListCustomers;
+use App\Http\Livewire\Staff\Users\ListLgo;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,6 +45,8 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'staff'], function () {
     Route::get('dashboard',[StaffDashboardController::class, 'dashboard'])->name('staff.dashboard');
+    Route::get('customers', ListCustomers::class)->name('staff.customers');
+    Route::get('lgo', ListLgo::class)->name('staff.lgo');
 });
 
 

@@ -24,12 +24,42 @@
               with font-awesome or any other icon font library -->
           <h5 class="text-info ml-2">Navigations</h4>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('staff.dashboard')}}" class="nav-link {{ request()->is('staff/dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Manage Users
+                <i class="right fas fa-angle-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('staff.customers')}}" class="nav-link {{ request()->is('staff/customers') ? 'active' : '' }}">
+                  <i class="fa fa-user"></i>
+                  <p> Manage Customers</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('staff.lgo')}}" class="nav-link {{ request()->is('staff/lgo') ? 'active' : '' }}">
+                  <i class="fa fa-building"></i>
+                  <p> Manage LGO's</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-user-circle"></i>
+                  <p> Manage Staffs</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
           <li class="nav-item">
