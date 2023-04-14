@@ -101,13 +101,17 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0)" onclick="document.getElementById('logout').submit();" class="nav-link">
               <i class="nav-icon fa fa-blind"></i>
               <p>
                 Logout
               </p>
             </a>
           </li>
+
+          <form id="logout" action="{{ route('staff.logout') }}" method="POST">
+            @csrf
+          </form>
           
           
         </ul>
@@ -116,7 +120,7 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
