@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'staff',
         ],
+
+        'lgos' => [
+            'driver' => 'session',
+            'provider' => 'lgos',
+        ],
     ],
 
     /*
@@ -73,6 +78,11 @@ return [
         'staff' => [
             'driver' => 'eloquent',
             'model' => App\Models\Staff::class,
+        ],
+
+        'lgos' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Lgo::class,
         ],
 
         // 'users' => [
@@ -110,6 +120,13 @@ return [
 
         'staff' => [
             'provider' => 'staff',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'lgos' => [
+            'provider' => 'lgos',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

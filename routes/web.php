@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Customer\CustomerDashboardController;
 use App\Http\Controllers\LGO\LGODashboardController;
+use App\Http\Controllers\lgo\LgoLoginController;
 use App\Http\Controllers\Staff\StaffDashboardController;
 use App\Http\Controllers\staff\StaffLoginController;
 use App\Http\Livewire\Staff\Users\ListCustomers;
@@ -64,4 +65,14 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
 |                      *** LGO ROUTES ***
 |--------------------------------------------------------------------------
 */
-Route::get('lgo/dashboard', LGODashboardController::class)->name('lgo.dashboard');
+
+// staff auth routes
+Route::group(['prefix' => 'lgo'], function () {
+    Route::get('login',[LgoLoginController::class, 'login'])->name('lgo.login');
+    Route::post('submit',[LgoLoginController::class, 'submit'])->name('lgo.submit');
+    Route::post('logout', [LgoLoginController::class, 'logout'])->name('lgo.logout');
+});
+
+Route::group(['prefix' => 'lgo', 'middleware' => 'lgos'], function () {
+    Route::get('dashboard', LGODashboardController::class)->name('lgo.dashboard');
+});
