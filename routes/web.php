@@ -3,6 +3,7 @@
 use App\Http\Controllers\Customer\CustomerDashboardController;
 use App\Http\Controllers\LGO\LGODashboardController;
 use App\Http\Controllers\Staff\StaffDashboardController;
+use App\Http\Controllers\staff\StaffLoginController;
 use App\Http\Livewire\Staff\Users\ListCustomers;
 use App\Http\Livewire\Staff\Users\ListLgo;
 use Illuminate\Support\Facades\Route;
@@ -43,7 +44,15 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
 |--------------------------------------------------------------------------
 */
 
+// staff auth routes
 Route::group(['prefix' => 'staff'], function () {
+    Route::get('login',[StaffLoginController::class, 'login'])->name('staff.login');
+    Route::post('submit',[StaffLoginController::class, 'submit'])->name('login.submit');
+    Route::post('logout', [StaffLoginController::class, 'logout'])->name('staff.logout');
+});
+
+
+Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
     Route::get('dashboard',[StaffDashboardController::class, 'dashboard'])->name('staff.dashboard');
     Route::get('customers', ListCustomers::class)->name('staff.customers');
     Route::get('lgo', ListLgo::class)->name('staff.lgo');

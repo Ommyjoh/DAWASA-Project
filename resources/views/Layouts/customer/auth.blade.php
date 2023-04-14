@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>customer | Log in</title>
+  <title>User Log in</title>
 
   @include('layouts.partials.styles')
 </head>
