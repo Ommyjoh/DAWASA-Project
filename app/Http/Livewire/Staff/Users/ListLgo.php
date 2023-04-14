@@ -6,8 +6,12 @@ use Livewire\Component;
 
 class ListLgo extends Component
 {
+
+    public function addNew(){
+        dd("Here");
+    }
     public function render()
     {
-        return view('livewire.staff.users.list-lgo')->layout('layouts.staff.base');
+        return view('livewire.staff.users.list-lgo');
     }
 }

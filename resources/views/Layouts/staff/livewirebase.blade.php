@@ -19,12 +19,13 @@
 
   <!-- /.navbar -->
 
-
- @include('layouts.staff.sidebar')
-
   <!-- Content Wrapper. Contains page content -->
   <!-- Content Wrapper. Contains page content -->
-  @yield('content')
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        {{ $slot }}
+    </div>
+</div>
   <!-- /.content-wrapper -->
  @include('layouts.partials.footer')
 </div>
