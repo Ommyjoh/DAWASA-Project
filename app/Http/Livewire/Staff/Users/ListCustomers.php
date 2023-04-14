@@ -8,6 +8,6 @@ class ListCustomers extends Component
 {
     public function render()
     {
-        return view('livewire.staff.users.list-customers')->layout('layouts.staff.base');
+        return view('livewire.staff.users.list-customers');
     }
 }
