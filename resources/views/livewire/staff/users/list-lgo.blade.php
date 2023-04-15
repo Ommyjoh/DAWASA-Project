@@ -14,7 +14,7 @@
           <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">Alexander Pierce</a>
+          <a href="" class="d-block">Emmanuel Boshe</a>
         </div>
       </div>
 
@@ -146,7 +146,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <button wire:click.prevent="addNew" style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add LGO</button>
+                        <button wire:click.prevent="addNewLgoForm" style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add LGO</button>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -206,4 +206,49 @@
         </section>
         <!-- /.content -->
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="lgoForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <form autocomplete="off" wire:submit.prevent="addLgo">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add local Goverment Office</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="district">District</label>
+                      <input type="text" wire:model.defer="state.district" class="form-control" id="district" placeholder="Enter District Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="street">Street</label>
+                      <input type="text" wire:model.defer="state.street" class="form-control" id="street" placeholder="Enter Street Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="messenger">Messenger's Name</label>
+                      <input type="text" wire:model.defer="state.messenger" class="form-control" id="messenger" placeholder="Enter Messenger's Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Active Phone No</label>
+                      <input type="text" wire:model.defer="state.phone" class="form-control" id="phone" placeholder="Enter Phone Number">
+                    </div>
+                    <div class="form-group">
+                      <label for="box">P.O BOX</label>
+                      <input type="text" wire:model.defer="state.box" class="form-control" id="box" placeholder="Enter P.O BOX">
+                    </div>
+                  </div>
+                  <!-- /.card-body -->
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  
 </div>
