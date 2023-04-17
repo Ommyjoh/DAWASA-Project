@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lgos', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique()->nullable();
-            $table->string('phone')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+        Schema::table('lgos', function (Blueprint $table) {
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
         });
     }
 
@@ -28,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lgos');
+        Schema::table('lgos', function (Blueprint $table) {
+            $table->dropColumn('password');
+        });
     }
 };
