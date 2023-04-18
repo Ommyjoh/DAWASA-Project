@@ -13,7 +13,7 @@
           <img src="{{ asset('backend/dist/img/tz.jfif') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">Magomeni LGO</a>
+          <a href="" class="d-block">{{ auth('lgos')->user()->messenger }} - {{auth('lgos')->user()->district}}</a>
         </div>
       </div>
 

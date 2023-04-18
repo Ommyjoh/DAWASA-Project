@@ -40,7 +40,11 @@
 <script>
   window.addEventListener('show-form', event => {
     $('#lgoForm').modal('show');
-  })
+    })
+
+    window.addEventListener('hide-form', event => {
+    $('#lgoForm').modal('hide');
+    })
 </script>
 @livewireScripts
 </body>

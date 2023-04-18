@@ -25,7 +25,7 @@ class LgoLoginController extends Controller
 
         if (auth('lgos')->attempt(['phone' => $request->phone, 'password' => $request->password], $remember)) {
             $greeting = SettingsHelper::getGreeting();
-            $lgo = auth('lgos')->user()->name;
+            $lgo = auth('lgos')->user()->messenger;
             Toastr::info($greeting . ' ' . $lgo . '!' . ' Welcome back!');
             return redirect()->route('lgo.dashboard');
         }

@@ -14,7 +14,7 @@
           <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">Emmanuel Boshe</a>
+          <a href="" class="d-block">{{ auth('staff')->user()->name }}</a>
         </div>
       </div>
 
@@ -127,7 +127,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">All Customers</h1>
+                        <h1 class="m-0">Local government Offices</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -143,6 +143,13 @@
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
+
+            @if(session()->has('message'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> <i class="fa fa-check-circle mr-1"></i>{{ session('message') }}</strong> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            @endif
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
@@ -153,50 +160,41 @@
                       <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                          <th>Date</th>
-                          <th>Customer Name</th>
+                          <th>#</th>
+                          <th>District</th>
                           <th>street</th>
                           <th>Messenger</th>
+                          <th>Phone #</th>
+                          <th>P.O BOX</th>
                           <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 4.0
-                          </td>
-                          <td>Win 95+</td>
-                          <td> 4</td>
-                          <td>X</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 5.0
-                          </td>
-                          <td>Win 95+</td>
-                          <td>5</td>
-                          <td>C</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 5.5
-                          </td>
-                          <td>Win 95+</td>
-                          <td>5.5</td>
-                          <td>A</td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet
-                            Explorer 6
-                          </td>
-                          <td>Win 98+</td>
-                          <td>6</td>
-                          <td>A</td>
-                        </tr>
+                        @forelse($lgos as $lgo)
+                          <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $lgo->district }}</td>
+                            <td>{{ $lgo->street }}</td>
+                            <td>{{ $lgo->messenger }}</td>
+                            <td>+{{ $lgo->phone }}</td>
+                            <td>P.O BOX {{ $lgo->box }}</td>
+                            <td>
+                              <a wire:click.prevent="editLgo({{ $lgo }})" href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
+                              <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
+                            </td>
+                          </tr>
+                        @empty
+                          
+                          <tr>
+                            <td colspan="7" class="text-center">
+                                <div class="d-flex flex-column align-items-center justify-content-center">
+                                    <img style="width: 200px" src="{{ asset('backend/dist/img/notfound.png') }}" alt="">
+                                    <span class="mt-2">Nothing to preview here!</span>
+                                </div>
+                            </td>
+                          </tr>
+
+                        @endforelse
                       </table>
                     </div>
                     <!-- /.card-body -->
@@ -208,43 +206,80 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="lgoForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="lgoForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
       <div class="modal-dialog">
-        <form autocomplete="off" wire:submit.prevent="addLgo">
+        <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'editLgoData' : 'addLgo' }}">
           <div class="modal-content">
               <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add local Goverment Office</h1>
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    @if($showEditModal)
+                      <span>Edit local Goverment Office</span>
+                    @else
+                      <span>Add local Goverment Office</span>
+                    @endif
+                  </h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                   <div class="card-body">
                     <div class="form-group">
                       <label for="district">District</label>
-                      <input type="text" wire:model.defer="state.district" class="form-control" id="district" placeholder="Enter District Name">
+                      <input type="text" wire:model.defer="state.district" class="form-control @error('district') is-invalid @enderror" id="district" placeholder="Enter District Name">
+                      @error('district')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <label for="street">Street</label>
-                      <input type="text" wire:model.defer="state.street" class="form-control" id="street" placeholder="Enter Street Name">
+                      <input type="text" wire:model.defer="state.street" class="form-control @error('street') is-invalid @enderror" id="street" placeholder="Enter Street Name">
+                      @error('street')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <label for="messenger">Messenger's Name</label>
-                      <input type="text" wire:model.defer="state.messenger" class="form-control" id="messenger" placeholder="Enter Messenger's Name">
+                      <input type="text" wire:model.defer="state.messenger" class="form-control @error('messenger') is-invalid @enderror" id="messenger" placeholder="Enter Messenger's Name">
+                      @error('messenger')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <label for="phone">Active Phone No</label>
-                      <input type="text" wire:model.defer="state.phone" class="form-control" id="phone" placeholder="Enter Phone Number">
+                      <input type="text" wire:model.defer="state.phone" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Enter Phone Number">
+                      @error('phone')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                     <div class="form-group">
                       <label for="box">P.O BOX</label>
-                      <input type="text" wire:model.defer="state.box" class="form-control" id="box" placeholder="Enter P.O BOX">
+                      <input type="text" wire:model.defer="state.box" class="form-control @error('box') is-invalid @enderror" id="box" placeholder="Enter P.O BOX">
+                      @error('box')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
                   </div>
                   <!-- /.card-body -->
 
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times mr-1"></i>Close</button>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
+                    @if($showEditModal)
+                      <span>Save Changes</span>
+                    @else
+                      <span>Save</span>
+                    @endif
+                  </button>
               </div>
           </div>
         </form>

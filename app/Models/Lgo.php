@@ -20,7 +20,10 @@ class Lgo extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'district',
+        'street',
+        'box',
+        'messenger',
         'phone',
         'password',
     ];
