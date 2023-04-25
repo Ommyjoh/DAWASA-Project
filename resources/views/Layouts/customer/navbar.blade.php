@@ -44,5 +44,9 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
+
+      <li>
+        <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="35" height="40" class="brand-image">
+      </li>
     </ul>
 </nav>

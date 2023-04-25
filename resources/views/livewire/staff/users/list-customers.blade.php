@@ -152,51 +152,33 @@
                 <div class="card-body">
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Customer Name</th>
-                      <th>street</th>
-                      <th>Messenger</th>
-                      <th>Action</th>
-                    </tr>
+                      <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Customer Name</th>
+                        <th>Email</th>
+                        <th>Phone #</th>
+                        <th>Action</th>
+                      </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 4.0
-                      </td>
-                      <td>Win 95+</td>
-                      <td> 4</td>
-                      <td>X</td>
-                    </tr>
-                    <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 5.0
-                      </td>
-                      <td>Win 95+</td>
-                      <td>5</td>
-                      <td>C</td>
-                    </tr>
-                    <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 5.5
-                      </td>
-                      <td>Win 95+</td>
-                      <td>5.5</td>
-                      <td>A</td>
-                    </tr>
-                    <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 6
-                      </td>
-                      <td>Win 98+</td>
-                      <td>6</td>
-                      <td>A</td>
-                    </tr>
+                      @foreach($customers as $customer)
+                        <tr>
+                          <td>{{ $loop->iteration }}</td>
+                          <td>{{ $customer->created_at }}</td>
+                          <td>{{ $customer->name }}</td>
+                          @if($customer->email)
+                            <td>{{ $customer->email }}</td>
+                          @else
+                            <td>-</td>
+                          @endif
+                          <td>{{ $customer->phone }}</td>
+                          <td>
+                            <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
+                            <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
+                          </td>
+                        </tr>
+                      @endforeach
                   </table>
                 </div>
                 <!-- /.card-body -->
