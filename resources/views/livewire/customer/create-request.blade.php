@@ -109,14 +109,15 @@
                             <div class="text-center">
                                 <p>DAWASA building, Dunga/malanga Road, Mwananyamala Area <br>
                                     P.O BOX 1573, Dar es Salaam - Tanzania | Tel +255 22 2760006/+255 22 27600015 <br>
-                                    Fax: <a href="call:+255 22 2762480">+255 22 2762480</a> | Email: <a href="Mailto:ceo@dawasa.go.tz">ceo@dawasa.go.tz</a> | Website: <a href="https://www.dawasa.go.tz/en" target="_blank">www.dawasa.go.tz</a>
+                                    Fax: <a href="call:+255 22 2762480">+255 22 2762480</a> | Email: <a href="Mailto:ceo@dawasa.go.tz">ceo@dawasa.go.tz</a> | Website: <a href="https://www.dawasa.go.tz/en" target="_blank">www.dawasa.go.tz</a> <br>
+                                    Info@dawasa.co.tz / 0800110064 / *150*00# (Bure)
                                 </p>
                             </div>
                             <hr>
                             <div class="text-center">
                                 <h4><b>NEW CUSTOMER CONNECTION APPLICATION FORM</b>
                                     <br>
-                                    <h6 class="text-danger">All sections marked by * must be filled by customer</h6>
+                                    <h6 class="text-danger">All sections marked by * must be filled by applicant</h6>
                                 </h4>
                             </div>
 
@@ -218,6 +219,71 @@
                             <div class="text-center mt-4">
                                 <h5> <b>Address of Physical Location for Connection </b> <b class="text-red">*</b></h5>
                             </div>
+
+                            <div class="row">
+                              <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                  <label>Applicant District</label>
+                                  <select wire:change='getDistrict($event.target.value)' class="form-control select2" style="width: 100%;">
+                                    <option value="" selected="selected">Choose District..</option>
+                                    <option value="Ilala">Ilala</option>
+                                    <option value="Kinondoni">Kinondoni</option>
+                                    <option value="Temeke">Temeke</option>
+                                    <option value="Ubungo">Ubungo</option>
+                                    <option value="Kigamboni">Kigamboni</option>
+                                  </select>
+                                </div>
+                                <!-- /.form-group -->
+                              </div>
+
+                              <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                  <label>Applicant Ward</label>
+                                  <select wire:change='getWard($event.target.value)' class="form-control select2" style="width: 100%;">
+                                    <option value="" selected="selected">Choose Ward..</option>
+                                      @if (!empty($selectedDistrict))
+                                      @foreach ($kata as $value)
+                                          <option value="{{ $value }}">{{ $value }}</option>
+                                      @endforeach
+                                      @endif
+                                  </select>
+                                </div>
+                              </div>
+
+                          </div>
+
+                          <div class="row">
+                            <div class="col-12 col-md-6">
+                              <div class="form-group">
+                                <label>Applicant Street</label>
+                                <select wire:change='getStreet($event.target.value)' class="form-control select2" style="width: 100%;">
+                                  <option selected="selected">Choose Street..</option>
+                                    @if (!empty($selectedWard))
+                                    @foreach ($lgos as $lgo)
+                                          <option value="{{ $lgo->street }}">{{ $lgo->street }}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+                              </div>
+                              <!-- /.form-group -->
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                  <label>Applicant Messenger</label>
+                                  <select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">Choose Messenger..</option>
+                                      @if (!empty($selectedStreet))
+                                      @foreach ($lgos2 as $lgo2)
+                                            <option value="{{ $lgo2->id }}">{{ $lgo2->messenger }}</option>
+                                      @endforeach
+                                      @endif
+                                  </select>
+                                </div>
+                                <!-- /.form-group -->
+                              </div>
+                        </div>
+
+                          
                               
                   <!-- /.card-body -->
                 </div>
