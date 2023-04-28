@@ -154,6 +154,8 @@
                                   </div>
                             </div>
 
+                            <hr class="mt-4">
+
                             <div class="text-center mt-4">
                                 <h5> <b>Details of Applicant requiring service </b> <b class="text-red">*</b></h5>
                             </div>
@@ -215,6 +217,8 @@
                                     <!-- /.form-group -->
                                   </div>
                             </div>
+
+                            <hr class="mt-4">
 
                             <div class="text-center mt-4">
                                 <h5> <b>Address of Physical Location for Connection </b> <b class="text-red">*</b></h5>
@@ -283,7 +287,78 @@
                               </div>
                         </div>
 
+                        <div class="row">
+                          <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>House Number/Name</label>
+                              <input style="width: 100%;" type="text" class="form-control" id="house" placeholder="Enter house number or name">
+                            </div>
+                            <!-- /.form-group -->
+                          </div>
+                          <div class="col-12 col-md-6">
+                              <div class="form-group">
+                                <label>Plot Number</label>
+                                <input style="width: 100%;" type="text" class="form-control" id="plot" placeholder="Enter plot number">
+                              </div>
+                              <!-- /.form-group -->
+                            </div>
+                       </div>
+
+                       <hr class="mt-4">
+
+                       <div class="text-info">
+                        <h6> <i class="nav-icon fa fa-caret-right"></i> <b> Statement by Personal/Entity Responsible for paying Deposit, Connection Charges, Monthly Bill and Other Related Charges: <br> &nbsp; &nbsp; &nbsp; Please tick agrrement to terms. </b></h6>
+                      </div>
+                      <hr>
+                      <div>
+                        <p><b>I, the undersigned, hereby acknowledge:</b> <br>
+                          (1) Where the Applicant is the Landloard of the connection address, Dawasa requires prior written approval
+                          from the Landloard that is responsible for paying all relevant charges. If an applicant vacates the connection
+                          address with unpaid charges, the landloard shall be held legally responsible for setting all such unpaid charges,
+                          including related penalties or legal cost arising. <br>
+                          (2) That no connection work by any party will begin until the survey is approved by Dawasa. <br>
+                          (3) That i require to sign the formal customer contract and pay required security deposit, as well as any connection 
+                          or other charges before any work begins on a new connection, or the connection is activated or transferred in the 
+                          case of existing registered connection.
+                        </p>
+                      </div>
+
+                      <div class="d-flex flex-row text-info">
+                        <div class="form-group mr-4">
+                          <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                            <label class="custom-control-label" for="customSwitch3">I accept the terms and conditions.</label>
+                          </div>
+                        </div>
+
+                        <div>
+                          <p><b>{{ now()->format('M d, Y') }}</b></p>
+                        </div>
+                      </div>
+
+                      <hr class="mt-4">
+
+                      <div class=" mt-4 mb-4">
+                        <div class="col-12 d-flex flex-row">
+                          <div class="col-md-6">
+                            <button type="button" class="btn btn-block btn-danger">Cancel Application</button>
+                          </div>
+                          <div class="col-md-6">
+                            <button type="button" class="btn btn-block btn-success">Submit Application</button>
+                          </div>
+                        </div>
+                      </div>
+
+            
+
+                      <hr class="mt-4">
                           
+
+                      <div class="d-flex justify-content-end">
+                        <div class="col-md-6">
+                          <p> <b>Reference: </b>DWS-NCF <b>Revision: </b>0  <b>Issue date: </b> {{ now()->format('M d, Y') }} <a href="https://www.dawasa.go.tz/en" target="_blank">DAWASA</a></p>
+                        </div>
+                      </div>
                               
                   <!-- /.card-body -->
                 </div>
