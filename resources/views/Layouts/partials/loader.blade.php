@@ -1,3 +1,3 @@
 <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="200" width="230">
+    <img class="animation__shake" src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="300" width="380">
 </div>

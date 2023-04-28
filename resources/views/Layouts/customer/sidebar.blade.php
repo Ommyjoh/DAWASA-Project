@@ -24,7 +24,7 @@
               with font-awesome or any other icon font library -->
           <h5 class="text-info ml-2">Navigations</h4>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('customer.dashboard')}}" class="nav-link {{ request()->is('customer/dashboard') ? 'active' : '' }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -33,7 +33,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('customer.listrequests')}}" class="nav-link {{ request()->is('customer/listrequests') ? 'active' : '' }}" class="nav-link" class="nav-link">
               <i class="nav-icon fa fa-tint"></i>
               <p>
                 Connection Requests
