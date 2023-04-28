@@ -162,6 +162,7 @@
                         <tr>
                           <th>#</th>
                           <th>District</th>
+                          <th>Ward</th>
                           <th>street</th>
                           <th>Messenger</th>
                           <th>Phone #</th>
@@ -174,6 +175,7 @@
                           <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $lgo->district }}</td>
+                            <td>{{ $lgo->ward }}</td>
                             <td>{{ $lgo->street }}</td>
                             <td>{{ $lgo->messenger }}</td>
                             <td>+{{ $lgo->phone }}</td>
@@ -222,7 +224,7 @@
               </div>
               <div class="modal-body">
                   <div class="card-body">
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                       <label for="district">District</label>
                       <input type="text" wire:model.defer="state.district" class="form-control @error('district') is-invalid @enderror" id="district" placeholder="Enter District Name">
                       @error('district')
@@ -230,7 +232,42 @@
                           {{ $message }}
                         </div>
                       @enderror
+                    </div> --}}
+
+                    <div class="form-group">
+                      <label>Select District</label>
+                      <select wire:model.defer="state.district" wire:change='getDistrict($event.target.value)' class="form-control select2 @error('district') is-invalid @enderror" style="width: 100%;">
+                        <option value="" selected="selected">Choose District..</option>
+                        <option value="Ilala">Ilala</option>
+                        <option value="Kinondoni">Kinondoni</option>
+                        <option value="Temeke">Temeke</option>
+                        <option value="Ubungo">Ubungo</option>
+                        <option value="Kigamboni">Kigamboni</option>
+                      </select>
+                      @error('district')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
                     </div>
+
+                    @if (!empty($selectedDistrict))
+                    <div class="form-group">
+                      <label>Select Ward</label>
+                      <select wire:model.defer="state.ward" class="form-control select2 @error('ward') is-invalid @enderror" style="width: 100%;">
+                        <option value="" selected="selected">Choose Ward..</option>
+                        @foreach ($kata as $value)
+                            <option value="{{ $value }}">{{ $value }}</option>
+                        @endforeach
+                      </select>
+                      @error('ward')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                      @enderror
+                    </div>
+                    @endif
+
                     <div class="form-group">
                       <label for="street">Street</label>
                       <input type="text" wire:model.defer="state.street" class="form-control @error('street') is-invalid @enderror" id="street" placeholder="Enter Street Name">

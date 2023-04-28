@@ -11,9 +11,21 @@ use Livewire\Component;
 class ListLgo extends Component
 {
     public $state = [];
+    public $selectedDistrict;
 
     public $lgoToEdit;
     public $showEditModal = false;
+
+    public $Ilala = ['Buguruni', 'Chanika', 'Gerezani', 'Ilala', 'Jangwani', 'Kariakoo', 'Kisutu', 'Kitunda', 'Mchikichini', 'Msongola', 'Pugu', 'Segerea', 'Tabata', 'Ukonga', 'Upanga Magharibi', 'Upanga Mashariki'];
+    public $Kinondoni = ['Bunju', 'Goba', 'Hananasif', 'Kawe', 'Kijitonyama', 'Kimara', 'Kinondoni', 'Kunduchi', 'Kwembe', 'Mabibo', 'Magomeni', 'Makongo', 'Makuburi', 'Manzese', 'Mbezi', 'Mikocheni', 'Msasani', 'Mwananyamala', 'Ndugumbi', 'Saranga', 'Sinza', 'Tandale'];
+    public $Temeke = ['Azimio', 'Buza', 'Chamazi', 'Charambe', 'Keko', 'Kibada', 'Kiburugwa', 'Kigamboni', 'Kijichi', 'Kilakala', 'Kimanzichana', 'Kimbiji', 'Kisarawe II', 'Kurasini', 'Makangarawe', 'Mbagala', 'Mianzini', 'Miburani', 'Mjimwema', 'Mtoni', 'Pemba Mnazi', 'Sandali', 'Somangira', 'Tandika', 'Toangoma', 'Tungi', 'Vijibweni'];
+    public $Ubungo = ['Goba', 'Kibamba', 'Kibangu', 'Kigogo', 'Kilimani', 'Kimara', 'Kinondoni', 'Kisasa', 'Kisiwani', 'Kisongo', 'Kivukoni', 'Mabibo', 'Magomeni', 'Makuburi', 'Makumbusho', 'Mburahati', 'Mikocheni', 'Mnazi Mmoja', 'Msewe', 'Msigani', 'Mwananyamala', 'Mzimuni', 'Ndugumbi', 'Sandali', 'Tandale', 'Ubungo'];
+    public $Kigamboni = ['Kibada', 'Kibugumo', 'Kigamboni', 'Kigamboni Coastal', 'Kijichi', 'Kimbiji', 'Kisarawe II', 'Kurasini', 'Makangarawe', 'Mbagala', 'Mjimwema', 'Mtoni', 'Pemba Mnazi', 'Tungi', 'Vijibweni'];
+
+
+    public function getDistrict($district){
+        $this->selectedDistrict = $district;
+    }
 
     public function addNewLgoForm(){
 
@@ -37,13 +49,15 @@ class ListLgo extends Component
 
         Validator::make($this->state, [
             'district' => 'required',
+            'ward' => 'required',
             'street' => 'required',
             'messenger' => 'required',
             'phone' => 'required|numeric|regex:/^255\d{9}$/|digits:12|unique:lgos',
             'box' => 'required|numeric'
         ],
         [
-            'district.required' => 'Please fill district of LGO',
+            'district.required' => 'Please select district of LGO',
+            'ward.required' => 'Please select ward of LGO',
             'street.required' => 'Please fill street of LGO',
             'messenger.required' => 'Please fill messenger name of LGO',
             'phone.required' => 'Please fill active phone number',
@@ -70,13 +84,15 @@ class ListLgo extends Component
     public function editLgoData(){
         $validatedData = Validator::make($this->state, [
                         'district' => 'required',
+                        'ward' => 'required',
                         'street' => 'required',
                         'messenger' => 'required',
                         'phone' => 'required|numeric|regex:/^255\d{9}$/|digits:12|unique:lgos,phone,' .$this->lgoToEdit->id,
                         'box' => 'required|numeric'
                     ],
                     [
-                        'district.required' => 'Please fill district of LGO',
+                        'district.required' => 'Please select district of LGO',
+                        'ward.required' => 'Please select ward of LGO',
                         'street.required' => 'Please fill street of LGO',
                         'messenger.required' => 'Please fill messenger name of LGO',
                         'phone.required' => 'Please fill active phone number',
@@ -93,9 +109,27 @@ class ListLgo extends Component
 
     public function render()
     {
+
+        $kata = [];
+
+        if($this->selectedDistrict=='Ilala'){
+            $kata = $this->Ilala;
+        } elseif($this->selectedDistrict=='Kinondoni'){
+            $kata = $this->Kinondoni;
+        } elseif($this->selectedDistrict=='Temeke'){
+            $kata = $this->Temeke;
+        } elseif($this->selectedDistrict=='Ubungo'){
+            $kata = $this->Ubungo;
+        } elseif($this->selectedDistrict=='Kigamboni'){
+            $kata = $this->Kigamboni;
+        } else {
+            $kata = [];
+        }
+        
         $lgos = Lgo::latest()->paginate();
         return view('livewire.staff.users.list-lgo',[
-            'lgos' => $lgos
+            'lgos' => $lgos,
+            'kata' => $kata
         ]);
     }
 }

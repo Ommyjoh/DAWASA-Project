@@ -21,6 +21,7 @@ class Lgo extends Authenticatable
      */
     protected $fillable = [
         'district',
+        'ward',
         'street',
         'box',
         'messenger',
