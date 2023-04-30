@@ -56,6 +56,22 @@ return [
             'throw' => false,
         ],
 
+        'passports' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/passports'),
+            'url' => env('APP_URL').'/storage/passports',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'cards' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/cards'),
+            'url' => env('APP_URL').'/storage/cards',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*
@@ -71,6 +87,8 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('storage/passports') => storage_path('app/public/passports'),
+        public_path('storage/cards') => storage_path('app/public/cards'),
     ],
 
 ];

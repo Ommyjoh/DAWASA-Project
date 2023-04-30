@@ -98,6 +98,8 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <form wire:submit.prevent="saveRequest" autocomplete="off">
+            @csrf
               <div class="card">
                   <div class="card-body">
                         <div class="row">
@@ -125,29 +127,34 @@
                                 <div class="col-12 col-md-6">
                                   <div class="form-group">
                                     <label>Connection For <b class="text-red">*</b></label>
-                                    <select class="form-control select2" style="width: 100%;">
+                                    <select wire:model.defer='state.connReason' class="form-control select2 @error('state.connReason') is-invalid @enderror" style="width: 100%;">
                                       <option selected="selected">Choose Reason..</option>
-                                      <option>Domestic</option>
-                                      <option>Commercial</option>
-                                      <option>Industrial</option>
-                                      <option>Domestic Institutions</option>
-                                      <option>Other Institutions</option>
-                                      <option>Kiosk</option>
-                                      <option>Tanker/Dumper</option>
-                                      <option>Others</option>
+                                      <option value="Domestic">Domestic</option>
+                                      <option value="Commercial">Commercial</option>
+                                      <option value="Industrial">Industrial</option>
+                                      <option value="Domestic Institutions">Domestic Institutions</option>
+                                      <option value="Other Institutions">Other Institutions</option>
+                                      <option value="Kiosk">Kiosk</option>
+                                      <option value="Tanker/Dumper">Tanker/Dumper</option>
+                                      <option value="Others">Others</option>
                                     </select>
+                                    @error('state.connReason')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                  @enderror
                                   </div>
                                   <!-- /.form-group -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                       <label>Service Required <b class="text-red">*</b></label>
-                                      <select class="form-control select2" style="width: 100%;">
+                                      <select wire:model.defer='state.servRequired' class="form-control select2" style="width: 100%;">
                                         <option selected="selected">Choose Reason..</option>
-                                        <option>Water</option>
-                                        <option>Sewerage Only</option>
-                                        <option>Water and Sewerage</option>
-                                        <option>Others</option>
+                                        <option value="Water Only">Water Only</option>
+                                        <option value="Sewerage Only">Sewerage Only</option>
+                                        <option value="Water and Sewerage">Water and Sewerage</option>
+                                        <option value="Others">Others</option>
                                       </select>
                                     </div>
                                     <!-- /.form-group -->
@@ -164,14 +171,14 @@
                                 <div class="col-12 col-md-6">
                                   <div class="form-group">
                                     <label>Full Name</label>
-                                    <input style="width: 100%;" type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                                    <input wire:model.defer='state.fullName' style="width: 100%;" type="text" class="form-control" id="fullName" placeholder="Enter full name">
                                   </div>
                                   <!-- /.form-group -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                       <label>Occupation</label>
-                                      <input style="width: 100%;" type="text" class="form-control" id="occupation" placeholder="Enter occupation">
+                                      <input wire:model.defer='state.occupation' style="width: 100%;" type="text" class="form-control" id="occupation" placeholder="Enter occupation">
                                     </div>
                                     <!-- /.form-group -->
                                   </div>
@@ -181,26 +188,34 @@
                                 <div class="col-12 col-md-6">
                                   <div class="form-group">
                                     <label>Nationality</label>
-                                    <input style="width: 100%;" type="text" class="form-control" id="nationality" placeholder="Enter nationality">
+                                    <input wire:model.defer='state.nationality' style="width: 100%;" type="text" class="form-control" id="nationality" placeholder="Enter nationality">
                                   </div>
                                   <!-- /.form-group -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                       <label>Phone Number</label>
-                                      <input style="width: 100%;" type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                                      <input wire:model.defer='state.phone' style="width: 100%;" type="text" class="form-control" id="phone" placeholder="Enter phone number">
                                     </div>
                                     <!-- /.form-group -->
                                   </div>
                             </div>
 
+                            {{-- Image upload --}}
                             <div class="row">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
+                                      <label>Passport size (Image only)</label>
                                         <!-- <label for="customFile">Custom File</label> -->
                                         <div class="custom-file">
-                                          <input style="width: 100%;" type="file" class="custom-file-input" id="customFile">
-                                          <label class="custom-file-label" for="customFile">Upload Passport Size</label>
+                                          <input wire:model.defer='passport' style="width: 100%;" type="file" class="custom-file-input" id="customFile">
+                                          <label class="custom-file-label" for="customFile">
+                                            @if($passport)
+                                              {{$passport->getClientOriginalName() }}
+                                            @else
+                                              Choose file
+                                            @endif
+                                          </label>
                                         </div>
                                     </div>
                                   <!-- /.form-group -->
@@ -208,15 +223,23 @@
 
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
+                                      <label>Recognized identity card (Image only) </label>
                                         <!-- <label for="customFile">Custom File</label> -->
                                         <div class="custom-file">
-                                          <input style="width: 100%;" type="file" class="custom-file-input" id="customFile">
-                                          <label class="custom-file-label" for="customFile">Upload Recognized Identity Card</label>
+                                          <input wire:model.defer='idCard' style="width: 100%;" type="file" class="custom-file-input" id="customFile">
+                                          <label class="custom-file-label" for="customFile">
+                                            @if($idCard)
+                                              {{$idCard->getClientOriginalName() }}
+                                            @else
+                                              Choose file
+                                            @endif
+                                          </label>
                                         </div>
                                     </div>
                                     <!-- /.form-group -->
                                   </div>
                             </div>
+                            {{-- Image upload end --}}
 
                             <hr class="mt-4">
 
@@ -228,7 +251,7 @@
                               <div class="col-12 col-md-6">
                                 <div class="form-group">
                                   <label>Applicant District</label>
-                                  <select wire:change='getDistrict($event.target.value)' class="form-control select2" style="width: 100%;">
+                                  <select wire:model.defer='state.district' wire:change='getDistrict($event.target.value)' class="form-control select2" style="width: 100%;">
                                     <option value="" selected="selected">Choose District..</option>
                                     <option value="Ilala">Ilala</option>
                                     <option value="Kinondoni">Kinondoni</option>
@@ -243,7 +266,7 @@
                               <div class="col-12 col-md-6">
                                 <div class="form-group">
                                   <label>Applicant Ward</label>
-                                  <select wire:change='getWard($event.target.value)' class="form-control select2" style="width: 100%;">
+                                  <select wire:model.defer='state.ward' wire:change='getWard($event.target.value)' class="form-control select2" style="width: 100%;">
                                     <option value="" selected="selected">Choose Ward..</option>
                                       @if (!empty($selectedDistrict))
                                       @foreach ($kata as $value)
@@ -254,13 +277,13 @@
                                 </div>
                               </div>
 
-                          </div>
+                            </div>
 
                           <div class="row">
                             <div class="col-12 col-md-6">
                               <div class="form-group">
                                 <label>Applicant Street</label>
-                                <select wire:change='getStreet($event.target.value)' class="form-control select2" style="width: 100%;">
+                                <select wire:model.defer='state.street' wire:change='getStreet($event.target.value)' class="form-control select2" style="width: 100%;">
                                   <option selected="selected">Choose Street..</option>
                                     @if (!empty($selectedWard))
                                     @foreach ($lgos as $lgo)
@@ -274,7 +297,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                   <label>Applicant Messenger</label>
-                                  <select class="form-control select2" style="width: 100%;">
+                                  <select wire:model.defer='state.lgoId' class="form-control select2" style="width: 100%;">
                                     <option selected="selected">Choose Messenger..</option>
                                       @if (!empty($selectedStreet))
                                       @foreach ($lgos2 as $lgo2)
@@ -285,28 +308,28 @@
                                 </div>
                                 <!-- /.form-group -->
                               </div>
-                        </div>
+                          </div>
 
                         <div class="row">
                           <div class="col-12 col-md-6">
                             <div class="form-group">
                               <label>House Number/Name</label>
-                              <input style="width: 100%;" type="text" class="form-control" id="house" placeholder="Enter house number or name">
+                              <input wire:model.defer='state.house' style="width: 100%;" type="text" class="form-control" id="house" placeholder="Enter house number or name">
                             </div>
                             <!-- /.form-group -->
                           </div>
                           <div class="col-12 col-md-6">
                               <div class="form-group">
                                 <label>Plot Number</label>
-                                <input style="width: 100%;" type="text" class="form-control" id="plot" placeholder="Enter plot number">
+                                <input wire:model.defer='state.plot' style="width: 100%;" type="text" class="form-control" id="plot" placeholder="Enter plot number">
                               </div>
                               <!-- /.form-group -->
                             </div>
-                       </div>
+                        </div>
 
                        <hr class="mt-4">
 
-                       <div class="text-info">
+                      <div class="text-info">
                         <h6> <i class="nav-icon fa fa-caret-right"></i> <b> Statement by Personal/Entity Responsible for paying Deposit, Connection Charges, Monthly Bill and Other Related Charges: <br> &nbsp; &nbsp; &nbsp; Please tick agrrement to terms. </b></h6>
                       </div>
                       <hr>
@@ -326,7 +349,7 @@
                       <div class="d-flex flex-row text-info">
                         <div class="form-group mr-4">
                           <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                            <input type="checkbox" wire:model='checked' class="custom-control-input" id="customSwitch3">
                             <label class="custom-control-label" for="customSwitch3">I accept the terms and conditions.</label>
                           </div>
                         </div>
@@ -344,12 +367,14 @@
                             <button type="button" class="btn btn-block btn-danger">Cancel Application</button>
                           </div>
                           <div class="col-md-6">
-                            <button type="button" class="btn btn-block btn-success">Submit Application</button>
+                            @if($checked == true)
+                              <button type="submit" class="btn btn-block btn-success">Submit Application</button>
+                            @else
+                              <button type="submit" class="btn btn-block btn-success" disabled>Agree Terms First</button>
+                            @endif
                           </div>
                         </div>
                       </div>
-
-            
 
                       <hr class="mt-4">
                           
@@ -361,8 +386,11 @@
                       </div>
                               
                   <!-- /.card-body -->
-                </div>
+                  </div>
+              </div>
+
             </div>
+          </form>
       </section>
       <!-- /.content -->
     </div>
