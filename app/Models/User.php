@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format('d-m-Y');
+        return Carbon::parse($value)->format('M d, Y');
     }
 }
