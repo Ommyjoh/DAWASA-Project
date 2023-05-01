@@ -13,7 +13,7 @@
           <img src="{{ asset('backend/dist/img/tz.jfif') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">{{ auth('lgos')->user()->messenger }} - {{auth('lgos')->user()->district}}</a>
+          <a href="" class="d-block">{{ auth('lgos')->user()->street }}</a>
         </div>
       </div>
 
@@ -33,7 +33,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('lgo.listrequests')}}" class="nav-link {{ request()->is('lgo/listrequests') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tint"></i>
               <p>
                 Connection Requests
@@ -70,4 +70,4 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-  </aside>
+</aside>

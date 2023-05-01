@@ -7,6 +7,7 @@ use App\Http\Controllers\Staff\StaffDashboardController;
 use App\Http\Controllers\staff\StaffLoginController;
 use App\Http\Livewire\Customer\CreateRequest;
 use App\Http\Livewire\Customer\ListConnectionRequests;
+use App\Http\Livewire\Lgo\ListLgoConnectionRequests;
 use App\Http\Livewire\Staff\Users\ListCustomers;
 use App\Http\Livewire\Staff\Users\ListLgo;
 use Illuminate\Support\Facades\Route;
@@ -79,4 +80,5 @@ Route::group(['prefix' => 'lgo'], function () {
 
 Route::group(['prefix' => 'lgo', 'middleware' => 'lgos'], function () {
     Route::get('dashboard', LGODashboardController::class)->name('lgo.dashboard');
+    Route::get('listrequests', ListLgoConnectionRequests::class)->name('lgo.listrequests');
 });
