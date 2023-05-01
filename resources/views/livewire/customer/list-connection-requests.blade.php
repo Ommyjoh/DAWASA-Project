@@ -100,7 +100,7 @@
           <div class="container-fluid">
               <div class="row mb-2">
                   <div class="col-sm-6">
-                      <h1 class="m-0">All Requests</h1>
+                      <h1 class="m-0">All connection Requests</h1>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -147,72 +147,47 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                                <td>12-04-2023</td>
-                                <td>John Doe</td>
-                                <td><span class="badge text-bg-info p-2">Submitted</span></td>
-                                <td><span class="badge text-bg-warning p-2">Pending</span></td>
-                                <td><span class="badge text-bg-warning p-2">Pending</span></td>
-                                <td>
-                                    <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                                    <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12-04-2023</td>
-                                <td>John Doe</td>
-                                <td><span class="badge text-bg-info p-2">Submitted</span></td>
-                                <td><span class="badge text-bg-success p-2">Approved</span></td>
-                                <td><span class="badge text-bg-warning p-2">Pending</span></td>
-                                <td>
-                                    <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                                    <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12-04-2023</td>
-                                <td>John Doe</td>
-                                <td><span class="badge text-bg-info p-2">Submitted</span></td>
-                                <td><span class="badge text-bg-success p-2">Approved</span></td>
-                                <td><span class="badge text-bg-success p-2">Approved</span></td>
-                                <td>
-                                    <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                                    <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12-04-2023</td>
-                                <td>John Doe</td>
-                                <td><span class="badge text-bg-info p-2">Submitted</span></td>
-                                <td><span class="badge text-bg-success p-2">Approved</span></td>
-                                <td><span class="badge text-bg-danger p-2">Rejected</span></td>
-                                <td>
-                                    <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                                    <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12-04-2023</td>
-                                <td>John Doe</td>
-                                <td><span class="badge text-bg-info p-2">Submitted</span></td>
-                                <td><span class="badge text-bg-danger p-2">Rejected</span></td>
-                                <td><span class="badge text-bg-danger p-2">Rejected</span></td>
-                                <td>
-                                    <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                                    <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>12-04-2023</td>
-                                <td>John Doe</td>
-                                <td><span class="badge text-bg-info p-2">Submitted</span></td>
-                                <td><span class="badge text-bg-danger p-2">Rejected</span></td>
-                                <td><span class="badge text-bg-warning p-2">Pending</span></td>
-                                <td>
-                                    <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                                    <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
-                                </td>
-                            </tr>
+                            @forelse($requests as $request)
+                                <tr>
+                                    <td>{{ $request->created_at }}</td>
+                                    <td>{{ $request->fullName }}</td>
+                                    <td><span class="badge text-bg-info p-2">Submitted</span></td>
+                                    <td>
+                                        @if($request->lgoStatus == 'Pending')
+                                            <span class="badge text-bg-warning p-2">Pending</span>
+                                        @elseif($request->lgoStatus == 'Approved')
+                                            <span class="badge text-bg-success p-2">Approved</span>
+                                        @else
+                                            <span class="badge text-bg-danger p-2">Rejected</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($request->dawasaStatus == 'Pending')
+                                            <span class="badge text-bg-warning p-2">Pending</span>
+                                        @elseif($request->dawasaStatus == 'Approved')
+                                            <span class="badge text-bg-success p-2">Approved</span>
+                                        @else
+                                            <span class="badge text-bg-danger p-2">Rejected</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($request->lgoNote != '' | $request->dawasaNote != '')
+                                            <a href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
+                                        @endif
+                                        <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        <div class="d-flex flex-column align-items-center justify-content-center">
+                                            <img style="width: 200px" src="{{ asset('backend/dist/img/notfound.png') }}" alt="">
+                                            <span class="mt-2">No connection request!</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                           
                           </tbody>
                     </table>
                   </div>

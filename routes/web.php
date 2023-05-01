@@ -5,8 +5,8 @@ use App\Http\Controllers\LGO\LGODashboardController;
 use App\Http\Controllers\lgo\LgoLoginController;
 use App\Http\Controllers\Staff\StaffDashboardController;
 use App\Http\Controllers\staff\StaffLoginController;
-use App\Http\Livewire\Customer\ConnectionRequest;
 use App\Http\Livewire\Customer\CreateRequest;
+use App\Http\Livewire\Customer\ListConnectionRequests;
 use App\Http\Livewire\Staff\Users\ListCustomers;
 use App\Http\Livewire\Staff\Users\ListLgo;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +39,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
     Route::get('dashboard',[CustomerDashboardController::class, 'dashboard'])->name('customer.dashboard');
-    Route::get('listrequests', ConnectionRequest::class)->name('customer.listrequests');
+    Route::get('listrequests', ListConnectionRequests::class)->name('customer.listrequests');
     Route::get('createrequest', CreateRequest::class)->name('customer.createrequest');
 });
 
