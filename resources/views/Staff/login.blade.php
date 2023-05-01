@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="login-box">
-        <div class="register-logo">
-            <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="100" width="130" class="rounded">
-        </div>
-        <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Login to your <b>DAWASA</b> account</p>
+                <div class="register-logo">
+                    <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="100" width="130" class="rounded">
+                </div>
+                <!-- /.login-logo -->
+                <p class="login-box-msg">Login to <b>DAWASA STAFF</b> account</p>
 
                 <form action="{{ route('login.submit') }}" method="POST">
                     @csrf
