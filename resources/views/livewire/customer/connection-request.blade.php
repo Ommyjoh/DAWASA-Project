@@ -112,6 +112,12 @@
           </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
+      @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show mx-4" role="alert">
+          <strong> <i class="fa fa-check-circle mr-1"></i>{{ session('success') }}</strong> 
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      @endif
     
       <!-- Main content -->
       <section class="content">

@@ -142,20 +142,25 @@
                                       <div class="invalid-feedback">
                                         {{ $message }}
                                       </div>
-                                  @enderror
+                                    @enderror
                                   </div>
                                   <!-- /.form-group -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                       <label>Service Required <b class="text-red">*</b></label>
-                                      <select wire:model.defer='state.servRequired' class="form-control select2" style="width: 100%;">
+                                      <select wire:model.defer='state.servRequired' class="form-control select2 @error('state.servRequired') is-invalid @enderror" style="width: 100%;">
                                         <option selected="selected">Choose Reason..</option>
                                         <option value="Water Only">Water Only</option>
                                         <option value="Sewerage Only">Sewerage Only</option>
                                         <option value="Water and Sewerage">Water and Sewerage</option>
                                         <option value="Others">Others</option>
                                       </select>
+                                      @error('state.servRequired')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                      @enderror
                                     </div>
                                     <!-- /.form-group -->
                                   </div>
@@ -171,14 +176,24 @@
                                 <div class="col-12 col-md-6">
                                   <div class="form-group">
                                     <label>Full Name</label>
-                                    <input wire:model.defer='state.fullName' style="width: 100%;" type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                                    <input wire:model.defer='state.fullName' style="width: 100%;" type="text" class="form-control @error('state.fullName') is-invalid @enderror" id="fullName" placeholder="Enter full name">
+                                    @error('state.fullName')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
                                   </div>
                                   <!-- /.form-group -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                       <label>Occupation</label>
-                                      <input wire:model.defer='state.occupation' style="width: 100%;" type="text" class="form-control" id="occupation" placeholder="Enter occupation">
+                                      <input wire:model.defer='state.occupation' style="width: 100%;" type="text" class="form-control @error('state.occupation') is-invalid @enderror" id="occupation" placeholder="Enter occupation">
+                                      @error('state.occupation')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
                                     </div>
                                     <!-- /.form-group -->
                                   </div>
@@ -188,14 +203,24 @@
                                 <div class="col-12 col-md-6">
                                   <div class="form-group">
                                     <label>Nationality</label>
-                                    <input wire:model.defer='state.nationality' style="width: 100%;" type="text" class="form-control" id="nationality" placeholder="Enter nationality">
+                                    <input wire:model.defer='state.nationality' style="width: 100%;" type="text" class="form-control @error('state.nationality') is-invalid @enderror" id="nationality" placeholder="Enter nationality">
+                                    @error('state.nationality')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
                                   </div>
                                   <!-- /.form-group -->
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                       <label>Phone Number</label>
-                                      <input wire:model.defer='state.phone' style="width: 100%;" type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                                      <input wire:model.defer='state.phone' style="width: 100%;" type="text" class="form-control @error('state.phone') is-invalid @enderror" id="phone" placeholder="Enter phone number">
+                                      @error('state.phone')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                      @enderror
                                     </div>
                                     <!-- /.form-group -->
                                   </div>
@@ -208,7 +233,7 @@
                                       <label>Passport size (Image only)</label>
                                         <!-- <label for="customFile">Custom File</label> -->
                                         <div class="custom-file">
-                                          <input wire:model.defer='passport' style="width: 100%;" type="file" class="custom-file-input" id="customFile">
+                                          <input wire:model.defer='passport' style="width: 100%;" type="file" class="custom-file-input @error('passport') is-invalid @enderror" id="customFile">
                                           <label class="custom-file-label" for="customFile">
                                             @if($passport)
                                               {{$passport->getClientOriginalName() }}
@@ -216,6 +241,11 @@
                                               Choose file
                                             @endif
                                           </label>
+                                          @error('passport')
+                                            <div class="invalid-feedback">
+                                              {{ $message }}
+                                            </div>
+                                          @enderror
                                         </div>
                                     </div>
                                   <!-- /.form-group -->
@@ -226,7 +256,7 @@
                                       <label>Recognized identity card (Image only) </label>
                                         <!-- <label for="customFile">Custom File</label> -->
                                         <div class="custom-file">
-                                          <input wire:model.defer='idCard' style="width: 100%;" type="file" class="custom-file-input" id="customFile">
+                                          <input wire:model.defer='idCard' style="width: 100%;" type="file" class="custom-file-input @error('idCard') is-invalid @enderror" id="customFile">
                                           <label class="custom-file-label" for="customFile">
                                             @if($idCard)
                                               {{$idCard->getClientOriginalName() }}
@@ -234,6 +264,11 @@
                                               Choose file
                                             @endif
                                           </label>
+                                          @error('idCard')
+                                            <div class="invalid-feedback">
+                                              {{ $message }}
+                                            </div>
+                                          @enderror
                                         </div>
                                     </div>
                                     <!-- /.form-group -->
@@ -251,7 +286,7 @@
                               <div class="col-12 col-md-6">
                                 <div class="form-group">
                                   <label>Applicant District</label>
-                                  <select wire:model.defer='state.district' wire:change='getDistrict($event.target.value)' class="form-control select2" style="width: 100%;">
+                                  <select wire:model.defer='state.district' wire:change='getDistrict($event.target.value)' class="form-control select2 @error('state.district') is-invalid @enderror" style="width: 100%;">
                                     <option value="" selected="selected">Choose District..</option>
                                     <option value="Ilala">Ilala</option>
                                     <option value="Kinondoni">Kinondoni</option>
@@ -259,6 +294,11 @@
                                     <option value="Ubungo">Ubungo</option>
                                     <option value="Kigamboni">Kigamboni</option>
                                   </select>
+                                  @error('state.district')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                  @enderror
                                 </div>
                                 <!-- /.form-group -->
                               </div>
@@ -266,7 +306,7 @@
                               <div class="col-12 col-md-6">
                                 <div class="form-group">
                                   <label>Applicant Ward</label>
-                                  <select wire:model.defer='state.ward' wire:change='getWard($event.target.value)' class="form-control select2" style="width: 100%;">
+                                  <select wire:model.defer='state.ward' wire:change='getWard($event.target.value)' class="form-control select2 @error('state.ward') is-invalid @enderror" style="width: 100%;">
                                     <option value="" selected="selected">Choose Ward..</option>
                                       @if (!empty($selectedDistrict))
                                       @foreach ($kata as $value)
@@ -274,6 +314,11 @@
                                       @endforeach
                                       @endif
                                   </select>
+                                  @error('state.ward')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                  @enderror
                                 </div>
                               </div>
 
@@ -283,7 +328,7 @@
                             <div class="col-12 col-md-6">
                               <div class="form-group">
                                 <label>Applicant Street</label>
-                                <select wire:model.defer='state.street' wire:change='getStreet($event.target.value)' class="form-control select2" style="width: 100%;">
+                                <select wire:model.defer='state.street' wire:change='getStreet($event.target.value)' class="form-control select2 @error('state.street') is-invalid @enderror" style="width: 100%;">
                                   <option selected="selected">Choose Street..</option>
                                     @if (!empty($selectedWard))
                                     @foreach ($lgos as $lgo)
@@ -291,13 +336,18 @@
                                     @endforeach
                                     @endif
                                 </select>
+                                @error('state.street')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                @enderror
                               </div>
                               <!-- /.form-group -->
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
                                   <label>Applicant Messenger</label>
-                                  <select wire:model.defer='state.lgoId' class="form-control select2" style="width: 100%;">
+                                  <select wire:model.defer='state.lgoId' class="form-control select2 @error('state.lgoId') is-invalid @enderror" style="width: 100%;">
                                     <option selected="selected">Choose Messenger..</option>
                                       @if (!empty($selectedStreet))
                                       @foreach ($lgos2 as $lgo2)
@@ -305,6 +355,11 @@
                                       @endforeach
                                       @endif
                                   </select>
+                                  @error('state.lgoId')
+                                    <div class="invalid-feedback">
+                                      {{ $message }}
+                                    </div>
+                                  @enderror
                                 </div>
                                 <!-- /.form-group -->
                               </div>
@@ -314,14 +369,24 @@
                           <div class="col-12 col-md-6">
                             <div class="form-group">
                               <label>House Number/Name</label>
-                              <input wire:model.defer='state.house' style="width: 100%;" type="text" class="form-control" id="house" placeholder="Enter house number or name">
+                              <input wire:model.defer='state.house' style="width: 100%;" type="text" class="form-control @error('state.house') is-invalid @enderror" id="house" placeholder="Enter house number or name">
+                              @error('state.house')
+                                <div class="invalid-feedback">
+                                  {{ $message }}
+                                </div>
+                              @enderror
                             </div>
                             <!-- /.form-group -->
                           </div>
                           <div class="col-12 col-md-6">
                               <div class="form-group">
                                 <label>Plot Number</label>
-                                <input wire:model.defer='state.plot' style="width: 100%;" type="text" class="form-control" id="plot" placeholder="Enter plot number">
+                                <input wire:model.defer='state.plot' style="width: 100%;" type="text" class="form-control @error('state.plot') is-invalid @enderror" id="plot" placeholder="Enter plot number">
+                                @error('state.plot')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                @enderror
                               </div>
                               <!-- /.form-group -->
                             </div>
@@ -379,8 +444,8 @@
                       <hr class="mt-4">
                           
 
-                      <div class="d-flex justify-content-end">
-                        <div class="col-md-6">
+                      <div class="text-center">
+                        <div class="col-md-12">
                           <p> <b>Reference: </b>DWS-NCF <b>Revision: </b>0  <b>Issue date: </b> {{ now()->format('M d, Y') }} <a href="https://www.dawasa.go.tz/en" target="_blank">DAWASA</a></p>
                         </div>
                       </div>

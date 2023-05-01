@@ -27,9 +27,44 @@ class CreateRequest extends Component
             'state' => $this->state,
         ],
         [
-            'passport'=> 'required',
-            'idCard' => 'required',
+            'passport'=> 'required|file|image|max:1024',
+            'idCard' => 'required|file|image|max:1024',
             'state.connReason' => 'required',
+            'state.servRequired' => 'required',
+            'state.fullName' => 'required',
+            'state.occupation' => 'required',
+            'state.nationality' => 'required',
+            'state.phone' => 'required|numeric|regex:/^255\d{9}$/|digits:12|unique:connection_requests,phone',
+            'state.district' => 'required',
+            'state.ward' => 'required',
+            'state.lgoId' => 'required',
+            'state.street' => 'required',
+            'state.house' => 'required',
+            'state.plot' => 'required|numeric'
+        ],
+        [
+            'passport.required' => 'Please attach applicant passport size',
+            'passport.image' => 'Please attach image format only',
+            'passport.max' => 'Image must not be exceed 1gb',
+            'idCard.required' => 'Please attach applicant identity card',
+            'idCard.image' => 'Please attach image format only',
+            'idCard.max' => 'Image must not be exceed 1gb',
+            'state.connReason.required' => 'Please select connection reason',
+            'state.servRequired.required' => 'Please select service required',
+            'state.fullName.required' => 'Please select applicant full name',
+            'state.occupation.required' => 'Please select applicant occupation',
+            'state.nationality.required' => 'Please select applicant nationality',
+            'state.phone.required' => 'Please select applicant phone number',
+            'state.phone.numeric' => 'Invalid phone number',
+            'state.phone.regex' => 'Please start with 255 / check number length',
+            'state.phone.unique' => 'This phone number has already taken!',
+            'state.district.required' => 'Please select applicant district',
+            'state.ward.required' => 'Please select applicant ward',
+            'state.lgoId.required' => 'Please select applicant messenger',
+            'state.street.required' => 'Please select applicant street',
+            'state.house.required' => 'Please fill applicant house name or number',
+            'state.plot.required' => 'Please fill applicant plot number',
+            'state.plot.numeric' => 'Invalid plot number',
         ])->validate();
 
         ConnectionRequest::create([
@@ -52,7 +87,9 @@ class CreateRequest extends Component
             'dawasaStatus' => "Pending",
         ]);
 
-        dd('Done');
+        session()->flash('success', 'Your connection request has been submitted successfully!');
+
+        return redirect()->route('customer.listrequests');
     }
 
     public $Ilala = ['Buguruni', 'Chanika', 'Gerezani', 'Ilala', 'Jangwani', 'Kariakoo', 'Kisutu', 'Kitunda', 'Mchikichini', 'Msongola', 'Pugu', 'Segerea', 'Tabata', 'Ukonga', 'Upanga Magharibi', 'Upanga Mashariki'];

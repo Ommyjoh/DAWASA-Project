@@ -62,6 +62,7 @@ class ListLgo extends Component
             'messenger.required' => 'Please fill messenger name of LGO',
             'phone.required' => 'Please fill active phone number',
             'phone.regex' => 'Please start with 255 / check number length',
+            'phone.unique' => 'This phone number has already taken!',
             'box.required' => 'Please fill LGO P.O BOX'
         ])->validate();
         $this->state['password'] = $this->generatePassword();
