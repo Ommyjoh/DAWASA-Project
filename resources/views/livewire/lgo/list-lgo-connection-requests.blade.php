@@ -109,7 +109,6 @@
                         <thead class="text-info text-center">
                             <th>Date</th>
                             <th>Customer Name</th>
-                            <th>Occupation</th>
                             <th>Street</th>
                             <th>House</th>
                             <th>Plot #</th>
@@ -120,9 +119,12 @@
                           <tbody>
                             @forelse($requests as $request)
                                 <tr>
-                                    <td>{{ $request->created_at }}</td>
+                                    <td>{{ $request->created_at }}
+                                        @if($request->created_at == now()->format('M d, Y'))
+                                        <img src="{{ asset('backend/dist/img/new.GIF') }}" alt="AdminLTE Logo" width="30" height="20" class="brand-image">
+                                        @endif
+                                    </td>
                                     <td>{{ $request->fullName }}</td>
-                                    <td>{{ $request->occupation }}</td>
                                     <td>{{ $request->street }}</td>
                                     <td>{{ $request->house }}</td>
                                     <td>{{ $request->plot }}</td>
@@ -130,7 +132,6 @@
                                     <td>{{ $request->servRequired }}</td>
                                     <td>
                                         <a href="#"><i class="nav-icon fa fa-eye text-primary mr-2" title="view"></i></a>
-                                        <a href="#"><i class="nav-icon fa fa-times text-danger" title="reject"></i></a>
                                     </td>
                                 </tr>
                             @empty
