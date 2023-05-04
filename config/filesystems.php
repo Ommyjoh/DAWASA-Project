@@ -72,6 +72,14 @@ return [
             'throw' => false,
         ],
 
+        'idLetters' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/idLetters'),
+            'url' => env('APP_URL').'/storage/idLetters',
+            'visibility' => 'public',
+            'throw' => false,
+        ]
+
     ],
 
     /*
@@ -89,6 +97,7 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('storage/passports') => storage_path('app/public/passports'),
         public_path('storage/cards') => storage_path('app/public/cards'),
+        public_path('storage/idLetters') => storage_path('app/public/idLetters'),
     ],
 
 ];

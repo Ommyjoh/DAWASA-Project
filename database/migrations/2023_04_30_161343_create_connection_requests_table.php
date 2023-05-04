@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('plot');
             $table->string('passport');
             $table->string('idCard');
-            $table->string('lgoStatus');
-            $table->string('dawasaStatus');
+            $table->enum('lgoStatus', ['Pending', 'Approved', 'Rejected'])->default('Pending');
+            $table->enum('dawasaStatus', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->string('lgoNote')->nullable();
             $table->string('dawasaNote')->nullable();
             $table->timestamps();

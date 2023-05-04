@@ -16,7 +16,7 @@ class CreateRequest extends Component
     public $selectedDistrict, $selectedWard, $selectedStreet;
     public $state = [];
 
-    public $passport, $idCard;
+    public $passport, $idCard, $idLetter;
     public $checked = false;
 
     public function saveRequest(){
@@ -25,10 +25,12 @@ class CreateRequest extends Component
             'passport' =>$this->passport,
             'idCard' => $this->idCard,
             'state' => $this->state,
+            'idLetter' => $this->idLetter
         ],
         [
             'passport'=> 'required|file|image|max:1024',
             'idCard' => 'required|file|image|max:1024',
+            'idLetter'=>'required|file|image|max:1024',
             'state.connReason' => 'required',
             'state.servRequired' => 'required',
             'state.fullName' => 'required',
@@ -40,7 +42,8 @@ class CreateRequest extends Component
             'state.lgoId' => 'required',
             'state.street' => 'required',
             'state.house' => 'required',
-            'state.plot' => 'required|numeric'
+            'state.plot' => 'required|numeric',
+            'state.mjumbe' => 'required'
         ],
         [
             'passport.required' => 'Please attach applicant passport size',
@@ -49,6 +52,9 @@ class CreateRequest extends Component
             'idCard.required' => 'Please attach applicant identity card',
             'idCard.image' => 'Please attach image format only',
             'idCard.max' => 'Image must not be exceed 1gb',
+            'idLetter.required' => 'Please attach applicant identification letter',
+            'idLetter.image' => 'Please attach image format only',
+            'idLetter.max' => 'Image must not be exceed 1gb',
             'state.connReason.required' => 'Please select connection reason',
             'state.servRequired.required' => 'Please select service required',
             'state.fullName.required' => 'Please select applicant full name',
@@ -60,11 +66,12 @@ class CreateRequest extends Component
             'state.phone.unique' => 'This phone number has already taken!',
             'state.district.required' => 'Please select applicant district',
             'state.ward.required' => 'Please select applicant ward',
-            'state.lgoId.required' => 'Please select applicant messenger',
+            'state.lgoId.required' => 'Please select applicant LGO chairperson',
             'state.street.required' => 'Please select applicant street',
             'state.house.required' => 'Please fill applicant house name or number',
             'state.plot.required' => 'Please fill applicant plot number',
             'state.plot.numeric' => 'Invalid plot number',
+            'state.mjumbe.required' => 'Please fill applicant messenger name',
         ])->validate();
 
         ConnectionRequest::create([
@@ -85,6 +92,8 @@ class CreateRequest extends Component
             'idCard' => $this->idCard->store('/', 'cards'),
             'lgoStatus' => "Pending",
             'dawasaStatus' => "Pending",
+            'mjumbe'=>$this->state['mjumbe'],
+            'idLetter' => $this->idCard->store('/', 'idLetters'),
         ]);
 
         session()->flash('success', 'Your connection request has been submitted successfully!');

@@ -346,7 +346,7 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="form-group">
-                                  <label>Applicant Messenger</label>
+                                  <label>Applicant LGO chairperson</label>
                                   <select wire:model.defer='state.lgoId' class="form-control select2 @error('state.lgoId') is-invalid @enderror" style="width: 100%;">
                                     <option selected="selected">Choose Messenger..</option>
                                       @if (!empty($selectedStreet))
@@ -380,7 +380,7 @@
                           </div>
                           <div class="col-12 col-md-6">
                               <div class="form-group">
-                                <label>Plot Number</label>
+                                <label>Trunk Number</label>
                                 <input wire:model.defer='state.plot' style="width: 100%;" type="text" class="form-control @error('state.plot') is-invalid @enderror" id="plot" placeholder="Enter plot number">
                                 @error('state.plot')
                                   <div class="invalid-feedback">
@@ -391,6 +391,44 @@
                               <!-- /.form-group -->
                             </div>
                         </div>
+
+                        <div class="row">
+                          <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>Applicant Messenger Name</label>
+                              <input wire:model.defer='state.mjumbe' style="width: 100%;" type="text" class="form-control @error('state.mjumbe') is-invalid @enderror" id="mjumbe" placeholder="Enter messenger name">
+                              @error('state.mjumbe')
+                                <div class="invalid-feedback">
+                                  {{ $message }}
+                                </div>
+                              @enderror
+                            </div>
+                            <!-- /.form-group -->
+                          </div>
+
+                          <div class="col-12 col-md-6">
+                              <div class="form-group">
+                                <label>Identification Letter (Image only) </label>
+                                  <!-- <label for="customFile">Custom File</label> -->
+                                  <div class="custom-file">
+                                    <input wire:model.defer='idLetter' style="width: 100%;" type="file" class="custom-file-input @error('idLetter') is-invalid @enderror" id="customFile">
+                                    <label class="custom-file-label" for="customFile">
+                                      @if($idLetter)
+                                        {{$idLetter->getClientOriginalName() }}
+                                      @else
+                                        Choose file
+                                      @endif
+                                    </label>
+                                    @error('idLetter')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
+                              </div>
+                              <!-- /.form-group -->
+                            </div>
+                      </div>
 
                        <hr class="mt-4">
 

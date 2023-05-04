@@ -111,9 +111,8 @@
                             <th>Customer Name</th>
                             <th>Street</th>
                             <th>House</th>
-                            <th>Plot #</th>
-                            <th>Connection Reason</th>
-                            <th>Service Required</th>
+                            <th>Trunk</th>
+                            <th>Messenger Name</th>
                             <th>Action</th>
                         </thead>
                           <tbody>
@@ -128,8 +127,7 @@
                                     <td>{{ $request->street }}</td>
                                     <td>{{ $request->house }}</td>
                                     <td>{{ $request->plot }}</td>
-                                    <td>{{ $request->connReason }}</td>
-                                    <td>{{ $request->servRequired }}</td>
+                                    <td>{{ $request->mjumbe }}</td>
                                     <td>
                                         <a href="#"><i class="nav-icon fa fa-eye text-primary mr-2" title="view"></i></a>
                                     </td>

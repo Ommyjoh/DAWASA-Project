@@ -30,6 +30,8 @@ class ConnectionRequest extends Model
         'dawasaStatus',
         'lgoNote',
         'dawasaNote',
+        'mjumbe',
+        'idLetter'
     ];
 
     public function getCreatedAtAttribute($value)
