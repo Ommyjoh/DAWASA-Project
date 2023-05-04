@@ -129,7 +129,7 @@
                                     <td>{{ $request->plot }}</td>
                                     <td>{{ $request->mjumbe }}</td>
                                     <td>
-                                        <a href="#"><i class="nav-icon fa fa-eye text-primary mr-2" title="view"></i></a>
+                                        <a href="{{ route('lgo.viewrequest', $request) }}"><i class="nav-icon fa fa-eye text-primary mr-2" title="view"></i></a>
                                     </td>
                                 </tr>
                             @empty

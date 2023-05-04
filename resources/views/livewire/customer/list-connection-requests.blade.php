@@ -171,10 +171,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($request->lgoNote != '' | $request->dawasaNote != '')
-                                            <a href="#"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                        @endif
-
+                                        <a href="#"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
                                         @if($request->lgoStatus != 'Approved')
                                           <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                                         @endif
