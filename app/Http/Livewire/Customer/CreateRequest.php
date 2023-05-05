@@ -93,7 +93,7 @@ class CreateRequest extends Component
             'lgoStatus' => "Pending",
             'dawasaStatus' => "Pending",
             'mjumbe'=>$this->state['mjumbe'],
-            'idLetter' => $this->idCard->store('/', 'idLetters'),
+            'idLetter' => $this->idLetter->store('/', 'idLetters'),
         ]);
 
         session()->flash('success', 'Your connection request has been submitted successfully!');

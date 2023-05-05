@@ -128,7 +128,7 @@
                                 </b>
                             </h5>
                         </div>
-                        <img src="{{ asset('backend/dist/img/user8-128x128.jpg') }}" alt="AdminLTE Logo" style= "width: 2in; height: 2in" class="brand-image">
+                        <img src="{{ Storage::url('passports/' .$request->passport) }}" style="width: 2in; height: 2.5in" alt="AdminLTE Logo" class="brand-image">
                     </div>
 
                     <div class="text-center">
@@ -169,7 +169,7 @@
                     <div class="d-flex flex-row text-info">
                       <div class="form-group mr-4">
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                          <input type="checkbox" class="custom-control-input" id="customSwitch3">
+                          <input type="checkbox" wire:model='checked' class="custom-control-input" id="customSwitch3">
                           <label class="custom-control-label" for="customSwitch3">Nakubaliana na mkataba huu</label>
                         </div>
                       </div>
@@ -185,37 +185,50 @@
                         <div class="col-12 col-md-6">
                           <div class="form-group">
                             <label> Chukua hatua<b class="text-red">*</b></label>
-                            <select class="form-control select2 style="width: 100%;">
+                            <select wire:change='getAction($event.target.value)' class="form-control select2 style="width: 100%;">
                               <option selected="selected">Chagua hatua</option>
-                              <option value="Domestic">Subirisha Ombi</option>
-                              <option value="Domestic">Kubali Ombi</option>
-                              <option value="Commercial">Kataa Ombi</option>
+                              <option value="Approved">Kubali Ombi</option>
+                              <option value="Rejected">Kataa Ombi</option>
                             </select>
                           </div>
                           <!-- /.form-group -->
                         </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label>Sababu ya kukataa ombi hili</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                        @if($action == 'Rejected')
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Sababu ya kukataa ombi hili<b class="text-red">*</b></label>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                                <!-- /.form-group -->
                             </div>
-                            <!-- /.form-group -->
-                          </div>
+                        @endif
                     </div>
 
-                    <div class="d-flex justify-content-center text-center mt-4">
-                        <h5>Ofisi ya Serikali ya mtaa huu itatoa ushirikiano unaohitajika. <br>
-                            Asante wako ujenzi wa Taifa <br>
-                            <b>{{ auth('lgos')->user()->messenger }}</b> <br>
-                            Mwenyekiti wa Serikali ya Mtaa <br>
-                            Mtaa wa {{ auth('lgos')->user()->street }} <br>
-                            Kata ya {{ auth('lgos')->user()->ward }}
-                        </h5>
-                    </div>
+                    @if($action == 'Approved')
+                        <div class="d-flex justify-content-center text-center mt-4">
+                            <h5>Ofisi ya Serikali ya mtaa huu itatoa ushirikiano unaohitajika. <br>
+                                Asante wako ujenzi wa Taifa <br>
+                                <b>{{ auth('lgos')->user()->messenger }}</b> <br>
+                                Mwenyekiti wa Serikali ya Mtaa <br>
+                                Mtaa wa {{ auth('lgos')->user()->street }} <br>
+                                Kata ya {{ auth('lgos')->user()->ward }}
+                            </h5>
+                        </div>
+                    @endif
 
                       <div class=" mt-4 mb-4">
                         <div class="col-12 d-flex flex-row">
-                            <button type="submit" class="btn btn-block btn-success">Weka Mabadiliko</button>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-block btn-danger">Ghairi</button>
+                            </div>
+                            <div class="col-md-6">
+                                @if($checked == true)
+                                    <button type="submit" class="btn btn-block btn-success">Weka Mabadiliko</button>
+                                @else
+                                    <button type="submit" class="btn btn-block btn-success" disabled>kubali Mkataba wa Makubaliano</button>
+                                @endif
+                                
+                            </div>
                         </div>
                       </div>
 
@@ -244,7 +257,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('backend/dist/img/smitaa.jpeg') }}" alt="AdminLTE Logo" class="brand-image">
+                  <img src="{{ Storage::url('idLetters/' .$request->idLetter) }}" alt="AdminLTE Logo" class="brand-image">
                 </div>
 
                 <hr>
@@ -254,7 +267,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('backend/dist/img/cheti.jpg') }}" alt="AdminLTE Logo" class="brand-image">
+                    <img src="{{ Storage::url('cards/' .$request->idCard) }}" alt="AdminLTE Logo" class="brand-image">
                 </div>
             </div>
           </div>
