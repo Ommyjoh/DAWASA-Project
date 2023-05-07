@@ -9,12 +9,14 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
         <div class="image">
           <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="info">
-          <a href="" class="d-block">{{ auth('staff')->user()->name }}</a>
+        <div class="info text-center">
+          <a href="" class="d-block">{{ auth('staff')->user()->name }} <br>
+              <span class="badge text-bg-info px-2">{{ auth('staff')->user()->role }} </span>
+          </a>
         </div>
       </div>
 
@@ -55,7 +57,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('staff.allstaffs')}}" class="nav-link">
                   <i class="fa fa-user-circle"></i>
                   <p> Manage Staffs</p>
                 </a>

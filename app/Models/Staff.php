@@ -23,6 +23,8 @@ class Staff extends Authenticatable
         'name',
         'phone',
         'role',
+        'email',
+        'office',
         'password',
     ];
 

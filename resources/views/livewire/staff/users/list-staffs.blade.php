@@ -9,12 +9,14 @@
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex align-items-center">
           <div class="image">
             <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
           </div>
-          <div class="info">
-            <a href="" class="d-block">{{ auth('staff')->user()->name }}</a>
+          <div class="info text-center">
+            <a href="" class="d-block">{{ auth('staff')->user()->name }} <br>
+                <span class="badge text-bg-info px-2">{{ auth('staff')->user()->role }} </span>
+            </a>
           </div>
         </div>
   
@@ -55,7 +57,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{route('staff.allstaffs')}}" class="nav-link">
                     <i class="fa fa-user-circle"></i>
                     <p> Manage Staffs</p>
                   </a>
@@ -132,7 +134,7 @@
                       <div class="col-sm-6">
                           <ol class="breadcrumb float-sm-right">
                               <li class="breadcrumb-item"><a href="{{ route('staff.dashboard')}}">Home</a></li>
-                              <li class="breadcrumb-item active">Manage Customers</li>
+                              <li class="breadcrumb-item active">Manage Staffs</li>
                           </ol>
                       </div><!-- /.col -->
                   </div><!-- /.row -->
@@ -153,7 +155,7 @@
               <div class="col-12">
                   <div class="card">
                       <div class="card-header">
-                          <button style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add LGO</button>
+                          <button wire:click.prevent="addNewStaffForm" style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add Staff</button>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
@@ -161,27 +163,33 @@
                           <thead>
                           <tr>
                             <th>#</th>
+                            <th>Avatar</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Messenger</th>
-                            <th>Phone #</th>
-                            <th>P.O BOX</th>
+                            <th>Office</th>
+                            <th>Role</th>
                             <th>Action</th>
                           </tr>
                           </thead>
                           <tbody>
-                          @forelse($lgos as $lgo)
+                          @forelse($staffs as $staff)
                             <tr>
                               <td>{{ $loop->iteration }}</td>
-                              <td>{{ $lgo->district }}</td>
-                              <td>{{ $lgo->ward }}</td>
-                              <td>{{ $lgo->street }}</td>
-                              <td>{{ $lgo->messenger }}</td>
-                              <td>+{{ $lgo->phone }}</td>
-                              <td>P.O BOX {{ $lgo->box }}</td>
+                              <td> <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="40" height="40" class="img-circle brand-image"></td>
+                              <td>{{ $staff->name }}</td>
+                              <td>{{ $staff->email }}</td>
+                              <td>+{{ $staff->phone }}</td>
+                              <td>{{ $staff->office }}</td>
                               <td>
-                                <a wire:click.prevent="editLgo({{ $lgo }})" href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
+                                @if($staff->role == 'Admin')
+                                <span class="badge text-bg-info px-2">{{ $staff->role }} </span>
+                                @else
+                                <span class="badge text-bg-secondary px-2">{{ $staff->role }} </span>
+                                @endif
+                              </td>
+                              <td>
+                                <a wire:click.prevent="editStaff({{ $staff }})" href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
                                 <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                               </td>
                             </tr>
@@ -210,95 +218,80 @@
       <!-- Modal -->
       <div class="modal fade" id="lgoForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog">
-          <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'editLgoData' : 'addLgo' }}">
+          <form autocomplete="off" wire:submit.prevent="{{ $showEditModal ? 'editStaffData' : 'addStaff' }}">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">
-                      @if($showEditModal)
-                        <span>Edit local Goverment Office</span>
-                      @else
-                        <span>Add local Goverment Office</span>
-                      @endif
+                        @if($showEditModal)
+                        <span><b> <i class="fa fa-user" aria-hidden="true"></i> Edit Staff</b></span>
+                        @else
+                        <span><b> <i class="fa fa-user" aria-hidden="true"></i> Add Staff</b></span>
+                        @endif
                     </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                      {{-- <div class="form-group">
-                        <label for="district">District</label>
-                        <input type="text" wire:model.defer="state.district" class="form-control @error('district') is-invalid @enderror" id="district" placeholder="Enter District Name">
-                        @error('district')
-                          <div class="invalid-feedback">
-                            {{ $message }}
-                          </div>
-                        @enderror
-                      </div> --}}
-  
+
                       <div class="form-group">
-                        <label>Select District</label>
-                        <select wire:model.defer="state.district" wire:change='getDistrict($event.target.value)' class="form-control select2 @error('district') is-invalid @enderror" style="width: 100%;">
-                          <option value="" selected="selected">Choose District..</option>
-                          <option value="Ilala">Ilala</option>
-                          <option value="Kinondoni">Kinondoni</option>
-                          <option value="Temeke">Temeke</option>
-                          <option value="Ubungo">Ubungo</option>
-                          <option value="Kigamboni">Kigamboni</option>
-                        </select>
-                        @error('district')
+                        <label>Staff Name</label>
+                        <input type="text" wire:model.defer="state.name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Staff Name">
+                        @error('name')
                           <div class="invalid-feedback">
                             {{ $message }}
                           </div>
                         @enderror
                       </div>
-  
-                      @if (!empty($selectedDistrict))
+
                       <div class="form-group">
-                        <label>Select Ward</label>
-                        <select wire:model.defer="state.ward" class="form-control select2 @error('ward') is-invalid @enderror" style="width: 100%;">
-                          <option value="" selected="selected">Choose Ward..</option>
-                          @foreach ($kata as $value)
-                              <option value="{{ $value }}">{{ $value }}</option>
-                          @endforeach
-                        </select>
-                        @error('ward')
-                          <div class="invalid-feedback">
-                            {{ $message }}
-                          </div>
-                        @enderror
-                      </div>
-                      @endif
-  
-                      <div class="form-group">
-                        <label for="street">Street</label>
-                        <input type="text" wire:model.defer="state.street" class="form-control @error('street') is-invalid @enderror" id="street" placeholder="Enter Street Name">
-                        @error('street')
-                          <div class="invalid-feedback">
-                            {{ $message }}
-                          </div>
-                        @enderror
-                      </div>
-                      <div class="form-group">
-                        <label for="messenger">Messenger's Name</label>
-                        <input type="text" wire:model.defer="state.messenger" class="form-control @error('messenger') is-invalid @enderror" id="messenger" placeholder="Enter Messenger's Name">
-                        @error('messenger')
-                          <div class="invalid-feedback">
-                            {{ $message }}
-                          </div>
-                        @enderror
-                      </div>
-                      <div class="form-group">
-                        <label for="phone">Active Phone No</label>
-                        <input type="text" wire:model.defer="state.phone" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Enter Phone Number">
+                        <label>Staff Phone Number</label>
+                        <input type="text" wire:model.defer="state.phone" class="form-control @error('phone') is-invalid @enderror" id="name" placeholder="Enter Staff Phone Number">
                         @error('phone')
                           <div class="invalid-feedback">
                             {{ $message }}
                           </div>
                         @enderror
                       </div>
+
                       <div class="form-group">
-                        <label for="box">P.O BOX</label>
-                        <input type="text" wire:model.defer="state.box" class="form-control @error('box') is-invalid @enderror" id="box" placeholder="Enter P.O BOX">
-                        @error('box')
+                        <label>Staff Email Address</label>
+                        <input type="text" wire:model.defer="state.email" class="form-control @error('email') is-invalid @enderror" id="name" placeholder="Enter Staff EmailAddress">
+                        @error('email')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
+                      </div>
+
+                      <div class="form-group">
+                        <label>Select Staff Office</label>
+                        <select wire:model.defer="state.office" class="form-control select2 @error('office') is-invalid @enderror" style="width: 100%;">
+                          <option value="" selected="selected">Choose Office..</option>
+                          <option value="Ilala">Ilala</option>
+                          <option value="Kinondoni">Kinondoni</option>
+                          <option value="Temeke">Temeke</option>
+                          <option value="Ubungo">Ubungo</option>
+                          <option value="Kigamboni">Kigamboni</option>
+                        </select>
+                        @error('office')
+                          <div class="invalid-feedback">
+                            {{ $message }}
+                          </div>
+                        @enderror
+                      </div>
+  
+
+                      <div class="form-group">
+                        <label>Staff Role</label>
+                        <select wire:model.defer="state.role" class="form-control select2 @error('role') is-invalid @enderror" style="width: 100%;">
+                            <option value="" selected="selected">Choose Role...</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Manager">Regional Manager</option>
+                            <option value="Engineer">Engineer</option>
+                            <option value="Surveyor">Surveyor</option>
+                            <option value="Customer Care">Customer Care</option>
+                          </select>
+                        @error('role')
                           <div class="invalid-feedback">
                             {{ $message }}
                           </div>
@@ -311,11 +304,11 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa fa-times mr-1"></i>Close</button>
                     <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
-                      @if($showEditModal)
+                        @if($showEditModal)
                         <span>Save Changes</span>
-                      @else
-                        <span>Save</span>
-                      @endif
+                        @else
+                            <span>Save</span>
+                        @endif
                     </button>
                 </div>
             </div>
