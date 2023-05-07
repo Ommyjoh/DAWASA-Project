@@ -57,7 +57,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('staff.allstaffs')}}" class="nav-link">
+                <a href="{{route('staff.allstaffs')}}" class="nav-link {{ request()->is('staff/staffs') ? 'active' : '' }}">
                   <i class="fa fa-user-circle"></i>
                   <p> Manage Staffs</p>
                 </a>
@@ -134,7 +134,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('staff.dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Manage Customers</li>
+                            <li class="breadcrumb-item active">Manage LGO's</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -166,7 +166,7 @@
                           <th>District</th>
                           <th>Ward</th>
                           <th>street</th>
-                          <th>Messenger</th>
+                          <th>Chairperson</th>
                           <th>Phone #</th>
                           <th>P.O BOX</th>
                           <th>Action</th>
@@ -184,7 +184,7 @@
                             <td>P.O BOX {{ $lgo->box }}</td>
                             <td>
                               <a wire:click.prevent="editLgo({{ $lgo }})" href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                              <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
+                              <a wire:click.prevent="lgoDeleteConfirmation({{ $lgo->id }})" href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                             </td>
                           </tr>
                         @empty

@@ -34,6 +34,16 @@ class ConnectionRequest extends Model
         'idLetter'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function lgo()
+    {
+        return $this->belongsTo(Lgo::class);
+    }
+
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('M d, Y');

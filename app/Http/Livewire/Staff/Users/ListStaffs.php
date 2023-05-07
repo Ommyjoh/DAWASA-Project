@@ -108,7 +108,7 @@ class ListStaffs extends Component
         $staff = Staff::findOrFail($this->staffIdToDelete);
 
         $staff->delete();
-        $this->dispatchBrowserEvent('staffDeleted');
+        $this->dispatchBrowserEvent('userDeleted', ['message' => 'Staff has been deleted successfully!']);
     }
     public function render()
     {

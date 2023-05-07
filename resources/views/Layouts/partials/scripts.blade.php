@@ -68,10 +68,10 @@
   })
   })
 
-  window.addEventListener('staffDeleted', event => {
+  window.addEventListener('userDeleted', event => {
     Swal.fire(
       'Deleted!',
-      'Staff has been deleted successfully!',
+      event.detail.message,
       'success'
     )
     })

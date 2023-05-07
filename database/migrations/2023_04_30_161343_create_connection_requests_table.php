@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('connection_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('lgo_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('lgo_id')->constrained()->onDelete('cascade');
             $table->string('fullName');
             $table->string('occupation');
             $table->string('nationality');

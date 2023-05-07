@@ -57,7 +57,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('staff.allstaffs')}}" class="nav-link">
+                <a href="{{route('staff.allstaffs')}}" class="nav-link {{ request()->is('staff/staffs') ? 'active' : '' }}">
                   <i class="fa fa-user-circle"></i>
                   <p> Manage Staffs</p>
                 </a>
@@ -158,7 +158,6 @@
                         <th>#</th>
                         <th>Date</th>
                         <th>Customer Name</th>
-                        <th>Email</th>
                         <th>Phone #</th>
                         <th>Action</th>
                       </tr>
@@ -169,14 +168,9 @@
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $customer->created_at }}</td>
                           <td>{{ $customer->name }}</td>
-                          @if($customer->email)
-                            <td>{{ $customer->email }}</td>
-                          @else
-                            <td>-</td>
-                          @endif
                           <td>{{ $customer->phone }}</td>
                           <td class="text-center">
-                            <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
+                            <a wire:click.prevent="customerDeleteConfirmation({{ $customer->id }})" href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                           </td>
                         </tr>
                       @endforeach

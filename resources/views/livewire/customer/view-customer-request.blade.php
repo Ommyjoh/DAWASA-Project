@@ -101,6 +101,25 @@
           <form wire:submit.prevent="saveChanges" autocomplete="off">
             @csrf
             <div class="card">
+              @if($request->lgoStatus == 'Approved' && $request->dawasaStatus == 'Approved')
+                <div class="ribbon-wrapper ribbon-xl">
+                  <div class="ribbon bg-success text-lg">
+                    Approved
+                  </div>
+                </div>
+              @elseif($request->lgoStatus == 'Rejected' | $request->dawasaStatus == 'Rejected')
+                <div class="ribbon-wrapper ribbon-xl">
+                  <div class="ribbon bg-danger text-lg">
+                    Rejected
+                  </div>
+                </div>
+              @else
+                <div class="ribbon-wrapper ribbon-xl">
+                  <div class="ribbon bg-warning text-lg">
+                    Pending
+                  </div>
+                </div>
+              @endif
                 <div class="card-body">
 
                     <div class="mb-4 text-center text-uppercase">
@@ -176,6 +195,20 @@
 
                       <hr class="mt-4">
 
+                      @if($request->lgoNote)
+                      <div class="d-flex justify-content-center text-danger mb-4">
+                          <h5><b>Reason for Rejection: {{ $request->lgoNote }}</b></h5>
+                      </div>
+                      @elseif($request->dawasaNote)
+                          <div class="d-flex justify-content-center text-danger mb-4">
+                              <h5><b> {{ $request->dawasaNote }}</b></h5>
+                          </div>
+                      @else
+                          <div class="d-flex justify-content-center text-danger mb-4">
+                              <h5></h5>
+                          </div>
+                      @endif
+
 
                       <div class="text-center">
                         <div class="col-md-12">
@@ -211,36 +244,6 @@
                 <div class="d-flex justify-content-center">
                     <img src="{{ Storage::url('cards/' .$request->idCard) }}" style="max-width: 100%; height: auto;" alt="AdminLTE Logo" class="brand-image">
                 </div>
-
-
-                <div class="col-12 d-flex justify-content-center mt-4 ">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @if($request->lgoStatus == 'Approved' && $request->dawasaStatus == 'Approved')
-                                <img src="{{ asset('backend/dist/img/approved.png') }}" style="width: 3.3in; height: 3in;" alt="AdminLTE Logo" class="brand-image">
-                            @elseif($request->lgoStatus == 'Rejected' | $request->dawasaStatus == 'Rejected')
-                                <img src="{{ asset('backend/dist/img/rejected.png') }}" style="width: 3.3in; height: 3in;" alt="AdminLTE Logo" class="brand-image">
-                            @else
-                                <img src="{{ asset('backend/dist/img/pending.png') }}" style="width: 4in; height: 2.2in;" alt="AdminLTE Logo" class="brand-image">
-                            @endif
-                        </div>
-                        <!-- /.form-group -->
-                    </div>
-              </div>
-
-                @if($request->lgoNote)
-                    <div class="d-flex justify-content-center text-danger mb-4">
-                        <h5><b>Reason for Rejection: {{ $request->lgoNote }}</b></h5>
-                    </div>
-                @elseif($request->dawasaNote)
-                    <div class="d-flex justify-content-center text-danger mb-4">
-                        <h5><b>Reason for Rejection: {{ $request->dawasaNote }}</b></h5>
-                    </div>
-                @else
-                    <div class="d-flex justify-content-center text-danger mb-4">
-                        <h5></h5>
-                    </div>
-                @endif
 
             </div>
           </div>

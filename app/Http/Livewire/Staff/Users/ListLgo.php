@@ -10,6 +10,9 @@ use Livewire\Component;
 
 class ListLgo extends Component
 {
+    protected $listeners = ['deleteConfirmed' => 'deleteLgo'];
+
+    public $lgoIdToDelete;
     public $state = [];
     public $selectedDistrict;
 
@@ -106,6 +109,20 @@ class ListLgo extends Component
 
         $this->dispatchBrowserEvent('hide-form');
         
+    }
+
+    
+    public function lgoDeleteConfirmation($lgoId){
+        $this->lgoIdToDelete = $lgoId;
+        $this->dispatchBrowserEvent('show-delete-confirmation');
+
+    }
+
+    public function deleteLgo(){
+        $lgo = Lgo::findOrFail($this->lgoIdToDelete);
+
+        $lgo->delete();
+        $this->dispatchBrowserEvent('userDeleted', ['message' => 'Local Goverment Office has been deleted successfully!']);
     }
 
     public function render()
