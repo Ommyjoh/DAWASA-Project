@@ -47,3 +47,43 @@
 {{-- <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('backend/dist/js/pages/dashboard.js') }}"></script> --}}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  window.addEventListener('show-delete-confirmation', event => {
+    Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+        Livewire.emit('deleteConfirmed');
+    }
+  })
+  })
+
+  window.addEventListener('staffDeleted', event => {
+    Swal.fire(
+      'Deleted!',
+      'Staff has been deleted successfully!',
+      'success'
+    )
+    })
+
+</script>
+
+<script>
+  window.addEventListener('show-form', event => {
+    $('#lgoForm').modal('show');
+    })
+
+    window.addEventListener('hide-form', event => {
+    $('#lgoForm').modal('hide');
+    })
+</script>

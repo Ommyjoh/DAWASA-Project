@@ -190,7 +190,7 @@
                               </td>
                               <td>
                                 <a wire:click.prevent="editStaff({{ $staff }})" href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
-                                <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
+                                <a wire:click.prevent="staffDeleteConfirmation({{ $staff->id }})" href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                               </td>
                             </tr>
                           @empty

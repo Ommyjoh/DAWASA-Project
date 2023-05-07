@@ -175,7 +175,7 @@
                             <td>-</td>
                           @endif
                           <td>{{ $customer->phone }}</td>
-                          <td>
+                          <td class="text-center">
                             <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                           </td>
                         </tr>

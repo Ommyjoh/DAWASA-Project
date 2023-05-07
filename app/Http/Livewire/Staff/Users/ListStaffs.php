@@ -9,7 +9,10 @@ use Livewire\Component;
 
 class ListStaffs extends Component
 {
+    protected $listeners = ['deleteConfirmed' => 'deleteStaff'];
     public $state = [];
+
+    public $staffIdToDelete;
 
     public $staffToEdit;
 
@@ -93,6 +96,19 @@ class ListStaffs extends Component
 
         $this->dispatchBrowserEvent('hide-form');
         
+    }
+
+    public function staffDeleteConfirmation($staffId){
+        $this->staffIdToDelete = $staffId;
+        $this->dispatchBrowserEvent('show-delete-confirmation');
+
+    }
+
+    public function deleteStaff(){
+        $staff = Staff::findOrFail($this->staffIdToDelete);
+
+        $staff->delete();
+        $this->dispatchBrowserEvent('staffDeleted');
     }
     public function render()
     {
