@@ -55,12 +55,14 @@
                   <p> Manage LGO's</p>
                 </a>
               </li>
+              @if(\App\Helpers\RoleCheckHelper::isAdmin())
               <li class="nav-item">
                 <a href="{{route('staff.allstaffs')}}" class="nav-link">
                   <i class="fa fa-user-circle"></i>
                   <p> Manage Staffs</p>
                 </a>
               </li>
+              @endif
             </ul>
           </li>
 

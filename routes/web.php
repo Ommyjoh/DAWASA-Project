@@ -31,6 +31,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('unauthorized', function () {
+    return view('unauthorized');
+})->name('unauthorized');
+
 
 Auth::routes();
 
@@ -66,7 +70,10 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
     Route::get('dashboard',[StaffDashboardController::class, 'dashboard'])->name('staff.dashboard');
     Route::get('customers', ListCustomers::class)->name('staff.customers');
     Route::get('lgo', ListLgo::class)->name('staff.lgo');
-    Route::get('staffs', ListStaffs::class)->name('staff.allstaffs');
+    
+    Route::group(['middleware' => 'staff_mgt'], function () {
+        Route::get('staffs', ListStaffs::class)->name('staff.allstaffs');
+    });
 });
 
 

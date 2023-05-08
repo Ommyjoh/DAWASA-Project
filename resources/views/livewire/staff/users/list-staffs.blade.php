@@ -289,7 +289,7 @@
                             <option value="Manager">Regional Manager</option>
                             <option value="Engineer">Engineer</option>
                             <option value="Surveyor">Surveyor</option>
-                            <option value="Customer Care">Customer Care</option>
+                            <option value="CustCare">Customer Care</option>
                           </select>
                         @error('role')
                           <div class="invalid-feedback">
