@@ -115,7 +115,6 @@
                                     Info@dawasa.co.tz / 0800110064 / *150*00# (Bure)
                                 </p>
                             </div>
-                            <hr class="px-4">
                             <div class="text-center">
                                 <h4><b>NEW CUSTOMER CONNECTION APPLICATION FORM</b>
                                     <br>
@@ -166,9 +165,8 @@
                                   </div>
                             </div>
 
-                            <hr class="mt-4">
 
-                            <div class="text-center mt-4">
+                            <div class="text-center text-success mt-4 mb-2">
                                 <h5> <b>Details of Applicant requiring service </b> <b class="text-red">*</b></h5>
                             </div>
 
@@ -227,7 +225,7 @@
                             </div>
 
                             {{-- Image upload --}}
-                            <div class="row">
+                            <div class="row mb-4">
                                 <div class="col-12 col-md-6">
                                     <div class="form-group">
                                       <label>Passport size (Image only)</label>
@@ -276,9 +274,7 @@
                             </div>
                             {{-- Image upload end --}}
 
-                            <hr class="mt-4">
-
-                            <div class="text-center mt-4">
+                            <div class="text-center text-success mt-4 mb-2">
                                 <h5> <b>Address of Physical Location for Connection </b> <b class="text-red">*</b></h5>
                             </div>
 
@@ -392,7 +388,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mb-4">
                           <div class="col-12 col-md-6">
                             <div class="form-group">
                               <label>Applicant Messenger Name</label>
@@ -430,12 +426,9 @@
                             </div>
                       </div>
 
-                       <hr class="mt-4">
-
-                      <div class="text-info">
+                      <div class="text-info mt-4">
                         <h6> <i class="nav-icon fa fa-caret-right"></i> <b> Statement by Personal/Entity Responsible for paying Deposit, Connection Charges, Monthly Bill and Other Related Charges: <br> &nbsp; &nbsp; &nbsp; Please tick agrrement to terms. </b></h6>
                       </div>
-                      <hr>
                       <div>
                         <p><b>I, the undersigned, hereby acknowledge:</b> <br>
                           (1) Where the Applicant is the Landloard of the connection address, Dawasa requires prior written approval
@@ -462,8 +455,6 @@
                         </div>
                       </div>
 
-                      <hr class="mt-4">
-
                       <div class=" mt-4 mb-4">
                         <div class="col-12 d-flex flex-row">
                           <div class="col-md-6">
@@ -479,8 +470,6 @@
                         </div>
                       </div>
 
-                      <hr class="mt-4">
-                          
 
                       <div class="text-center">
                         <div class="col-md-12">
