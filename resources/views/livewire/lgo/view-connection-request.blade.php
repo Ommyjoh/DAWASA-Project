@@ -81,6 +81,25 @@
           <form wire:submit.prevent="saveChanges" autocomplete="off">
             @csrf
             <div class="card">
+                @if($request->lgoStatus == 'Approved')
+                <div class="ribbon-wrapper ribbon-xl">
+                  <div class="ribbon bg-success text-lg">
+                    Approved
+                  </div>
+                </div>
+                @elseif($request->lgoStatus == 'Rejected')
+                  <div class="ribbon-wrapper ribbon-xl">
+                    <div class="ribbon bg-danger text-lg">
+                      Rejected
+                    </div>
+                  </div>
+                @else
+                  <div class="ribbon-wrapper ribbon-xl">
+                    <div class="ribbon bg-warning text-lg">
+                      Pending
+                    </div>
+                  </div>
+                @endif
                 <div class="card-body">
 
                     <div class="mb-4 text-center text-uppercase">
@@ -152,9 +171,37 @@
                         </p>
                     </div>
 
+                    @if($request->dawasaStatus != 'Approved')
+                    <div class="row mt-4">
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label> Chukua hatua<b class="text-red">*</b></label>
+                          <select wire:model.defer='state.action' wire:change='getAction($event.target.value)' class="form-control select2 @error('state.action') is-invalid @enderror" style="width: 100%;">
+                            <option selected="selected">Chagua hatua</option>
+                            <option value="Approved">Kubali Ombi</option>
+                            <option value="Rejected">Kataa Ombi</option>
+                          </select>
+                          @error('state.action')
+                            <div class="invalid-feedback">
+                              {{ $message }}
+                            </div>
+                          @enderror
+                        </div>
+                        <!-- /.form-group -->
+                      </div>
+                      @if($action == 'Rejected')
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                                      <label>Sababu ya kukataa ombi hili<b class="text-red">*</b></label>
+                                      <textarea wire:model.defer='state.note' class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                  </div>
+                                  <!-- /.form-group -->
+                              </div>
+                          @endif
+                    </div>
+                    
+                    @if($action == 'Approved')
                     <hr class="mt-4">
-                    @if($this->request->dawasaStatus != 'Approved')
-                      
                     <div class="text-info">
                       <h6> <i class="nav-icon fa fa-caret-right"></i> <b> Mkataba wa makubaliano: Tafadhali kubali mkataba huu kwanza. </b></h6>
                     </div>
@@ -166,7 +213,7 @@
                         (3) Nafahamu ni kosa kisheria kupitisha utambulisho batili na hatua kali za kisheria zitachukuliwa endapo nitafanya hivyo.
                       </p>
                     </div>
-
+                    
                     <div class="d-flex flex-row text-info">
                       <div class="form-group mr-4">
                         <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
@@ -174,46 +221,17 @@
                           <label class="custom-control-label" for="customSwitch3">Nakubaliana na mkataba huu</label>
                         </div>
                       </div>
-
+                      
                       <div>
                         <p><b>{{ now()->format('M d, Y') }}</b></p>
                       </div>
                     </div>
-
+                    
                     <hr class="mt-4">
-
-                  <div class="row mt-4">
-                        <div class="col-12 col-md-6">
-                          <div class="form-group">
-                            <label> Chukua hatua<b class="text-red">*</b></label>
-                            <select wire:model.defer='state.action' wire:change='getAction($event.target.value)' class="form-control select2 @error('state.action') is-invalid @enderror" style="width: 100%;">
-                              <option selected="selected">Chagua hatua</option>
-                              <option value="Approved">Kubali Ombi</option>
-                              <option value="Rejected">Kataa Ombi</option>
-                            </select>
-                            @error('state.action')
-                              <div class="invalid-feedback">
-                                {{ $message }}
-                              </div>
-                            @enderror
-                          </div>
-                          <!-- /.form-group -->
-                        </div>
-                        @if($action == 'Rejected')
-                            <div class="col-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Sababu ya kukataa ombi hili<b class="text-red">*</b></label>
-                                    <textarea wire:model.defer='state.note' class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                </div>
-                                <!-- /.form-group -->
-                            </div>
-                        @endif
-                  </div>
-
-                    @if($action == 'Approved')
-                        <div class="d-flex justify-content-center text-center mt-4">
-                            <h5>Ofisi ya Serikali ya mtaa huu itatoa ushirikiano unaohitajika. <br>
-                                Asante wako ujenzi wa Taifa <br>
+                    
+                    <div class="d-flex justify-content-center text-center mt-4">
+                      <h5>Ofisi ya Serikali ya mtaa huu itatoa ushirikiano unaohitajika. <br>
+                        Asante wako ujenzi wa Taifa <br>
                                 <b>{{ auth('lgos')->user()->messenger }}</b> <br>
                                 Mwenyekiti wa Serikali ya Mtaa <br>
                                 Mtaa wa {{ auth('lgos')->user()->street }} <br>
@@ -226,22 +244,21 @@
                         <div class="col-12 d-flex flex-row">
                             <div class="col-md-6">
                                 <button type="button" class="btn btn-block btn-danger">Ghairi</button>
-                            </div>
-                            <div class="col-md-6">
-                                @if($checked == true)
-                                    <button type="submit" class="btn btn-block btn-success">Weka Mabadiliko</button>
+                              </div>
+                              <div class="col-md-6">
+                                @if($checked != true && $action == 'Approved')
+                                <button type="submit" class="btn btn-block btn-success" disabled>kubali Mkataba wa Makubaliano</button>
                                 @else
-                                    <button type="submit" class="btn btn-block btn-success" disabled>kubali Mkataba wa Makubaliano</button>
+                                <button type="submit" class="btn btn-block btn-success">Weka Mabadiliko</button>
                                 @endif
                                 
                             </div>
                         </div>
                       </div>
-                    @endif
-
+                      @endif
                       <hr class="mt-4">
                           
-
+                      
                       <div class="text-center">
                         <div class="col-md-12">
                           <p> <b>Tarehe: </b> {{ now()->format('M d, Y') }} <a href="https://www.dawasa.go.tz/en" target="_blank">DAWASA</a></p>

@@ -173,7 +173,10 @@
                                     <td>
                                         <a href="{{route('customer.viewrequest', $request)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
                                         @if($request->lgoStatus != 'Approved')
-                                          <a href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
+                                          <a href="#"><i class="nav-icon fa fa-trash text-danger mr-2" title="delete"></i></a>
+                                        @endif
+                                        @if($request->lgoNote != NULL | $request->dawasaNote != NULL )
+                                          <a href="#"><i class="nav-icon fa fa-info text-info" title="view"></i></a>
                                         @endif
                                     </td>
                                 </tr>

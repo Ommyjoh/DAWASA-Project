@@ -115,7 +115,7 @@
                                     Info@dawasa.co.tz / 0800110064 / *150*00# (Bure)
                                 </p>
                             </div>
-                            <hr>
+                            <hr class="px-4">
                             <div class="text-center">
                                 <h4><b>NEW CUSTOMER CONNECTION APPLICATION FORM</b>
                                     <br>
