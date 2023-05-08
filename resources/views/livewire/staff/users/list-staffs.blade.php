@@ -148,7 +148,13 @@
   
               @if(session()->has('message'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                  <strong> <i class="fa fa-check-circle mr-1"></i>{{ session('message') }}</strong> 
+                  <strong> <i class="fa fa-check-circle mr-2"></i>{{ session('message') }}</strong> 
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              @endif
+              @if(session()->has('errorMessage'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong> <i class="fa fa-times-circle mr-2"></i>{{ session('errorMessage') }}</strong> 
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
               @endif

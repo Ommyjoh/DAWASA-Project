@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Staff\Users;
 
 use App\Models\Staff;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -105,7 +106,15 @@ class ListStaffs extends Component
     }
 
     public function deleteStaff(){
+ 
         $staff = Staff::findOrFail($this->staffIdToDelete);
+
+        $staffs =  Staff::whereRole('Admin')->get();
+
+        if(count($staffs) <= 1 && $staff->role == 'Admin'){
+            session()->flash('errorMessage', 'You can not delete this Admin!');
+            return back();
+        }
 
         $staff->delete();
         $this->dispatchBrowserEvent('userDeleted', ['message' => 'Staff has been deleted successfully!']);
