@@ -5,14 +5,14 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <div class="register-logo">
-                    <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="100" width="130" class="rounded">
+                    <img src="{{ asset('backend/dist/img/dawasa.png') }}" alt="DawasaLogo" height="105" width="150" class="rounded">
                 </div>
                 <p class="login-box-msg">Register as new <b>DAWASA</b> customer</p>
 
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
                     <div class="input-group mb-3">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Full Name">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" autocomplete="name" autofocus placeholder="Full Name">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -25,7 +25,7 @@
                         @enderror
                     </div>
                     <div class="input-group mb-3">
-                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" placeholder="Phone number (255)">
+                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" autocomplete="phone" placeholder="Phone number (255)">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-phone"></span>
@@ -38,7 +38,7 @@
                         @enderror
                     </div>
                     <div class="input-group mb-3">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password" placeholder="password">
 
                        
                         <div class="input-group-append">
@@ -53,7 +53,7 @@
                         @enderror
                     </div>
                     <div class="input-group mb-3">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Retype password">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password" placeholder="Retype password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

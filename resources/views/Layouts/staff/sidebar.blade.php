@@ -57,7 +57,7 @@
               </li>
               @if(\App\Helpers\RoleCheckHelper::isAdmin())
               <li class="nav-item">
-                <a href="{{route('staff.allstaffs')}}" class="nav-link">
+                <a href="{{route('staff.allstaffs')}}" class="nav-link {{ request()->is('staff/staffs') ? 'active' : '' }}">
                   <i class="fa fa-user-circle"></i>
                   <p> Manage Staffs</p>
                 </a>

@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <div class="register-logo">
-                    <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="DawasaLogo" height="100" width="130" class="rounded">
+                    <img src="{{ asset('backend/dist/img/dawasa.png') }}" alt="DawasaLogo" height="105" width="150" class="rounded">
                 </div>
                 <!-- /.login-logo -->
                 <p class="login-box-msg">Login as LGO to <b>DAWASA</b> account</p>
@@ -13,7 +13,7 @@
                 <form action="{{ route('lgo.submit') }}" method="POST">
                     @csrf
                     <div class="input-group mb-4">
-                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus placeholder="phone">
+                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" autocomplete="phone" autofocus placeholder="phone">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-phone"></span>
@@ -26,7 +26,7 @@
                         @enderror
                     </div>
                     <div class="input-group mb-4">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
