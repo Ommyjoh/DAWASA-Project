@@ -17,6 +17,8 @@ class ListLgo extends Component
     public $selectedDistrict;
 
     public $lgoToEdit;
+
+    public $searchTerm;
     public $showEditModal = false;
 
     public $Ilala = ['Buguruni', 'Chanika', 'Gerezani', 'Ilala', 'Jangwani', 'Kariakoo', 'Kisutu', 'Kitunda', 'Mchikichini', 'Msongola', 'Pugu', 'Segerea', 'Tabata', 'Ukonga', 'Upanga Magharibi', 'Upanga Mashariki'];
@@ -144,7 +146,14 @@ class ListLgo extends Component
             $kata = [];
         }
         
-        $lgos = Lgo::latest()->paginate();
+        $lgos = Lgo::query()
+                    ->where('district', 'like', '%'. $this->searchTerm .'%')
+                    ->orWhere('street', 'like', '%'. $this->searchTerm .'%')
+                    ->orwhere('messenger', 'like', '%'. $this->searchTerm .'%')
+                    ->orWhere('phone', 'like', '%'. $this->searchTerm .'%')
+                    ->orwhere('ward', 'like', '%'. $this->searchTerm .'%')
+                    ->orWhere('box', 'like', '%'. $this->searchTerm .'%')
+                    ->latest()->paginate();
         return view('livewire.staff.users.list-lgo',[
             'lgos' => $lgos,
             'kata' => $kata

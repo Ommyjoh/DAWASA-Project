@@ -100,7 +100,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0"><b>Customer Dashboard</b></h1>
+                        <h3 class="m-0"><b>Customer </b> Dashboard</h3>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -117,15 +117,20 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="mb-4">
-                                    <h4 class="card-title text-primary"><b>Water Connection Requests</b></h4>
+                                    <h4 class="card-title text-primary"><b>Connection Requests Summary</b></h4>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-between">
-                                    <div class="d-flex flex-column">
+                                <div class="d-flex row text-center">
+                                    {{-- <div class="mb-1">
+                                        <img src="{{ asset('backend/dist/img/sad.png') }}" alt="AdminLTE Logo" style="height: 2in; weight: 2in" class="brand-image">
+                                    </div> --}}
+                                    <h6 class="mb-4">No Request at the Moment!</h6>
+                                    <a class="mb-4" href="{{ route('customer.createrequest')}}"><button style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Create Request</button></a>
+                                    {{-- <div class="d-flex flex-column">
                                         <p class="text-warning">Pending Requests</p>
                                         <h4>0</h5>
                                     </div>
@@ -136,19 +141,21 @@
                                     <div>
                                         <p class="text-danger">Rejected Requests</p>
                                         <h4>0</h5>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+
+                    {{-- <div class="col-12 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="mb-4">
                                     <h4 class="card-title text-primary"><b>Meter Details</b></h4>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-center">
+                                    <h6 class="text-center">No meter number!</h6>
                                     <div>
                                         <p class="text-info">Meter Number</p>
                                         <h4>XXX-XXX-XXX</h4>
@@ -160,8 +167,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
+                    </div> --}}
+                    {{-- <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                               <h3 class="card-title text-primary">Customer Meter Reading History</h3>
@@ -170,87 +177,24 @@
                             <div class="card-body">
                               <table id="example2" class="table table-bordered table-hover">
                                 <thead>
-                                <tr>
-                                  <th>Old Reading</th>
-                                  <th>Initial Reading</th>
-                                  <th>Total Consumption</th>
-                                  <th>Price Per Unit</th>
-                                  <th>Total Cost</th>
-                                </tr>
+                                    <tr>
+                                    <th>Old Reading</th>
+                                    <th>Initial Reading</th>
+                                    <th>Total Consumption</th>
+                                    <th>Price Per Unit</th>
+                                    <th>Total Cost</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                  <td>Trident</td>
-                                  <td>Internet
-                                    Explorer 4.0
-                                  </td>
-                                  <td>Win 95+</td>
-                                  <td> 4</td>
-                                  <td>X</td>
-                                </tr>
-                                <tr>
-                                  <td>Trident</td>
-                                  <td>Internet
-                                    Explorer 5.0
-                                  </td>
-                                  <td>Win 95+</td>
-                                  <td>5</td>
-                                  <td>C</td>
-                                </tr>
-                                <tr>
-                                  <td>Trident</td>
-                                  <td>Internet
-                                    Explorer 5.5
-                                  </td>
-                                  <td>Win 95+</td>
-                                  <td>5.5</td>
-                                  <td>A</td>
-                                </tr>
-                                <tr>
-                                  <td>Trident</td>
-                                  <td>Internet
-                                    Explorer 6
-                                  </td>
-                                  <td>Win 98+</td>
-                                  <td>6</td>
-                                  <td>A</td>
-                                </tr>
-                                <tr>
-                                  <td>Trident</td>
-                                  <td>Internet Explorer 7</td>
-                                  <td>Win XP SP2+</td>
-                                  <td>7</td>
-                                  <td>A</td>
-                                </tr>
-                                <tr>
-                                  <td>Trident</td>
-                                  <td>AOL browser (AOL desktop)</td>
-                                  <td>Win XP</td>
-                                  <td>6</td>
-                                  <td>A</td>
-                                </tr>
-                                <tr>
-                                  <td>Other browsers</td>
-                                  <td>All others</td>
-                                  <td>-</td>
-                                  <td>-</td>
-                                  <td>U</td>
-                                </tr>
+                                    <tr class="text-center">
+                                        <td colspan="5">No Records Found at the Moment!</td>
+                                    </tr>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                  <th>Rendering engine</th>
-                                  <th>Browser</th>
-                                  <th>Platform(s)</th>
-                                  <th>Engine version</th>
-                                  <th>CSS grade</th>
-                                </tr>
-                                </tfoot>
                               </table>
                             </div>
                             <!-- /.card-body -->
                           </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div><!-- /.container-fluid -->
         </div>

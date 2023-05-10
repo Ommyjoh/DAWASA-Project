@@ -131,7 +131,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">All Customers</h1>
+                    <h4 class="m-0">All Customers</h4>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -149,11 +149,12 @@
       <div class="container-fluid">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title text-primary">Latest Customer Requests</h3>
-                </div>
-                <!-- /.card-header -->
                 <div class="card-body">
+                  <div class="d-flex justify-content-end mb-2">
+                     <div>
+                       <input wire:model="searchTerm" type="text" class="form-control" placeholder="Search customer">
+                     </div>
+                   </div>
                   <table id="example2" class="table table-bordered table-hover">
                     <thead>
                       <tr>
@@ -164,8 +165,8 @@
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach($customers as $customer)
+                    <tbody wire:loading.class='text-muted'>
+                      @forelse($customers as $customer)
                         <tr>
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $customer->created_at }}</td>
@@ -175,7 +176,14 @@
                             <a wire:click.prevent="customerDeleteConfirmation({{ $customer->id }})" href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                           </td>
                         </tr>
-                      @endforeach
+                      @empty
+
+                      <tr>
+                        <td colspan="5" class="text-center">
+                          No customer found at the moment!
+                        </td>
+                      </tr>
+                      @endforelse
                   </table>
                 </div>
                 <!-- /.card-body -->

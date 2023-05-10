@@ -100,7 +100,7 @@
           <div class="container-fluid">
               <div class="row mb-2">
                   <div class="col-sm-6">
-                      <h1 class="m-0">All connection Requests</h1>
+                      <h5 class="m-0">All connection Requests</h5>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -124,10 +124,10 @@
         <div class="container-fluid">
           <div class="col-12">
               <div class="card">
-                <div class="card-header">
-                    <a href="{{ route('customer.createrequest')}}"><button style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> New Request</button></a>
-                </div>
                   <div class="card-body">
+                    <div class="mb-2">
+                      <a href="{{ route('customer.createrequest')}}"><button style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> New Request</button></a>
+                    </div>
                     <table id="example2" class="table table-bordered table-hover text-center">
                         <thead class="text-info text-center">
                             <tr>
@@ -181,14 +181,11 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr>
-                                    <td colspan="7" class="text-center">
-                                        <div class="d-flex flex-column align-items-center justify-content-center">
-                                            <img style="width: 200px" src="{{ asset('backend/dist/img/notfound.png') }}" alt="">
-                                            <span class="mt-2">No connection request!</span>
-                                        </div>
-                                    </td>
-                                </tr>
+                              <tr>
+                                <td colspan="7" class="text-center p-4">
+                                    No connection request found at the moment!
+                                </td>
+                              </tr>
                             @endforelse
                            
                           </tbody>

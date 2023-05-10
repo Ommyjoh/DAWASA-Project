@@ -80,7 +80,7 @@
           <div class="container-fluid">
               <div class="row mb-2">
                   <div class="col-sm-6">
-                      <h1 class="m-0">All connection Requests</h1>
+                      <h5 class="m-0">All connection Requests</h5>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                       <ol class="breadcrumb float-sm-right">
@@ -143,14 +143,11 @@
                                     </td>
                                 </tr>
                             @empty
-                                <tr>
-                                    <td colspan="9" class="text-center">
-                                        <div class="d-flex flex-column align-items-center justify-content-center">
-                                            <img style="width: 200px" src="{{ asset('backend/dist/img/notfound.png') }}" alt="">
-                                            <span class="mt-2">No connection request!</span>
-                                        </div>
-                                    </td>
-                                </tr>
+                              <tr>
+                                <td colspan="9" class="text-center p-4">
+                                    No connection request found at the moment!
+                                </td>
+                              </tr>
                             @endforelse
                            
                           </tbody>

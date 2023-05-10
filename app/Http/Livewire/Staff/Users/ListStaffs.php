@@ -19,6 +19,8 @@ class ListStaffs extends Component
 
     public $showEditModal = false;
 
+    public $searchTerm;
+
     public function addNewStaffForm(){
         
         $this->showEditModal = true;
@@ -121,18 +123,24 @@ class ListStaffs extends Component
     }
     public function render()
     {
-        $staffs = Staff::orderByRaw("
-        CASE 
-            WHEN role = 'Admin' THEN 1 
-            WHEN role = 'Manager' THEN 2 
-            WHEN role = 'Engineer' THEN 3 
-            WHEN role = 'Surveyor' THEN 4 
-            WHEN role = 'customer Care' THEN 5 
-            ELSE 6 
-        END
-    ")
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $staffs = Staff::query()
+                        ->where('name', 'like', '%'. $this->searchTerm .'%')
+                        ->orWhere('office', 'like', '%'. $this->searchTerm .'%')
+                        ->orWhere('role', 'like', '%'. $this->searchTerm .'%')
+                        ->orWhere('email', 'like', '%'. $this->searchTerm .'%')
+                        ->orWhere('phone', 'like', '%'. $this->searchTerm .'%')
+                        ->orderByRaw("
+                        CASE 
+                            WHEN role = 'Admin' THEN 1 
+                            WHEN role = 'Manager' THEN 2 
+                            WHEN role = 'Engineer' THEN 3 
+                            WHEN role = 'Surveyor' THEN 4 
+                            WHEN role = 'customer Care' THEN 5 
+                            ELSE 6 
+                        END
+                    ")
+                            ->orderBy('created_at', 'desc')
+                            ->get();
        
         return view('livewire.staff.users.list-staffs', [
             'staffs' => $staffs

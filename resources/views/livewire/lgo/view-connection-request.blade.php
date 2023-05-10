@@ -193,8 +193,13 @@
                       <div class="col-12 col-md-6">
                         <div class="form-group">
                                       <label>Sababu ya kukataa ombi hili<b class="text-red">*</b></label>
-                                      <textarea wire:model.defer='state.note' class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                                  </div>
+                                      <textarea wire:model.defer='state.note' class="form-control @error('state.note') is-invalid @enderror" rows="3" placeholder="Enter ..."></textarea>
+                                      @error('state.note')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                      @enderror
+                                    </div>
                                   <!-- /.form-group -->
                               </div>
                           @endif

@@ -7,7 +7,7 @@
       <div class="container-fluid">
           <div class="row mb-2">
               <div class="col-sm-6">
-                  <h1 class="m-0"><b>LGO Dashboard</b></h1>
+                  <h4 class="m-0"><b>LGO</b> Dashboard</h4>
               </div><!-- /.col -->
               <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
@@ -28,14 +28,14 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
+                  <h3>0</h3>
   
                   <p>Total Requests</p>
                 </div>
                 <div class="icon">
                   <i class="nav-icon fa fa-tint"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('lgo.listrequests')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -43,14 +43,14 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>53</h3>
+                  <h3>0</h3>
   
                   <p>Approved Requests</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-check-circle"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('lgo.listrequests')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -58,14 +58,14 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
+                  <h3>0</h3>
   
                   <p>Pending Requests</p>
                 </div>
                 <div class="icon">
                   <i class="fa fa-hourglass-half"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('lgo.listrequests')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -73,25 +73,24 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
+                  <h3>0</h3>
   
                   <p>Rejected Requests </p>
                 </div>
                 <div class="icon">
                   <i class="nav-icon fa fa-ban"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('lgo.listrequests')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
 
             <div class="col-12">
               <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title text-primary">Latest Customer Requests</h3>
-                  </div>
-                  <!-- /.card-header -->
                   <div class="card-body">
+                    <div class="mb-2">
+                      <h3 class="card-title text-primary">Latest Customer Requests</h3>
+                    </div>
                     <table id="example2" class="table table-bordered table-hover">
                       <thead>
                       <tr>
@@ -102,43 +101,13 @@
                         <th>Action</th>
                       </tr>
                       </thead>
-                      <tbody>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5</td>
-                        <td>C</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.5
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5.5</td>
-                        <td>A</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 6
-                        </td>
-                        <td>Win 98+</td>
-                        <td>6</td>
-                        <td>A</td>
-                      </tr>
+                        <tbody>
+                          <tr>
+                            <td colspan="5" class="text-center p-4">
+                                No connection request found at the moment!
+                            </td>
+                          </tr>
+                        </tbody>
                     </table>
                   </div>
                   <!-- /.card-body -->

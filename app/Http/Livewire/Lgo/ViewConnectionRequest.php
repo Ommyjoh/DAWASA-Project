@@ -23,26 +23,39 @@ class ViewConnectionRequest extends Component
     }
 
     public function saveChanges(){
+        
+        if($this->action == 'Rejected') {
+                Validator::make([
+                'state' => $this->state
+            ],
+            [
+                'state.action' => 'required',
+                'state.note' => 'required'
+            ],
+            [
+                'state.action.required' => 'Tafadhali chukua hatua kwanza!',
+                'state.note.required' => 'Tafadhali jaza sababu ya kukataa ombi hili',
+            ]) ->validate();
 
-        Validator::make([
-            'state' => $this->state
-        ],
-         [
-            'state.action' => 'required',
-        ],
-        [
-            'state.action.required' => 'Tafadhali chukua hatua kwanza!',
-        ]) ->validate();
-
-        if($this->action == 'Rejected'){
-            ConnectionRequest::where('id', $this->request->id)
+             ConnectionRequest::where('id', $this->request->id)
                             ->update([
                                 'lgoStatus' => $this->state['action'],
                                 'lgoNote' => $this->state['note'],
                                 'dawasaStatus' => 'Rejected'
                             ]);
         } else {
-            ConnectionRequest::where('id', $this->request->id)
+
+                Validator::make([
+                'state' => $this->state
+            ],
+            [
+                'state.action' => 'required',
+            ],
+            [
+                'state.action.required' => 'Tafadhali chukua hatua kwanza!',
+            ]) ->validate();
+
+             ConnectionRequest::where('id', $this->request->id)
                             ->update([
                                 'lgoStatus' => $this->state['action'],
                                 'lgoNote' => NULL,

@@ -131,7 +131,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Local Government Offices</h1>
+                        <h4 class="m-0">Local Government Offices</h4>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -156,11 +156,15 @@
             @endif
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <button wire:click.prevent="addNewLgoForm" style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add LGO</button>
-                    </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
+                      <div class="d-flex justify-content-between ilign-items-center mb-2">
+                        <div>
+                          <button wire:click.prevent="addNewLgoForm" style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add LGO</button>
+                        </div>
+                        <div>
+                          <input wire:model="searchTerm" type="text" class="form-control" placeholder="Search LGO">
+                        </div>
+                      </div>
                       <table id="example2" class="table table-bordered table-hover">
                         <thead>
                         <tr>
@@ -192,11 +196,8 @@
                         @empty
                           
                           <tr>
-                            <td colspan="7" class="text-center">
-                                <div class="d-flex flex-column align-items-center justify-content-center">
-                                    <img style="width: 200px" src="{{ asset('backend/dist/img/notfound.png') }}" alt="">
-                                    <span class="mt-2">Nothing to preview here!</span>
-                                </div>
+                            <td colspan="8" class="text-center">
+                                No LGO found at the moment!
                             </td>
                           </tr>
 

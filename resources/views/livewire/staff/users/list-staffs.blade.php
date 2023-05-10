@@ -162,11 +162,15 @@
               @endif
               <div class="col-12">
                   <div class="card">
-                      <div class="card-header">
-                          <button wire:click.prevent="addNewStaffForm" style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add Staff</button>
-                      </div>
-                      <!-- /.card-header -->
                       <div class="card-body">
+                        <div class="d-flex justify-content-between ilign-items-center mb-2">
+                          <div>
+                            <button wire:click.prevent="addNewStaffForm" style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Add Staff</button>
+                          </div>
+                          <div>
+                            <input wire:model="searchTerm" type="text" class="form-control" placeholder="Search staff">
+                          </div>
+                        </div>
                         <table id="example2" class="table table-bordered table-hover">
                           <thead>
                           <tr>
@@ -204,11 +208,8 @@
                           @empty
                             
                             <tr>
-                              <td colspan="7" class="text-center">
-                                  <div class="d-flex flex-column align-items-center justify-content-center">
-                                      <img style="width: 200px" src="{{ asset('backend/dist/img/notfound.png') }}" alt="">
-                                      <span class="mt-2">Nothing to preview here!</span>
-                                  </div>
+                              <td colspan="8" class="text-center">
+                                  No staff found at the moment!
                               </td>
                             </tr>
   
