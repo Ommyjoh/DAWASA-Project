@@ -19,9 +19,23 @@ class CustomerDashboardController extends Controller
         return view('customer.dashboard', [
             'customerWithRequests' => $this->customerWithRequests,
             'allRequests' => $this->customerWithRequests->count(),
-            'pendingRequests' => ConnectionRequest::query()->where('user_id', auth()->user()->id)->where('lgoStatus', 'Pending')->orWhere('dawasaStatus', 'Pending')->count(),
-            'approvedRequests' => ConnectionRequest::query()->where('user_id', auth()->user()->id)->where('lgoStatus', 'Approved')->where('dawasaStatus', 'Approved')->count(),
-            'rejectedRequests' => ConnectionRequest::query()->where('user_id', auth()->user()->id)->where('lgoStatus', 'Rejected')->orWhere('dawasaStatus', 'Rejected')->count(),
+            'pendingRequests' => ConnectionRequest::where('user_id', auth()->user()->id)
+                                      ->where(function($query) {
+                                          $query->where('lgoStatus', 'Pending')
+                                                ->orWhere('dawasaStatus', 'Pending');
+                                      })
+                                      ->count(),
+            'approvedRequests' => ConnectionRequest::where('user_id', auth()->user()->id)
+                                       ->where('lgoStatus', 'Approved')
+                                       ->where('dawasaStatus', 'Approved')
+                                       ->count(),
+            'rejectedRequests' => ConnectionRequest::where('user_id', auth()->user()->id)
+                                       ->where(function($query) {
+                                           $query->where('lgoStatus', 'Rejected')
+                                                 ->orWhere('dawasaStatus', 'Rejected');
+                                       })
+                                       ->count(),
+
         ]);
     }
 

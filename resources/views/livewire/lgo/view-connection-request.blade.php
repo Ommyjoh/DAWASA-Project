@@ -168,6 +168,9 @@
                             Anwani ya makazi ya muhusika -----------------------<b>P.O BOX {{ auth('lgos')->user()->box }}</b> <br>
                             Namba ya simu ya muhusika --------------------------<b>{{$request->phone}}</b> <br>
                             Kazi/shughuli ya muhusika ----------------------------<b>{{ $request->occupation }}</b> <br>
+                            Taifa la muhusika ----------------------------------------<b>{{ $request->nationality }}</b> <br>
+                            Sababu ya kufungiwa maji -----------------------------<b>{{ $request->connReason }}</b> <br>
+                            Huduma inayohitajika ----------------------------------<b>{{ $request->servRequired }}</b> <br>
                         </p>
                     </div>
 

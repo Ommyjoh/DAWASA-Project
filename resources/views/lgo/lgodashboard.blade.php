@@ -28,7 +28,7 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{ $allRequests }}</h3>
   
                   <p>Total Requests</p>
                 </div>
@@ -43,7 +43,7 @@
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{$approvedRequests}}</h3>
   
                   <p>Approved Requests</p>
                 </div>
@@ -58,7 +58,7 @@
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{ $pendingRequests }}</h3>
   
                   <p>Pending Requests</p>
                 </div>
@@ -73,7 +73,7 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3>{{$rejectedRequests}}</h3>
   
                   <p>Rejected Requests </p>
                 </div>
@@ -97,17 +97,48 @@
                         <th>Date</th>
                         <th>Customer Name</th>
                         <th>street</th>
+                        <th>House No</th>
+                        <th>Plot No</th>
                         <th>Messenger</th>
-                        <th>Action</th>
+                        <th>Status</th>
+                        <th class="text-center">Action</th>
                       </tr>
                       </thead>
-                        <tbody>
+                      <tbody>
+                        @forelse($requests as $request)
+                            <tr>
+                                <td>{{ $request->created_at }}
+                                    @if($request->created_at == now()->format('M d, Y'))
+                                    <img src="{{ asset('backend/dist/img/new.GIF') }}" alt="AdminLTE Logo" width="30" height="20" class="brand-image">
+                                    @endif
+                                </td>
+                                <td>{{ $request->fullName }}</td>
+                                <td>{{ $request->street }}</td>
+                                <td>{{ $request->house }}</td>
+                                <td>{{ $request->plot }}</td>
+                                <td>{{ $request->mjumbe }}</td>
+                                <td>
+                                  @if($request->lgoStatus == 'Pending')
+                                      <span class="badge text-bg-warning p-2">Pending</span>
+                                  @elseif($request->lgoStatus == 'Approved')
+                                      <span class="badge text-bg-success p-2">Approved</span>
+                                  @else
+                                      <span class="badge text-bg-danger p-2">Rejected</span>
+                                  @endif
+                              </td>
+                                <td class="text-center">
+                                    <a href="{{ route('lgo.viewrequest', $request) }}"><i class="nav-icon fa fa-eye text-primary mr-2" title="view"></i></a>
+                                </td>
+                            </tr>
+                        @empty
                           <tr>
-                            <td colspan="5" class="text-center p-4">
+                            <td colspan="9" class="text-center p-4">
                                 No connection request found at the moment!
                             </td>
                           </tr>
-                        </tbody>
+                        @endforelse
+                       
+                      </tbody>
                     </table>
                   </div>
                   <!-- /.card-body -->
