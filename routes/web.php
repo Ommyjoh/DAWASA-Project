@@ -83,7 +83,7 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
 |--------------------------------------------------------------------------
 */
 
-// staff auth routes
+// lgo auth routes
 Route::group(['prefix' => 'lgo'], function () {
     Route::get('login',[LgoLoginController::class, 'login'])->name('lgo.login');
     Route::post('submit',[LgoLoginController::class, 'submit'])->name('lgo.submit');

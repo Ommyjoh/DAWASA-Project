@@ -16,10 +16,12 @@ class CustomerDashboardController extends Controller
         $customer = auth()->user();
         $this->customerWithRequests = $customer->connectionRequests;
 
-        // dd($this->customerWithRequests);
-        // $approvedRequests = ConnectionRequest::where('user_id', auth()->user()->id);
         return view('customer.dashboard', [
             'customerWithRequests' => $this->customerWithRequests,
+            'allRequests' => $this->customerWithRequests->count(),
+            'pendingRequests' => ConnectionRequest::query()->where('user_id', auth()->user()->id)->where('lgoStatus', 'Pending')->orWhere('dawasaStatus', 'Pending')->count(),
+            'approvedRequests' => ConnectionRequest::query()->where('user_id', auth()->user()->id)->where('lgoStatus', 'Approved')->where('dawasaStatus', 'Approved')->count(),
+            'rejectedRequests' => ConnectionRequest::query()->where('user_id', auth()->user()->id)->where('lgoStatus', 'Rejected')->orWhere('dawasaStatus', 'Rejected')->count(),
         ]);
     }
 

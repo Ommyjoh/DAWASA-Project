@@ -1,7 +1,7 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
+    <ul class="navbar-nav ml-2">
+      <li class="nav-item mr-2">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
@@ -46,7 +46,7 @@
       </li>
 
       <li>
-        <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="35" height="40" class="brand-image">
+        <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="35" height="40" class="brand-image mr-4">
       </li>
     </ul>
 </nav>

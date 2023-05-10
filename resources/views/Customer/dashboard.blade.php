@@ -154,20 +154,23 @@
                                 <div class="d-flex justify-content-between pb-4">
                                     <div class="d-flex flex-column">
                                         <p class="text-primary">Total Requests</p>
-                                        <h4>0</h5>
+                                        <h4 class="text-center">{{ $allRequests }}</h5>
                                     </div>
                                     <div class="d-flex flex-column">
                                         <p class="text-warning">Pending Requests</p>
-                                        <h4>0</h5>
+                                        <h4 class="text-center">{{ $pendingRequests }}</h5>
                                     </div>
                                     <div>
                                         <p class="text-info">Approved Requests</p>
-                                        <h4>0</h5>
+                                        <h4 class="text-center">{{ $approvedRequests }}</h5>
                                     </div>
                                     <div>
                                         <p class="text-danger">Rejected Requests</p>
-                                        <h4>0</h5>
+                                        <h4 class="text-center">{{ $rejectedRequests }}</h5>
                                     </div>
+                                </div>
+                                <div class="text-center">
+                                    <a class="mb-4" href="{{ route('customer.listrequests')}}"><button class="btn btn-info"> <i class="nav-icon fa fa-spinner"></i> See All Request</button></a>
                                 </div>
                             </div>
                             @endif
