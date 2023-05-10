@@ -3,21 +3,24 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\ConnectionRequest;
 use Illuminate\Http\Request;
 
 class CustomerDashboardController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    // public function __invoke(Request $request)
-    // {
-    //     return view('customer.dashboard');
-    // }
+    public $customerWithRequests;
+
 
     public function dashboard()
     {
-        return view('customer.dashboard');
+        $customer = auth()->user();
+        $this->customerWithRequests = $customer->connectionRequests;
+
+        // dd($this->customerWithRequests);
+        // $approvedRequests = ConnectionRequest::where('user_id', auth()->user()->id);
+        return view('customer.dashboard', [
+            'customerWithRequests' => $this->customerWithRequests,
+        ]);
     }
 
 }

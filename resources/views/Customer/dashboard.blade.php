@@ -119,18 +119,44 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            @if($customerWithRequests->isEmpty())
+                                <div class="card-body">
+                                    <div class="mb-4">
+                                        <h4 class="card-title text-primary"><b>Connection Requests Summary</b></h4>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex row text-center">
+                                        {{-- <div class="mb-1">
+                                            <img src="{{ asset('backend/dist/img/sad.png') }}" alt="AdminLTE Logo" style="height: 2in; weight: 2in" class="brand-image">
+                                        </div> --}}
+                                        <h6 class="mb-4">No Request at the Moment!</h6>
+                                        <a class="mb-4" href="{{ route('customer.createrequest')}}"><button style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Create Request</button></a>
+                                        {{-- <div class="d-flex flex-column">
+                                            <p class="text-warning">Pending Requests</p>
+                                            <h4>0</h5>
+                                        </div>
+                                        <div>
+                                            <p class="text-info">Approved Requests</p>
+                                            <h4>0</h5>
+                                        </div>
+                                        <div>
+                                            <p class="text-danger">Rejected Requests</p>
+                                            <h4>0</h5>
+                                        </div> --}}
+                                    </div>
+                                </div>
+                            @else
                             <div class="card-body">
                                 <div class="mb-4">
                                     <h4 class="card-title text-primary"><b>Connection Requests Summary</b></h4>
                                 </div>
                                 <hr>
-                                <div class="d-flex row text-center">
-                                    {{-- <div class="mb-1">
-                                        <img src="{{ asset('backend/dist/img/sad.png') }}" alt="AdminLTE Logo" style="height: 2in; weight: 2in" class="brand-image">
-                                    </div> --}}
-                                    <h6 class="mb-4">No Request at the Moment!</h6>
-                                    <a class="mb-4" href="{{ route('customer.createrequest')}}"><button style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> Create Request</button></a>
-                                    {{-- <div class="d-flex flex-column">
+                                <div class="d-flex justify-content-between pb-4">
+                                    <div class="d-flex flex-column">
+                                        <p class="text-primary">Total Requests</p>
+                                        <h4>0</h5>
+                                    </div>
+                                    <div class="d-flex flex-column">
                                         <p class="text-warning">Pending Requests</p>
                                         <h4>0</h5>
                                     </div>
@@ -141,9 +167,10 @@
                                     <div>
                                         <p class="text-danger">Rejected Requests</p>
                                         <h4>0</h5>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
 
