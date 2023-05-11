@@ -9,7 +9,16 @@ class ListConnectionRequests extends Component
 {
     protected $listeners = ['deleteConfirmed' => 'deleteRequest'];
 
-    public $requestIdToDelete;
+    public $requestIdToDelete, $note;
+
+    public function showReasonModal(ConnectionRequest $request){
+        if($request->dawasaNote){
+            $this->note =  $request->dawasaNote;
+        } else {
+            $this->note =  $request->lgoNote;
+        }
+        $this->dispatchBrowserEvent('show-form');
+    }
 
     public function requestDeleteConfirmation($requestId){
         $this->requestIdToDelete = $requestId;

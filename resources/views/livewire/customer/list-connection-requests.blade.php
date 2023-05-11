@@ -176,7 +176,7 @@
                                           <a wire:click.prevent="requestDeleteConfirmation({{ $request->id }})" href="#"><i class="nav-icon fa fa-trash text-danger mr-2" title="delete"></i></a>
                                         @endif
                                         @if($request->lgoNote != NULL | $request->dawasaNote != NULL )
-                                          <a href="#"><i class="nav-icon fa fa-info text-info" title="view"></i></a>
+                                          <a wire:click.prevent="showReasonModal({{ $request }})" href="#"><i class="nav-icon fa fa-info text-info" title="view"></i></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -198,4 +198,20 @@
       </section>
       <!-- /.content -->
     </div>
+
+    <div class="modal fade" id="lgoForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h3 class="modal-title fs-5 text-danger" id="exampleModalLabel">
+                      <span><b> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Reason for Request Rejection</b></span>
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center p-4">
+                 <h6>{{ $note }}</h6>
+              </div>
+          </div>
+      </div>
+  </div>
   </div>
