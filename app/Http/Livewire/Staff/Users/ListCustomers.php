@@ -30,7 +30,7 @@ class ListCustomers extends Component
         $customers = User::query()
                             ->where('name', 'like', '%'. $this->searchTerm .'%')
                             ->orWhere('phone', 'like', '%'. $this->searchTerm .'%')
-                            ->latest()->paginate();
+                            ->latest()->get();
         return view('livewire.staff.users.list-customers', [
             'customers' => $customers
         ]);

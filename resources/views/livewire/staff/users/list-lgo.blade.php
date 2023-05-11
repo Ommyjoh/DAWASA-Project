@@ -283,7 +283,7 @@
                       @enderror
                     </div>
                     <div class="form-group">
-                      <label for="messenger">Messenger's Name</label>
+                      <label for="messenger">Chairperson Name</label>
                       <input type="text" wire:model.defer="state.messenger" class="form-control @error('messenger') is-invalid @enderror" id="messenger" placeholder="Enter Messenger's Name">
                       @error('messenger')
                         <div class="invalid-feedback">

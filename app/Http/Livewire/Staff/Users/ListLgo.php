@@ -153,7 +153,7 @@ class ListLgo extends Component
                     ->orWhere('phone', 'like', '%'. $this->searchTerm .'%')
                     ->orwhere('ward', 'like', '%'. $this->searchTerm .'%')
                     ->orWhere('box', 'like', '%'. $this->searchTerm .'%')
-                    ->latest()->paginate();
+                    ->latest()->get();
         return view('livewire.staff.users.list-lgo',[
             'lgos' => $lgos,
             'kata' => $kata
