@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dawasa CFMS</title>
+        <title>Dawasa WCAMS</title>
         <link rel="shortcut icon" href="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}">
         <link rel="stylesheet" href="{{ asset('jatu/css/jatu.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,7 +24,7 @@
         <nav id="navbar">
             <div class="logo">
                 <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" style="width: 70px; height: 50px" alt="">
-                <h2>WATER CONNECTION MS</h2>
+                <h2>WATER CONNECTION APPLICATIONS MS</h2>
             </div>
             <div class="openMenu"><i class="fa fa-bars"></i></div>
             <ul class="mainMenu">

@@ -113,8 +113,8 @@
                             <th>House</th>
                             <th>Trunk</th>
                             <th>Messenger Name</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
                         </thead>
                           <tbody>
                             @forelse($requests as $request)
@@ -129,7 +129,7 @@
                                     <td>{{ $request->house }}</td>
                                     <td>{{ $request->plot }}</td>
                                     <td>{{ $request->mjumbe }}</td>
-                                    <td>
+                                    <td class="text-center">
                                       @if($request->lgoStatus == 'Pending')
                                           <span class="badge text-bg-warning p-2">Pending</span>
                                       @elseif($request->lgoStatus == 'Approved')
@@ -138,7 +138,7 @@
                                           <span class="badge text-bg-danger p-2">Rejected</span>
                                       @endif
                                   </td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="{{ route('lgo.viewrequest', $request) }}"><i class="nav-icon fa fa-eye text-primary mr-2" title="view"></i></a>
                                     </td>
                                 </tr>

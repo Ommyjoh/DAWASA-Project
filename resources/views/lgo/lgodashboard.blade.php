@@ -100,7 +100,7 @@
                         <th>House No</th>
                         <th>Plot No</th>
                         <th>Messenger</th>
-                        <th>Status</th>
+                        <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
                       </tr>
                       </thead>
@@ -117,7 +117,7 @@
                                 <td>{{ $request->house }}</td>
                                 <td>{{ $request->plot }}</td>
                                 <td>{{ $request->mjumbe }}</td>
-                                <td>
+                                <td class="text-center">
                                   @if($request->lgoStatus == 'Pending')
                                       <span class="badge text-bg-warning p-2">Pending</span>
                                   @elseif($request->lgoStatus == 'Approved')
