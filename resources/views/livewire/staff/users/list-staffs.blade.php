@@ -180,8 +180,8 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Office</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th class="text-center">Role</th>
+                            <th class="text-center">Action</th>
                           </tr>
                           </thead>
                           <tbody>
@@ -193,14 +193,14 @@
                               <td>{{ $staff->email }}</td>
                               <td>+{{ $staff->phone }}</td>
                               <td>{{ $staff->office }}</td>
-                              <td>
+                              <td class="text-center">
                                 @if($staff->role == 'Admin')
                                 <span class="badge text-bg-info px-2">{{ $staff->role }} </span>
                                 @else
                                 <span class="badge text-bg-secondary px-2">{{ $staff->role }} </span>
                                 @endif
                               </td>
-                              <td>
+                              <td  class="text-center">
                                 <a wire:click.prevent="editStaff({{ $staff }})" href="#"><i class="nav-icon fa fa-edit text-primary mr-2" title="edit"></i></a>
                                 <a wire:click.prevent="staffDeleteConfirmation({{ $staff->id }})" href="#"><i class="nav-icon fa fa-trash text-danger" title="delete"></i></a>
                               </td>

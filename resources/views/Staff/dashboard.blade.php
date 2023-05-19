@@ -118,7 +118,7 @@
                 <!-- small box -->
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $allRequests }}</h3>
     
                     <p>Total Requests</p>
                   </div>
@@ -133,7 +133,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                   <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $approvedRequests }}</h3>
     
                     <p>Approved Requests</p>
                   </div>
@@ -148,7 +148,7 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                   <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $pendingRequests }}</h3>
     
                     <p>Pending Requests</p>
                   </div>
@@ -163,7 +163,7 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                   <div class="inner">
-                    <h3>0</h3>
+                    <h3>{{ $rejectedRequests }}</h3>
     
                     <p>Rejected Requests </p>
                   </div>

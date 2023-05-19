@@ -25,7 +25,12 @@ class StaffDashboardController extends Controller
             'allCustomers' => User::all()->count(),
             'allLgos' => Lgo::all()->count(),
             'allStaffs' => Staff::all()->count(),
-            'allRequests' => ConnectionRequest::where('dawasaStatus', 'Approved')->count()
+            'allRequests' => ConnectionRequest::where('lgoStatus', 'Approved')->count(),
+            'pendingRequests' => ConnectionRequest::where('dawasaStatus', 'Pending')->count(),
+            'approvedRequests' => ConnectionRequest::where('dawasaStatus', 'Approved')->count(),
+            'rejectedRequests' => ConnectionRequest::where('dawasaStatus', 'Rejected')
+                                                    ->whereNotNull('dawasaNote')
+                                                    ->count()
         ]);
     }
 }

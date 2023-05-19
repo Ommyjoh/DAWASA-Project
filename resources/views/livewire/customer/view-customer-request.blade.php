@@ -199,11 +199,11 @@
 
                       @if($request->lgoNote)
                       <div class="d-flex justify-content-center text-danger mb-4">
-                          <h5><b>Reason for Rejection: {{ $request->lgoNote }}</b></h5>
+                          <h5><b>LGO Reason for Rejection: {{ $request->lgoNote }}</b></h5>
                       </div>
                       @elseif($request->dawasaNote)
                           <div class="d-flex justify-content-center text-danger mb-4">
-                              <h5><b> {{ $request->dawasaNote }}</b></h5>
+                              <h5><b>DAWASA Reason for Rejection: {{ $request->dawasaNote }}</b></h5>
                           </div>
                       @else
                           <div class="d-flex justify-content-center text-danger mb-4">
