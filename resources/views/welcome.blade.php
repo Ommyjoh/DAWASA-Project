@@ -24,7 +24,7 @@
         <nav id="navbar">
             <div class="logo">
                 <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" style="width: 70px; height: 50px" alt="">
-                <h2>DAWASA CUSTOMERS FILES MANAGEMENT SYSTEM</h2>
+                <h2>WATER CONNECTION MS</h2>
             </div>
             <div class="openMenu"><i class="fa fa-bars"></i></div>
             <ul class="mainMenu">
@@ -115,11 +115,11 @@
             <span class="dot"></span> 
           </div>
 
-          <div class="apps">
+          {{-- <div class="apps">
               <div class="apps_content">
                   <div class="appA">
-                      <img src="{{ asset('jatu/images/JATU PESA.png')}}" alt="">
-                      <h3>Jatu Supermarket</h3>
+                      <img src="{{ asset('jatu/images/document.png')}}" alt="">
+                      <h3>Pakia Hati tatu Muhimu</h3>
                       <p>
                           Kupitia Mfumo Wa Jatu Market 
                           Unaweza Kuagiza Bidhaa Zetu Zote
@@ -128,8 +128,8 @@
                       </p>
                   </div>
                   <div class="appA">
-                    <img src="{{ asset('jatu/images/jatu talk.png')}}" alt="" id="tv">
-                    <h3>Jatu TV</h3>
+                    <img style="width: 100px; height: 100px" src="{{ asset('jatu/images/pending.png')}}" alt="" id="tv">
+                    <h3>Fatilia Ombi Lako</h3>
                     <p>
                        Hii Ni Chaneli Inayopatikana Youtube
                        Ambayo Ina Wafuatiliaji
@@ -142,7 +142,7 @@
               <div class="apps_content">
                 <div class="appA">
                     <img src="{{ asset('jatu/images/BOX MOD (1).png')}}" alt="" id="tech">
-                    <h3>Jatu Tech</h3>
+                    <h3>Lipia Mtandaoni</h3>
                     <p>
                         Kupitia JATU PLC Unaweza Kupata Huduma Za
                         Tehama Zinazotolewa Na Wataalamu Kutoka Jatu
@@ -152,7 +152,7 @@
                 </div>
                 <div class="appA">
                   <img src="{{ asset('jatu/images/jatu restaurant.png')}}" alt="">
-                  <h3>Jatu Restaurant</h3>
+                  <h3>Unganishiwa Maji</h3>
                   <p>
                     Huduma Ya Chakula Bora Kutoka
                     Jatu PLC Ambapo Unaweza Kufika Mgahawa
@@ -163,7 +163,7 @@
               </div>
               </div>
 
-          </div>
+          </div> --}}
 
 
           <div class="aboutUs">
@@ -171,40 +171,39 @@
               <div class="about_contents">
                   <div class="aboutA">
                       <div class="jenga">
-                          <h3>JATU (Jenga Afya Tokomeza Umaskini)</h3>
+                          <h3>DAWASA (Dar es Salaam Water Supply & Sanitation Authority)</h3>
                           <p>
-                            Jenga Afya Tokomeza Umaskini ( JATU) PLC 
-                            ni kampuni ya kitanzania iliyosajiliwa kama 
-                            kampuni ya umma (Public Limited Company) 
-                            inayowaunganisha wakulima na kuwawezesha 
-                            kulima kisasa na baada ya mavuno kampuni 
-                            hununua mazao yote na baadaye kuandaa bidhaa 
-                            ambazo huuzwa kwa wanachama wa JATU kwa mfumo 
-                            wa biashara ya mtandao (network marketing).
+                            
+                            <b>MAADILI YA MSINGI</b> <br>
+
+                            Ufanisi na ufanisi katika utoaji wa huduma. <br>
+                            Integriteti na ubora katika utoaji wa huduma. <br>
+                            Mazingira ya wateja. <br>
+                            Ahadi kwa wateja. <br>
+                            Kuzingatia maskini. <br>
+                            Uwazi, uaminifu na ukweli. <br>
+                            Uwajibikaji na jukumu.
                           </p>
                       </div>
                       <div class="vision">
                           <h3>Maono</h3>
                           <p>
-                            Kuwa kampuni inayoongoza na inayolenga 
-                            katika kuongeza lishe, usalama wa chakula 
-                            na kumaliza umaskini barani Afrika
+                            Programu yenye huduma bora za usambazaji 
+                            maji na usafi wa mazingira kwa ajili ya 
+                            maendeleo ya kijamii na kiuchumi.
                           </p>
                       </div>
                       <div class="vision">
                         <h3>Misheni</h3>
                         <p>
-                            Kutumia rasilimali watu katika kilimo, 
-                            teknolojia ya usindikaji wa chakula na 
-                            uuzaji wa bidhaa bora za chakula kwa 
-                            wateja wanaopendelea kutumia mkakati 
-                            wa uuzaji wa mtandao kumaliza umaskini 
-                            na kutajirisha jamii na afya njema.
+                            Kutoa huduma bora, za kuaminika
+                            na nafuu za maji na usafi wa mazingira
+                            ambazo zinazidi matarajio ya wateja.
                         </p>
                     </div>
                   </div>
                   <div class="aboutB">
-                      <img src="{{ ('jatu/images/about us.jpg')}}" alt="">
+                      <img src="{{ ('jatu/images/dawasa.jpeg')}}" alt="">
                   </div>
               </div>
               <div class="patners">
@@ -247,15 +246,14 @@
                         <i class="fa fa-mobile-phone"></i>
                         <span>
                         <a href="tel:255717810599">+255 717 810 599</a>   <br>
-                        <a href="mailto:info@jatu.co.tz">info@jatu.co.tz</a>
+                        <a href="mailto:info@jatu.co.tz">info@dawasa.co.tz</a>
                         </span>
                   </div>
                   <div class="location">
                         <i class="fa fa-home"></i>
                         <span>
-                            PSSSF House 11th & 06th Floor <br>
-                            Samora Avenue/ Morogoro Road. <br>
-                            Ilala CBD, Dar es Salaam, Tanzania
+                            DAWASA House, Dunga/ Malanga Street/ <br>
+                             Mwananyamala P.O BOX 1573 DSM
                         </span>
                   </div>
                   <div class="staff">
@@ -265,8 +263,8 @@
                         <a href="#"><i class="fa fa-instagram" id="in"></i></a>
                         <a href="#"><i class="fa fa-youtube-play" id="you"></i></a>
                     </div>
-                    <a href="">Staff Mail</a>
-                    <a href="">LGO Mail</a>
+                    <a href="{{ route('staff.login')}}">Staff Mail</a>
+                    <a href="{{ route('lgo.login')}}">LGO Mail</a>
                   </div>
               </div>
               <hr>

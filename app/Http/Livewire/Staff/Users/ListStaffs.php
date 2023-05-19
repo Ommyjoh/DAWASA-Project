@@ -71,6 +71,7 @@ class ListStaffs extends Component
         $this->showEditModal = true;
         $this->staffToEdit = $staff;
         $this->state = $staff->toArray();
+        $this->staffIdToDelete = $staff->id;
         $this->dispatchBrowserEvent('show-form');
     }
 
@@ -93,6 +94,18 @@ class ListStaffs extends Component
                         'phone.unique' => 'This phone number has already taken!',
                         'office.required' => 'Please select office',
                     ])->validate();
+                    
+        $staff = Staff::findOrFail($this->staffIdToDelete);
+
+        $staffs =  Staff::whereRole('Admin')->get();
+
+        if($validatedData['role'] != 'Admin'){
+            if(count($staffs) <= 1 && $staff->role == 'Admin'){
+                session()->flash('errorMessage', 'You can not change this Admin\'s role!');
+                $this->dispatchBrowserEvent('hide-form');
+                return back();
+            }
+        }
 
         $this->staffToEdit->update($validatedData);
         session()->flash('message', 'Staff Was Updated Successfully!');

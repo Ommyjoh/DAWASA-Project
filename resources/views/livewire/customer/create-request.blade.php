@@ -106,7 +106,7 @@
                             <div class="d-flex justify-content-center align-items-center text-center">
                                 <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="75" height="80" class="brand-image">
                                 <h4> <b> <br> DAWASA WATER SUPPLY AND SANITATION AUTHORITY <br><h5><b>ISO 9001:2015 CERTIFIED</b></h5></b> </h4>
-                                <img src="{{ asset('backend/dist/img/AdminLTELogo.jpeg') }}" alt="AdminLTE Logo" width="100" height="80" class="brand-image">
+                                <img src="{{ asset('backend/dist/img/dawasa.png') }}" alt="AdminLTE Logo" width="120" height="80" class="brand-image">
                             </div>
                             <div class="text-center">
                                 <p>DAWASA building, Dunga/malanga Road, Mwananyamala Area <br>
