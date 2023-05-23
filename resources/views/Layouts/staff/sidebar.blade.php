@@ -67,7 +67,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
               <i class="nav-icon fa fa-tint"></i>
               <p>
                 Connection Requests
