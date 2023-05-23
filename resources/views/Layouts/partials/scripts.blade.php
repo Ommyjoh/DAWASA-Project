@@ -87,3 +87,80 @@
     $('#lgoForm').modal('hide');
     })
 </script>
+
+<script>
+  // JavaScript code to create the graph using Chart.js
+  var ctx = document.getElementById('myChart').getContext('2d');
+  
+  var data = {
+      labels: ['Kinondoni', 'Temeke', 'Kigamboni', 'Ilala', 'Ubungo'],
+      datasets: [{
+          label: 'Total requests',
+          data: [23, 19, 25, 35, 22],
+          backgroundColor: ['#33ccff', '#33ccff', '#33ccff', '#33ccff', '#33ccff'],
+          borderColor: 'rgb(204, 153, 255)',
+          borderWidth: 1
+      }]
+  };
+
+  
+  var options = {
+            scales: {
+                y: {
+                    min: 0,
+                    ticks: {
+                        stepSize: 10
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Total Connection Requests'
+                    }
+                },
+                x: {
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Districts'
+                    }
+                }
+            }
+        };
+
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: options
+  });
+</script>
+
+<script>
+  // JavaScript code to create the graph using Chart.js
+  var ctx = document.getElementById('myChart2').getContext('2d');
+  
+  var data = {
+      labels: ['Kinondoni', 'Temeke', 'Kigamboni', 'Ilala', 'Ubungo'],
+      datasets: [{
+          label: 'Total requests',
+          data: [23, 19, 25, 35, 22],
+          backgroundColor: ['#66ffff', '#009999', '#33ccff', '#cccc00', '#1aff8c'],
+          borderColor: 'rgb(204, 153, 255)',
+          borderWidth: 1
+      }]
+  };
+
+  var options = {
+      scales: {
+          y: {
+              min: 0,
+              ticks: {
+                  stepSize: 4
+              }
+          }
+      }
+  };
+
+  var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: data,
+      options: options
+  });
+</script>
