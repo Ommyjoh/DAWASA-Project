@@ -29,11 +29,5 @@
         text-decoration: none;
     }
 
-    *{
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        transition: ease-in-out 0.7s;
-    }
     
  </style>

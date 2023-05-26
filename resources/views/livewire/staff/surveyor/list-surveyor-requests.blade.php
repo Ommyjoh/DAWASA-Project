@@ -158,10 +158,12 @@
     <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-3 col-6">
+
+            @if($connections->isEmpty())
+            <div class="col-lg-6 col-6">
                 <div class="card card-outline card-info">
                     <div class="card-header">
-                    <h3 class="card-title"><b>Emmanuel Boshe</b></h3>
+                    <h3 class="card-title"><b>No assigned task for you!!</b></h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -173,39 +175,89 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <ul class="nav flex-column">
+
                             <li class="nav-item">
-                                District: Ilala
+                                <b>-</b> <em class="float-right">-</em>
                             </li>
 
-                            <li class="nav-item mt-2">
-                                Ward: Ukonga
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                Street: Stakishari
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                House #: 12
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                Plot #: 08
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                Nationality: Tanzania
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                Phone #: 255717810599
-                            </li>
-                        </ul>
                     </div>
                     <!-- /.card-body -->
                 </div>
             </div>
             <!-- ./col -->
+            @else
+                @foreach($connections as $connection)
+                <div class="col-lg-4 col-6">
+                    <div class="card card-outline card-info">
+                        <div class="card-header">
+                        <h3 class="card-title"><b>{{ $connection->fullName }}</b></h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                        <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <ul class="nav flex-column">
+
+                                <li class="nav-item">
+                                    <b>District:</b> <em class="float-right">{{ $connection->district }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Ward:</b> <em class="float-right">{{ $connection->ward }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Street:</b> <em class="float-right">{{ $connection->street }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> House #:</b> <em class="float-right">{{ $connection->house }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Plot #:</b> <em class="float-right">{{ $connection->plot }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Reason:</b> <em class="float-right">{{ $connection->connReason }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Service:</b> <em class="float-right">{{ $connection->servRequired }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Days left:</b>
+                                    @if($connection->remainingDays['remainingDays'])
+                                        <em class="float-right badge text-bg-info">{{ $connection->remainingDays['remainingDays'] }} days</em>
+                                    @else
+                                        <em class="float-right badge text-bg-danger">{{ $connection->remainingDays['daysPassed'] }} overdue days</em>
+                                    @endif
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Phone #: </b> <em class="float-right">{{ $connection->phone }}</em>
+                                </li> 
+                            </ul>
+
+                            <hr>
+
+                            <div class="text-center">
+                                <a class="text-info rounded px-2 bg-success text-dark bg-opacity-10" href="#"> <em><i class="nav-icon fa fa-save"></i> Update Request Details</em> </a>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!-- ./col -->
+                @endforeach
+           @endif
+
         </div>
     </div>
     </section>
