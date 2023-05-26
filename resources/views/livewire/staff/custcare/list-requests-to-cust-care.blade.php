@@ -165,13 +165,15 @@
                                 <th colspan="2">Progress</th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             <tr>
                                 <th>Date</th>
-                                <th>Name</th>
+                                <th>Customer Name</th>
                                 <th>Local Goverment</th>
                                 <th>DAWASA</th>
                                 <th>Surveyor</th>
+                                <th>Survey Days</th>
                                 <th>Action</th>
                             </tr>
                           </thead>
@@ -182,23 +184,48 @@
                                     <td>{{ $request->fullName }}</td>
                                     <td>
                                         @if($request->lgoStatus == 'Pending')
-                                            <span class="badge text-bg-warning p-2">Pending</span>
+                                            <span class="badge text-bg-warning p-2"><em>Pending</em></span>
                                         @elseif($request->lgoStatus == 'Approved')
-                                            <span class="badge text-bg-success p-2">Approved</span>
+                                            <span class="badge text-bg-success p-2"><em>Approved</em></span>
                                         @else
-                                            <span class="badge text-bg-danger p-2">Rejected</span>
+                                            <span class="badge text-bg-danger p-2"><em>Rejected</em></span>
                                         @endif
                                     </td>
                                     <td>
                                         @if($request->dawasaStatus == 'Pending')
-                                            <span class="badge text-bg-warning p-2">Pending</span>
+                                            <span class="badge text-bg-warning p-2"><em>Pending</em></span>
                                         @elseif($request->dawasaStatus == 'Approved')
-                                            <span class="badge text-bg-success p-2">Approved</span>
+                                            <span class="badge text-bg-success p-2"><em>Approved</em></span>
                                         @else
-                                            <span class="badge text-bg-danger p-2">Rejected</span>
+                                            <span class="badge text-bg-danger p-2"><em>Rejected</em></span>
                                         @endif
                                     </td>
-                                    <td><span class="badge text-bg-secondary p-2">Unassigned</span></td>
+                                    
+                                    <td>
+                                      @if($request->staff_id ==NULL)
+                                      <span class="badge text-bg-secondary p-2"><em>Unassigned</em></span>
+                                      @else
+                                      {{$request->staff->name }}
+                                      @endif
+                                    </td>
+
+                                    <td>
+                                      @if($request->dawasaStatus == 'Approved')
+                                        @if($request->remainingDays['remainingDays'])
+                                          <span class="badge text-bg-secondary p-2"><em>
+                                            {{ $request->remainingDays['remainingDays'] }} days left
+                                          </em></span>
+                                        @else
+                                          <span class="badge text-bg-danger p-2"><em>
+                                            {{ $request->remainingDays['daysPassed'] }} overdue days
+                                          </em></span>
+                                        @endif
+                                      @else
+                                        <span class="badge text-bg-secondary p-2"><em>
+                                          Not yet
+                                        </em></span>
+                                      @endif
+                                    </td>
                                     <td>
                                         <a href="{{route('custcare.viewrequests', $request)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
                                     </td>

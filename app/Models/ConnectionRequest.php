@@ -31,7 +31,8 @@ class ConnectionRequest extends Model
         'lgoNote',
         'dawasaNote',
         'mjumbe',
-        'idLetter'
+        'idLetter',
+        'staff_id',
     ];
 
     public function user()
@@ -43,9 +44,27 @@ class ConnectionRequest extends Model
     {
         return $this->belongsTo(Lgo::class);
     }
+    public function staff()
+    {
+        return $this->belongsTo(Staff::class);
+    }
+
 
     public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->format('M d, Y');
     }
+
+    public function getRemainingDaysAttribute()
+{
+    $updatedDate = Carbon::parse($this->updated_at);
+    $today = Carbon::now();
+    $remainingDays = $updatedDate->diffInDays($today);
+    $daysPassed = max($remainingDays - 7, 0);
+
+    return [
+        'remainingDays' => max(7 - $remainingDays, 0),
+        'daysPassed' => $daysPassed,
+    ];
+}
 }

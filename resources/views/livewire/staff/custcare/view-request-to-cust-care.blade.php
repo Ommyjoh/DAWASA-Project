@@ -230,11 +230,16 @@
                             <div class="col-12 col-md-6">
                               <div class="form-group">
                                 <label> Action<b class="text-red">*</b></label>
-                                <select wire:change='getAction($event.target.value)' class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Choose action..</option>
+                                <select wire:model.defer='state.action' wire:change='getAction($event.target.value)' class="form-control select2 @error('state.action') is-invalid @enderror" style="width: 100%;">
+                                  <option selected>Choose action..</option>
                                   <option value="Approved">Approve Request</option>
                                   <option value="Rejected">Reject Request</option>
                                 </select>
+                                @error('state.action')
+                                <div class="invalid-feedback">
+                                  {{ $message }}
+                                </div>
+                                @enderror
                               </div>
                               <!-- /.form-group -->
                             </div>
@@ -243,15 +248,25 @@
                                 <div class="form-group">
                                     @if($action == 'Rejected')
                                         <label>Reason for request rejection:<b class="text-red">*</b></label>
-                                        <textarea wire:model.defer='state.note' class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                        <textarea wire:model.defer='state.note' class="form-control @error('state.note') is-invalid @enderror" rows="3" placeholder="Enter ..."></textarea>
+                                        @error('state.note')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                        @enderror
                                     @elseif($action == 'Approved')
                                         <label> Assign Surveyor<b class="text-red">*</b></label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Choose surveyor..</option>
+                                        <select wire:model.defer='state.surveyor' class="form-control select2 @error('state.surveyor') is-invalid @enderror" style="width: 100%;">
+                                            <option selected>Choose surveyor..</option>
                                             @foreach($surveyors as $surveyor)
                                                 <option value="{{ $surveyor->id}}">{{ $surveyor->name}}</option>
                                             @endforeach
                                         </select>
+                                        @error('state.surveyor')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                        @enderror
                                     @else
                                     @endif
                                 </div>
