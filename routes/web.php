@@ -12,6 +12,7 @@ use App\Http\Livewire\Lgo\ListLgoConnectionRequests;
 use App\Http\Livewire\Lgo\ViewConnectionRequest;
 use App\Http\Livewire\Staff\Custcare\ListRequestsToCustCare;
 use App\Http\Livewire\Staff\Custcare\ViewRequestToCustCare;
+use App\Http\Livewire\Staff\Surveyor\ListSurveyorRequests;
 use App\Http\Livewire\Staff\Users\ListCustomers;
 use App\Http\Livewire\Staff\Users\ListLgo;
 use App\Http\Livewire\Staff\Users\ListStaffs;
@@ -74,6 +75,7 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
     Route::get('lgo', ListLgo::class)->name('staff.lgo');
     Route::get('custcare/allrequests', ListRequestsToCustCare::class)->name('custcare.allrequests');
     Route::get('custcare/viewrequest/{request}', ViewRequestToCustCare::class)->name('custcare.viewrequests');
+    Route::get('surveyor/listtasks', ListSurveyorRequests::class)->name('surveyor.listtasks');
     
     Route::group(['middleware' => 'staff_mgt'], function () {
         Route::get('staffs', ListStaffs::class)->name('staff.allstaffs');
