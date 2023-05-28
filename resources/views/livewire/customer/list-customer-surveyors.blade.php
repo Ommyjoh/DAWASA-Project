@@ -122,45 +122,86 @@
         </div>
         <!-- /.content-header -->
         
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    @if($surveyors->isEmpty())
+                        <div class="col-lg-6 col-6">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                <h3 class="card-title"><b>No surveyor at the moment!</b></h3>
 
-        <div class="col-lg-4 col-6">
-            <div class="card card-widget widget-user">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header bg-info">
-                  <h3 class="widget-user-username">Alexander Pierce</h3>
-                  <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <ul class="nav flex-column">
+
+                                        <li class="nav-item">
+                                            <b>-</b> <em class="float-right">-</em>
+                                        </li>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                    @else
+                    @foreach($surveyors as $surveyor)
+                        <div class="col-lg-4 col-6">
+                            <div class="card card-widget widget-user">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-info">
+                                <h3 class="widget-user-username">Survey for House No: <b><em>{{$surveyor->house}}</em></b></h3>
+                                <h5 class="widget-user-desc">{{$surveyor->street}} - {{$surveyor->ward}}</h5>
+                                </div>
+                                <div class="widget-user-image">
+                                <img class="img-circle elevation-2" src="{{ asset('backend/dist/img/user.png') }}" alt="User Avatar">
+                                </div>
+                                <div class="card-footer p-4">
+                                <div class="row">
+                                        <ul class="nav flex-column">
+
+                                            <li class="nav-item mt-4">
+                                                <b>Surveyor Name:</b> <em class="float-right">{{$surveyor->staff->name}}</em>
+                                            </li>
+
+                                            <li class="nav-item mt-2">
+                                                <b> Office:</b> <em class="float-right">{{$surveyor->staff->role}}, {{$surveyor->staff->office}}</em>
+                                            </li>
+
+                                            <li class="nav-item mt-2">
+                                                <b> Phone #:</b> <em class="float-right">{{$surveyor->staff->phone}}</em>
+                                            </li>
+
+                                            <li class="nav-item mt-2">
+                                                <b> Email:</b> <em class="float-right">{{$surveyor->staff->email}}</em>
+                                            </li>
+
+                                            <li class="nav-item mt-2">
+                                                <b> Days Remaining:</b>
+                                                @if($surveyor->remainingDays['remainingDays'])
+                                                    <em class="float-right badge text-bg-info">{{ $surveyor->remainingDays['remainingDays'] }} days</em>
+                                                @else
+                                                    <em class="float-right badge text-bg-danger">{{ $surveyor->remainingDays['daysPassed'] }} overdue days</em>
+                                                @endif
+                                            </li>
+
+                                </div>
+                                <!-- /.row -->
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    @endif
                 </div>
-                <div class="widget-user-image">
-                  <img class="img-circle elevation-2" src="{{ asset('backend/dist/img/user.png') }}" alt="User Avatar">
-                </div>
-                <div class="card-footer p-4">
-                  <div class="row">
-                        <ul class="nav flex-column">
+            </div>
+        </section>
 
-                            <li class="nav-item">
-                                <b>House #:</b> <em class="float-right">09</em>
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                <b> Street:</b> <em class="float-right">Stakishari</em>
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                <b> Phone #:</b> <em class="float-right">255717810599</em>
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                <b> Email:</b> <em class="float-right">jumalukanga@gmail.com</em>
-                            </li>
-
-                            <li class="nav-item mt-2">
-                                <b> Days Remaining:</b> <em class="float-right">07 days</em>
-                            </li>
-
-                  </div>
-                  <!-- /.row -->
-                </div>
-              </div>
-        </div>
       </div>
 </div>
