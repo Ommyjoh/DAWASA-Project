@@ -42,6 +42,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{route('customer.surveyors')}}" class="nav-link {{ request()->is('customer/listsurveyors') ? 'active' : '' }}" class="nav-link" class="nav-link">
+              <i class="nav-icon fa fa-tasks"></i>
+              <p>
+                Site Surveyors
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-thumbs-down"></i>
               <p>
@@ -90,4 +99,4 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-  </aside>
+</aside>

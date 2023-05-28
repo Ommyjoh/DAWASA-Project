@@ -7,6 +7,7 @@ use App\Http\Controllers\Staff\StaffDashboardController;
 use App\Http\Controllers\staff\StaffLoginController;
 use App\Http\Livewire\Customer\CreateRequest;
 use App\Http\Livewire\Customer\ListConnectionRequests;
+use App\Http\Livewire\Customer\ListCustomerSurveyors;
 use App\Http\Livewire\Customer\ViewCustomerRequest;
 use App\Http\Livewire\Lgo\ListLgoConnectionRequests;
 use App\Http\Livewire\Lgo\ViewConnectionRequest;
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
     Route::get('listrequests', ListConnectionRequests::class)->name('customer.listrequests');
     Route::get('createrequest', CreateRequest::class)->name('customer.createrequest');
     Route::get('viewrequest/{request}', ViewCustomerRequest::class)->name('customer.viewrequest');
+    Route::get('listsurveyors', ListCustomerSurveyors::class)->name('customer.surveyors');
 });
 
 /*

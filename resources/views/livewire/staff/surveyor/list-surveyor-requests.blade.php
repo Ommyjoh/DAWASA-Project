@@ -248,7 +248,7 @@
                             <hr>
 
                             <div class="text-center">
-                                <a class="text-info rounded px-2 bg-success text-dark bg-opacity-10" href="#"> <em><i class="nav-icon fa fa-save"></i> Update Request Details</em> </a>
+                                <a class="text-info rounded px-2 bg-success text-dark bg-opacity-10" href="#"> <em><i class="nav-icon fa fa-edit"></i> Update Request Details</em> </a>
                             </div>
                         </div>
                         <!-- /.card-body -->
