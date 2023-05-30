@@ -33,6 +33,7 @@ class ConnectionRequest extends Model
         'mjumbe',
         'idLetter',
         'staff_id',
+        'custCareApproveddate'
     ];
 
     public function user()
@@ -57,7 +58,7 @@ class ConnectionRequest extends Model
 
     public function getRemainingDaysAttribute()
 {
-    $updatedDate = Carbon::parse($this->updated_at);
+    $updatedDate = Carbon::parse($this->custCareApproveddate);
     $today = Carbon::now();
     $remainingDays = $updatedDate->diffInDays($today);
     $daysPassed = max($remainingDays - 7, 0);

@@ -63,6 +63,7 @@ class ViewRequestToCustCare extends Component
                                 'dawasaStatus' => $this->state['action'],
                                 'staff_id' => $this->state['surveyor'],
                                 'dawasaNote' => NULL,
+                                'custCareApproveddate' => Carbon::now()
                             ]);    
 
         } else {
