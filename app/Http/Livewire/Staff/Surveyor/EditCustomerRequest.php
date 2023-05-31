@@ -9,8 +9,8 @@ class EditCustomerRequest extends Component
 {
 
     public $request;
-    public function mount(ConnectionRequest $connection){
-        $this->request = $connection;
+    public function mount(ConnectionRequest $request){
+        $this->request = $request;
     }
     public function render()
     {
