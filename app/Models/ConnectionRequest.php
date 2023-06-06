@@ -33,7 +33,13 @@ class ConnectionRequest extends Model
         'mjumbe',
         'idLetter',
         'staff_id',
-        'custCareApproveddate'
+        'custCareApproveddate',
+        'surveyorStatus',
+        'jobTitle',
+        'distance',
+        'cordX',
+        'cordY',
+        'surveyorApprovedDate'
     ];
 
     public function user()

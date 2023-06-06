@@ -219,106 +219,140 @@
                                   <h5> <b>Take action after survey </b> </h5>
                                 </div>
 
+                                <form wire:submit.prevent="saveChanges" autocomplete="off">
+                                  @csrf
 
-                                <div class="row mb-4">
-                                  <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                      <label> Action<b class="text-red">*</b></label>
-                                      <select class="form-control select2" style="width: 100%;">
-                                        <option selected>Choose action..</option>
-                                        <option value="Approved">Approve Request</option>
-                                        <option value="Rejected">Reject Request</option>
-                                      </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                  </div>
-      
-                                  <div class="col-12 col-md-6">
+                                  <div class="row mb-4">
+                                    <div class="col-12 col-md-6">
                                       <div class="form-group">
-                                        <label>Reason for request rejection:</label>
-                                        <textarea class="form-control" rows="3" placeholder="Fill remarks ..."></textarea>
+                                        <label> Action<b class="text-red">*</b></label>
+                                        <select wire:model.defer='state.action' wire:change='getAction($event.target.value)' class="form-control select2 @error('state.action') is-invalid @enderror" style="width: 100%;">
+                                          <option selected>Choose action..</option>
+                                          <option value="Approved">Approve Request</option>
+                                          <option value="Rejected">Reject Request</option>
+                                        </select>
+                                        @error('state.action')
+                                        <div class="invalid-feedback">
+                                          {{ $message }}
+                                        </div>
+                                        @enderror
                                       </div>
                                       <!-- /.form-group -->
-                                  </div>
-                                </div>
-
-
-                              <div class="text-center text-success mt-4">
-                                <h5> <b>Please complete this form </b> </h5>
-                              </div>
-
-
-                              <div class="row">
-                                <div class="col-12 col-md-6">
-                                  <div class="form-group">
-                                    <label>Job Title</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                      <option selected="selected">Choose job title...</option>
-                                      <option value="Water Only">Water Only</option>
-                                      <option value="Sewerage Only">Sewerage Only</option>
-                                      <option value="Water and Sewerage">Water and Sewerage</option>
-                                      <option value="Others">Others</option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <!-- /.form-group -->
-    
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                      <label>Distance from main:</label>
-                                      <input style="width: 100%;" type="text" class="form-control" placeholder="Enter distance">
                                     </div>
-                                    <!-- /.form-group -->
-                                </div>
-                              </div>
-
-                              <div class="row">
-                                <div class="col-12 col-md-6">
-                                  <div class="form-group">
-                                    <label>Coordinate X:</label>
-                                    <input style="width: 100%;" type="text" class="form-control" placeholder="Enter coordinate X">
-                                  </div>
-                                </div>
-                                <!-- /.form-group -->
-    
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                      <label>Coordinate Y:</label>
-                                      <input style="width: 100%;" type="text" class="form-control" placeholder="Enter coordinate Y">
+                                    
+                                    @if($action === 'Rejected')
+                                      <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                          <label>Reason for request rejection:<b class="text-red">*</b></label>
+                                          <textarea wire:model.defer='state.reason' class="form-control @error('state.reason') is-invalid @enderror" rows="3" placeholder="Fill remarks ..."></textarea>
+                                          @error('state.reason')
+                                          <div class="invalid-feedback">
+                                            {{ $message }}
+                                          </div>
+                                          @enderror
+                                        </div>
+                                        <!-- /.form-group -->
                                     </div>
-                                    <!-- /.form-group -->
-                                </div>
-                              </div>
-
-                              <div class="row mb-4">
-                                <div class="col-12 col-md-6">
-                                  <div class="form-group">
-                                    <label>Survey date:</label>
-                                    <input style="width: 100%;" type="text" class="form-control" value="{{ now()->format('M d, Y') }}" disabled>
+                                    @endif
                                   </div>
-                                </div>
-                                <!-- /.form-group -->
-    
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                      <label>Approving surveyor:</label>
-                                      <input style="width: 100%;" type="text" class="form-control" value="{{auth('staff')->user()->name}}" disabled>
+
+
+                                  @if($action === 'Approved')
+                                      <div class="text-center text-success mt-4">
+                                        <h5> <b>Please complete this form </b> </h5>
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="col-12 col-md-6">
+                                          <div class="form-group">
+                                            <label>Job Title <b class="text-red">*</b></label>
+                                            <select wire:model.defer='state.title' class="form-control select2 @error('state.title') is-invalid @enderror" style="width: 100%;">
+                                              <option selected="selected">Choose job title...</option>
+                                              <option value="New Connection">New Connection</option>
+                                              <option value="Meter Change">Meter Change</option>
+                                            </select>
+                                            @error('state.title')
+                                            <div class="invalid-feedback">
+                                              {{ $message }}
+                                            </div>
+                                            @enderror
+                                          </div>
+                                        </div>
+                                        <!-- /.form-group -->
+            
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                              <label>Distance from main: <b class="text-red">*</b></label>
+                                              <input wire:model.defer='state.distance' style="width: 100%;" type="text" class="form-control @error('state.distance') is-invalid @enderror" placeholder="Enter distance">
+                                              @error('state.distance')
+                                            <div class="invalid-feedback">
+                                              {{ $message }}
+                                            </div>
+                                            @enderror
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                      </div>
+
+                                      <div class="row">
+                                        <div class="col-12 col-md-6">
+                                          <div class="form-group">
+                                            <label>Coordinate X: <b class="text-red">*</b></label>
+                                            <input wire:model.defer='state.x' style="width: 100%;" type="text" class="form-control @error('state.x') is-invalid @enderror" placeholder="Enter coordinate X">
+                                            @error('state.x')
+                                            <div class="invalid-feedback">
+                                              {{ $message }}
+                                            </div>
+                                            @enderror
+                                          </div>
+                                        </div>
+                                        <!-- /.form-group -->
+            
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                              <label>Coordinate Y: <b class="text-red">*</b></label>
+                                              <input wire:model.defer='state.y' style="width: 100%;" type="text" class="form-control @error('state.y') is-invalid @enderror" placeholder="Enter coordinate Y">
+                                              @error('state.y')
+                                              <div class="invalid-feedback">
+                                                {{ $message }}
+                                              </div>
+                                              @enderror
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                      </div>
+
+                                      <div class="row mb-4">
+                                        <div class="col-12 col-md-6">
+                                          <div class="form-group">
+                                            <label>Survey date:</label>
+                                            <input style="width: 100%;" type="text" class="form-control" value="{{ now()->format('M d, Y') }}" disabled>
+                                          </div>
+                                        </div>
+                                        <!-- /.form-group -->
+            
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                              <label>Approving surveyor:</label>
+                                              <input style="width: 100%;" type="text" class="form-control" value="{{auth('staff')->user()->name}}" disabled>
+                                            </div>
+                                            <!-- /.form-group -->
+                                        </div>
+                                      </div>
+
+                                  @endif
+
+                                  <div class=" mb-4">
+                                    <div class="col-12 d-flex flex-row">
+                                      <div class="col-md-6">
+                                        <a href="{{ route('surveyor.listtasks')}}"><button type="button" class="btn btn-block btn-danger">Cancel Report</button></a>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <button type="submit" class="btn btn-block btn-success">Submit Report</button>
+                                      </div>
                                     </div>
-                                    <!-- /.form-group -->
-                                </div>
-                              </div>
-
-
-                              <div class=" mb-4">
-                                <div class="col-12 d-flex flex-row">
-                                  <div class="col-md-6">
-                                    <button type="button" class="btn btn-block btn-danger">Cancel Report</button>
                                   </div>
-                                  <div class="col-md-6">
-                                      <button type="submit" class="btn btn-block btn-success">Submit Report</button>
-                                  </div>
-                                </div>
-                              </div>
+                                </form>
 
                               <div class="text-center">
                                 <div class="col-md-12">
