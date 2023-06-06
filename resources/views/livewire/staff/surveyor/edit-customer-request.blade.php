@@ -68,23 +68,61 @@
               </li>
     
               <li class="nav-item">
-                <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
+                <a href="#" class="nav-link">
                   <i class="nav-icon fa fa-tint"></i>
                   <p>
-                    Connection Requests
+                    Manage Requests
+                    <i class="right fas fa-angle-right"></i>
                   </p>
                 </a>
-              </li>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-globe"></i>
+                            <p>
+                            All Requests
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-hourglass-end"></i>
+                            <p>
+                            Waiting Connection
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
-              <li class="nav-item">
-                <a href="{{route('surveyor.listtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listtasks') ? 'active' : '' }}">
-                    <i class="nav-icon fa fa-tasks"></i>
-                    <p>
-                    Surveyor Tasks
-                    </p>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fa fa-list"></i>
+                  <p>
+                    Manage Surveying
+                    <i class="right fas fa-angle-right"></i>
+                  </p>
                 </a>
-                </li>
-    
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('surveyor.listtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listtasks') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-hourglass-end"></i>
+                        <p>
+                        Pending Surveying
+                        </p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tasks"></i>
+                            <p>
+                            Settled Surveying
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fa fa-thumbs-down"></i>
