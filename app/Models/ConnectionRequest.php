@@ -74,4 +74,9 @@ class ConnectionRequest extends Model
         'daysPassed' => $daysPassed,
     ];
 }
+
+public function getSurveyorApprovedDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('M d, Y');
+    }
 }

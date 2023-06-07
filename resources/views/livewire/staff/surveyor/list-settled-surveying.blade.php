@@ -179,25 +179,18 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h4 class="m-0">Surveying Areas</h4>
+                        <h4 class="m-0">Settled Surveying Areas</h4>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('staff.dashboard')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Surveyor Tasks</li>
+                            <li class="breadcrumb-item active">Settled Surveying</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
-        @if(session()->has('success'))
-            <div class="alert alert-success alert-dismissible fade show mx-4" role="alert">
-            <strong> <i class="fa fa-check-circle mr-1"></i>{{ session('success') }}</strong> 
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
 
      <!-- Main content -->
     <section class="content">
@@ -208,7 +201,7 @@
             <div class="col-lg-6 col-6">
                 <div class="card card-outline card-info">
                     <div class="card-header">
-                    <h3 class="card-title"><b>No assigned task for you!!</b></h3>
+                    <h3 class="card-title"><b>No settled task at the moment!!</b></h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -249,23 +242,19 @@
                             <ul class="nav flex-column">
 
                                 <li class="nav-item">
-                                    <b>District:</b> <em class="float-right">{{ $connection->district }}</em>
+                                    <b>Area:</b> <em class="float-right">{{ $connection->district }}, {{ $connection->ward }} - {{ $connection->street }}</em>
                                 </li>
 
                                 <li class="nav-item mt-2">
-                                    <b> Ward:</b> <em class="float-right">{{ $connection->ward }}</em>
+                                    <b> House #, Plot #:</b> <em class="float-right">{{ $connection->house }}, {{ $connection->plot }}</em>
                                 </li>
 
                                 <li class="nav-item mt-2">
-                                    <b> Street:</b> <em class="float-right">{{ $connection->street }}</em>
-                                </li>
+                                    <b> Phone #: </b> <em class="float-right">{{ $connection->phone }}</em>
+                                </li> 
 
                                 <li class="nav-item mt-2">
-                                    <b> House #:</b> <em class="float-right">{{ $connection->house }}</em>
-                                </li>
-
-                                <li class="nav-item mt-2">
-                                    <b> Plot #:</b> <em class="float-right">{{ $connection->plot }}</em>
+                                    <b> Job Title:</b> <em class="float-right">{{ $connection->jobTitle }}</em>
                                 </li>
 
                                 <li class="nav-item mt-2">
@@ -277,17 +266,26 @@
                                 </li>
 
                                 <li class="nav-item mt-2">
-                                    <b> Days left:</b>
-                                    @if($connection->remainingDays['remainingDays'])
-                                        <em class="float-right badge text-bg-info">{{ $connection->remainingDays['remainingDays'] }} days</em>
-                                    @else
-                                        <em class="float-right badge text-bg-danger">{{ $connection->remainingDays['daysPassed'] }} overdue days</em>
-                                    @endif
+                                    <b> Distance:</b> <em class="float-right">{{ $connection->distance }}m<sup>3</sup></em>
                                 </li>
 
                                 <li class="nav-item mt-2">
-                                    <b> Phone #: </b> <em class="float-right">{{ $connection->phone }}</em>
-                                </li> 
+                                    <b> Coordinate X, Y:</b> <em class="float-right">{{ $connection->cordX }}, {{ $connection->cordY }}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Survey Date:</b> <em class="float-right">{{ $connection->surveyorApprovedDate}}</em>
+                                </li>
+
+                                <li class="nav-item mt-2">
+                                    <b> Surveyor Status:</b>
+                                    @if($connection->surveyorStatus === 'Approved')
+                                        <em class="float-right badge text-bg-info">Approved</em>
+                                    @else
+                                        <em class="float-right badge text-bg-danger">Rejected</em>
+                                    @endif
+                                </li>
+
                             </ul>
 
                             <hr>

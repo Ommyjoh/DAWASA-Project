@@ -96,32 +96,32 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fa fa-list"></i>
-                  <p>
-                    Manage Surveying
-                    <i class="right fas fa-angle-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-list"></i>
+                <p>
+                  Manage Surveying
+                  <i class="right fas fa-angle-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('surveyor.listtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listtasks') ? 'active' : '' }}">
+                      <i class="nav-icon fa fa-hourglass-end"></i>
+                      <p>
+                      Pending Surveying
+                      </p>
+                  </a>
+                  </li>
                   <li class="nav-item">
-                    <a href="{{route('surveyor.listtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listtasks') ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-hourglass-end"></i>
-                        <p>
-                        Pending Surveying
-                        </p>
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tasks"></i>
-                            <p>
-                            Settled Surveying
-                            </p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                      <a href="{{route('surveyor.listsettledtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listsettledtasks') ? 'active' : '' }}">
+                          <i class="nav-icon fa fa-tasks"></i>
+                          <p>
+                          Settled Surveying
+                          </p>
+                      </a>
+                  </li>
+              </ul>
+          </li>
     
               <li class="nav-item">
                 <a href="#" class="nav-link">
