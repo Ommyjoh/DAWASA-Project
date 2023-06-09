@@ -12,6 +12,11 @@ class EditCustomerRequest extends Component
     public $state = [];
     public $action;
 
+    public $request;
+    public function mount(ConnectionRequest $request){
+        $this->request = $request;
+    }
+
     public function getAction($action){
         $this->action = $action;
     }
@@ -90,10 +95,6 @@ class EditCustomerRequest extends Component
 
     }
 
-    public $request;
-    public function mount(ConnectionRequest $request){
-        $this->request = $request;
-    }
     public function render()
     {
 
