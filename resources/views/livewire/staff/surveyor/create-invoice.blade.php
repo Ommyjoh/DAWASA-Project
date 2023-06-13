@@ -256,21 +256,33 @@
 
                                 <div class="d-flex justify-content-end align-items-end text-center mt-4">
                                     <div class="col-12 col-md-4">
-                                        <button wire:click='addItem' class="btn btn-info rounded-pill">
+                                        <button type="button" wire:click='addItem' class="btn btn-info rounded-pill">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
 
-                                <div class="row mt-2 px-4">
+                              <form wire:submit.prevent="saveInvoice" autocomplete="off">
+                                  @csrf
+                                <div class="row my-4 px-4">
                                     @foreach ($items as $index => $item)
                                         <div class="col-12 col-md-3">
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <select wire:model="items.{{ $index }}.description" class="form-control select2" style="width: 100%;">
-                                                    <option selected>Choose action..</option>
-                                                    <option value="Approved">Approve Request</option>
-                                                    <option value="Rejected">Reject Request</option>
+                                                    <option selected>Choose material..</option>
+                                                    <option value="Bib Cock 0.75'">Bib Cock 0.75'</option>
+                                                    <option value="Gate valve 0.75'">Gate valve 0.75'</option>
+                                                    <option value="GS Pipes (PN15) 0.75'">GS Pipes (PN15) 0.75'</option>
+                                                    <option value="Male Connector 0.75'">Male Connector 0.75'</option>
+                                                    <option value="Nipple 0.75'">Nipple 0.75'</option>
+                                                    <option value="Poly Pipes (PN15) 0.75'">Poly Pipes (PN15) 0.75'</option>
+                                                    <option value="Reducing Bush 0.5' * 0.75" GS">Reducing Bush 0.5' * 0.75" GS</option>
+                                                    <option value="Reducing Bush 0.5' * 0.75" PVC">Reducing Bush 0.5' * 0.75" PVC</option>
+                                                    <option value="Reducing Bush 1' * 0.75" GS">Reducing Bush 1' * 0.75" GS</option>
+                                                    <option value="Reducing Bush 1' * 0.75" PVC">Reducing Bush 1' * 0.75" PVC</option>
+                                                    <option value="Saddle Clamp 1.5' * 1'">Saddle Clamp 1.5' * 1'</option>
+                                                    <option value="Seal Tape">Seal Tape</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -311,14 +323,26 @@
                                     
                                         <div class="col-12 col-md-1">
                                             <div class="form-group">
-                                                <button wire:click="removeItem({{ $index }})" class="btn btn-danger rounded-pill">
+                                                <button type="button" wire:click="removeItem({{ $index }})" class="btn btn-danger rounded-pill">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     @endforeach
                                 
+                                </div>
+
+                                <div class=" mb-4">
+                                  <div class="col-12 d-flex flex-row">
+                                    <div class="col-md-6">
+                                      <a href="{{ route('surveyor.requeststoinvoice')}}"><button type="button" class="btn btn-block btn-danger">Cancel Invoice</button></a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-block btn-success">Submit Invoice</button>
+                                    </div>
                                   </div>
+                                </div>
+                              </form>
                                 
 
                               <div class="text-center">

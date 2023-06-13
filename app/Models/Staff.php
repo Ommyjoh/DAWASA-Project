@@ -51,4 +51,9 @@ class Staff extends Authenticatable
     {
         return $this->hasMany(ConnectionRequest::class);
     }
+
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

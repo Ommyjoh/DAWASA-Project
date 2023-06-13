@@ -56,6 +56,11 @@ class ConnectionRequest extends Model
         return $this->belongsTo(Staff::class);
     }
 
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class, 'connection_requests_id');
+    }
+
 
     public function getCreatedAtAttribute($value)
     {

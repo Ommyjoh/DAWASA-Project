@@ -11,10 +11,13 @@ class ListSettledSurveying extends Component
     {
 
         $connections = ConnectionRequest::where('staff_id', auth('staff')->user()->id)
-                    ->where('surveyorStatus', 'Approved')
-                    ->orWhere('surveyorStatus', 'Rejected')
-                    ->latest()
-                    ->get();
+                        ->where(function ($query) {
+                            $query->where('surveyorStatus', 'Approved')
+                                ->orWhere('surveyorStatus', 'Rejected');
+                        })
+                        ->latest()
+                        ->get();
+
                     
         return view('livewire.staff.surveyor.list-settled-surveying', [
             'connections' => $connections

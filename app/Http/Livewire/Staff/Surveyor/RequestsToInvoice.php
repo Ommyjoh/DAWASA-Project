@@ -10,10 +10,11 @@ class RequestsToInvoice extends Component
     public function render()
     {
         $requests = ConnectionRequest::where('staff_id', auth('staff')->user()->id)
-        ->where('surveyorStatus', 'Approved')
-        ->orWhere('surveyorStatus', 'Rejected')
-        ->latest()
-        ->get();
+                    ->where('surveyorStatus', 'Approved')
+                    ->whereDoesntHave('invoice')
+                    ->latest()
+                    ->get();
+
         return view('livewire.staff.surveyor.requests-to-invoice', [
             'requests' => $requests
         ]);
