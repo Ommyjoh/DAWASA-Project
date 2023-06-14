@@ -142,15 +142,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-object-group"></i>
+                            <a href="{{route('surveyor.allinvoices')}}" class="nav-link">
+                              <i class="nav-icon fa fa-object-group"></i>
                                 <p>
                                 All Invoices
                                 </p>
                             </a>
                         </li>
                     </ul>
-                </li>
+                  </li>
 
                 <li class="nav-item">
                 <a href="#" class="nav-link">

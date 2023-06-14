@@ -124,31 +124,31 @@
             </li>
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-file"></i>
-                <p>
-                    Manage Invoices
-                    <i class="right fas fa-angle-right"></i>
-                </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{route('surveyor.requeststoinvoice')}}" class="nav-link {{ request()->is('staff/surveyor/requeststoinvoice') ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-edit"></i>
-                            <p>
-                            Create Invoice
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-object-group"></i>
-                            <p>
-                            All Invoices
-                            </p>
-                        </a>
-                    </li>
-                </ul>
+              <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-file"></i>
+              <p>
+                  Manage Invoices
+                  <i class="right fas fa-angle-right"></i>
+              </p>
+              </a>
+              <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                      <a href="{{route('surveyor.requeststoinvoice')}}" class="nav-link {{ request()->is('staff/surveyor/requeststoinvoice') ? 'active' : '' }}">
+                          <i class="nav-icon fa fa-edit"></i>
+                          <p>
+                          Create Invoice
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{route('surveyor.allinvoices')}}" class="nav-link">
+                        <i class="nav-icon fa fa-object-group"></i>
+                          <p>
+                          All Invoices
+                          </p>
+                      </a>
+                  </li>
+              </ul>
             </li>
 
     
@@ -253,7 +253,7 @@
                                     <td>12658797</td>
                                     <td>{{ $invoice->fullName }}</td>
                                     <td>{{ $invoice->jobTitle }}</td>
-                                    <td>{{ $invoice->total_amount }}/=</td>
+                                    <td>{{ number_format(($invoice->total_amount -($invoice->total_amount * 0.18)) + 50000 + 26000 +2000) }}/=</td>
                                     <td><em class="float-center badge text-bg-danger">Not Paid</em></td>
                                     <td><em class="float-center badge text-bg-warning">Pending</em></td>
                                     <td>

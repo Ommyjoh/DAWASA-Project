@@ -123,6 +123,34 @@
           </ul>
       </li>
 
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+        <i class="nav-icon fa fa-file"></i>
+        <p>
+            Manage Invoices
+            <i class="right fas fa-angle-right"></i>
+        </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{route('surveyor.requeststoinvoice')}}" class="nav-link {{ request()->is('staff/surveyor/requeststoinvoice') ? 'active' : '' }}">
+                    <i class="nav-icon fa fa-edit"></i>
+                    <p>
+                    Create Invoice
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('surveyor.allinvoices')}}" class="nav-link">
+                  <i class="nav-icon fa fa-object-group"></i>
+                    <p>
+                    All Invoices
+                    </p>
+                </a>
+            </li>
+        </ul>
+      </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-thumbs-down"></i>
