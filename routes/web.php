@@ -13,6 +13,8 @@ use App\Http\Livewire\Lgo\ListLgoConnectionRequests;
 use App\Http\Livewire\Lgo\ViewConnectionRequest;
 use App\Http\Livewire\Staff\Custcare\ListRequestsToCustCare;
 use App\Http\Livewire\Staff\Custcare\ViewRequestToCustCare;
+use App\Http\Livewire\Staff\Engineer\EngineerInvoices;
+use App\Http\Livewire\Staff\Engineer\EngineerViewInvoice;
 use App\Http\Livewire\Staff\Surveyor\AllInvoices;
 use App\Http\Livewire\Staff\Surveyor\CreateInvoice;
 use App\Http\Livewire\Staff\Surveyor\EditCustomerRequest;
@@ -90,6 +92,8 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
     Route::get('surveyor/createinvoice/{request}', CreateInvoice::class)->name('surveyor.createinvoice');
     Route::get('surveyor/allinvoices', AllInvoices::class)->name('surveyor.allinvoices');
     Route::get('surveyor/surveyorviewinvoice/{connection_request_id}', SurveyorViewInvoice::class)->name('surveyor.surveyorviewinvoice');
+    Route::get('engineer/allinvoices', EngineerInvoices::class)->name('engineer.allinvoices');
+    Route::get('engineer/engieerviewinvoice/{connection_request_id}', EngineerViewInvoice::class)->name('engineer.engineerviewinvoice');
     
     Route::group(['middleware' => 'staff_mgt'], function () {
         Route::get('staffs', ListStaffs::class)->name('staff.allstaffs');

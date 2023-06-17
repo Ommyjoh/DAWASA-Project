@@ -23,6 +23,7 @@ class SurveyorViewInvoice extends Component
         $meterDepositFee = 50000;
         $backfillingFee = 2000;
         $grandTotal = ($this->totalAmount - $vat) + $newConnectionFee + $meterDepositFee + $backfillingFee;
+        
         return view('livewire.staff.surveyor.surveyor-view-invoice', [
             'newConnectionFee'  => $newConnectionFee ,
             'meterDepositFee'  => $meterDepositFee ,

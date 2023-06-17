@@ -16,7 +16,12 @@ class Invoice extends Model
         'description',
         'qty',
         'unit',
-        'amount'
+        'amount',
+        'invoiceNo',
+        'engineerStatus',
+        'engineerNote',
+        'paymentStatus',
+        'controlNumber'
     ];
 
     public function user()

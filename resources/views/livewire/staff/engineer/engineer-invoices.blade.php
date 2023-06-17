@@ -206,7 +206,7 @@
       <!-- Content Header (Page header) -->
       <div class="content-header">
           <div class="container-fluid">
-              <div class="row mb-2">
+              <div class="row">
                   <div class="col-sm-6">
                       <h5 class="m-0">All Invoices</h5>
                   </div><!-- /.col -->
@@ -231,19 +231,19 @@
       <section class="content">
         <div class="container-fluid">
           <div class="col-12">
-              <div class="card">
+              <div >
                   <div class="card-body">
-                    <table id="example2" class="table table-bordered table-hover text-center">
-                        <thead class="text-info text-center">
+                    <table class="table table-striped">
+                        <thead class="bg-success p-2 text-white bg-opacity-75 text-info">
                             <tr>
                                 <th>Date</th>
                                 <th>Invoice #</th>
                                 <th>Customer Name</th>
                                 <th>Job Title</th>
                                 <th>Amount</th>
-                                <th>Status</th>
-                                <th>Engineer Status</th>
-                                <th>Action</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Engineer Status</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                           <tbody>
@@ -254,8 +254,8 @@
                                     <td>{{ $invoice->fullName }}</td>
                                     <td>{{ $invoice->jobTitle }}</td>
                                     <td>{{ number_format(($invoice->total_amount -($invoice->total_amount * 0.18)) + 50000 + 26000 +2000) }}/=</td>
-                                    <td><em class="float-center badge text-bg-danger">{{ $invoice->paymentStatus }}</em></td>
-                                    <td>
+                                    <td class="text-center"><em class="float-center badge text-bg-danger">{{ $invoice->paymentStatus }}</em></td>
+                                    <td class="text-center">
                                       @if($invoice->engineerStatus === 'Pending')
                                         <em class="float-center badge text-bg-warning">{{ $invoice->engineerStatus }}</em>
                                       @elseif($invoice->engineerStatus === 'Approved')
@@ -266,16 +266,13 @@
                                         <em class="float-center badge text-bg-warning">"Pending"</em>
                                       @endif
                                     </td>
-                                    <td>
-                                        <a href="{{ route('surveyor.surveyorviewinvoice', $invoice->connection_requests_id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                        @if($invoice->engineerStatus === 'Rejected')
-                                          <a href="#"><i class="nav-icon fa fa-info text-info mr-2"></i></a>
-                                        @endif
+                                    <td class="text-center">
+                                        <a href="{{ route('engineer.engineerviewinvoice', $invoice->connection_requests_id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
                                     </td>
                                 </tr>
                             @empty
                               <tr>
-                                <td colspan="7" class="text-center p-4">
+                                <td colspan="8" class="text-center p-4">
                                     No invoice found at the moment!
                                 </td>
                               </tr>
