@@ -185,11 +185,15 @@
 
                                             <li class="nav-item mt-2">
                                                 <b> Days Remaining:</b>
-                                                @if($surveyor->remainingDays['remainingDays'])
-                                                    <em class="float-right badge text-bg-info">{{ $surveyor->remainingDays['remainingDays'] }} days</em>
+                                               @if($surveyor->surveyorStatus === 'Pending')
+                                                  @if($surveyor->remainingDays['remainingDays'])
+                                                  <em class="float-right badge text-bg-info">{{ $surveyor->remainingDays['remainingDays'] }} days</em>
+                                                  @else
+                                                      <em class="float-right badge text-bg-danger">{{ $surveyor->remainingDays['daysPassed'] }} overdue days</em>
+                                                  @endif
                                                 @else
-                                                    <em class="float-right badge text-bg-danger">{{ $surveyor->remainingDays['daysPassed'] }} overdue days</em>
-                                                @endif
+                                                  <em class="float-right badge text-bg-success"><i class="nav-icon fa fa-check-circle mr-2"></i>Site Surveyed</em>
+                                               @endif
                                             </li>
 
                                 </div>

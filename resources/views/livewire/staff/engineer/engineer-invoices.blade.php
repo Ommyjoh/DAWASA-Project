@@ -233,8 +233,8 @@
           <div class="col-12">
               <div >
                   <div class="card-body">
-                    <table class="table table-striped">
-                        <thead class="bg-success p-2 text-white bg-opacity-75 text-info">
+                    <table class="table table-striped table-bordered">
+                        <thead class="bg-secondary p-2 text-white bg-opacity-75 text-info">
                             <tr>
                                 <th>Date</th>
                                 <th>Invoice #</th>

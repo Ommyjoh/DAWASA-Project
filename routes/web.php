@@ -6,9 +6,11 @@ use App\Http\Controllers\lgo\LgoLoginController;
 use App\Http\Controllers\Staff\StaffDashboardController;
 use App\Http\Controllers\staff\StaffLoginController;
 use App\Http\Livewire\Customer\CreateRequest;
+use App\Http\Livewire\Customer\CustomerInvoices;
 use App\Http\Livewire\Customer\ListConnectionRequests;
 use App\Http\Livewire\Customer\ListCustomerSurveyors;
 use App\Http\Livewire\Customer\ViewCustomerRequest;
+use App\Http\Livewire\Customer\ViewInvoice;
 use App\Http\Livewire\Lgo\ListLgoConnectionRequests;
 use App\Http\Livewire\Lgo\ViewConnectionRequest;
 use App\Http\Livewire\Staff\Custcare\ListRequestsToCustCare;
@@ -63,6 +65,8 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
     Route::get('createrequest', CreateRequest::class)->name('customer.createrequest');
     Route::get('viewrequest/{request}', ViewCustomerRequest::class)->name('customer.viewrequest');
     Route::get('listsurveyors', ListCustomerSurveyors::class)->name('customer.surveyors');
+    Route::get('invoices', CustomerInvoices::class)->name('customer.invoices');
+    Route::get('viewinvoice/{connection_request_id}', ViewInvoice::class)->name('customer.viewinvoice');
 });
 
 /*

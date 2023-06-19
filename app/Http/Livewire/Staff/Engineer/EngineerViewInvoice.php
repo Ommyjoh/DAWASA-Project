@@ -44,7 +44,7 @@ class EngineerViewInvoice extends Component
             }
         }
 
-    session()->flash('success', 'Action submitted successfully!');
+    session()->flash('success', 'Invoice action submitted successfully!');
 
     return redirect()->route('engineer.allinvoices');
     }

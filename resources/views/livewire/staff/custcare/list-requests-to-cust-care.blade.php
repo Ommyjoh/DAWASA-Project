@@ -230,10 +230,9 @@
       <section class="content">
         <div class="container-fluid">
           <div class="col-12">
-              <div class="card">
-                  <div class="card-body">
-                    <table id="example2" class="table table-bordered table-hover text-center">
-                        <thead class="text-info text-center">
+                <div class="card-body">
+                  <table class="table table-striped">
+                      <thead class="bg-secondary p-2 text-center text-white bg-opacity-75 text-info">
                             <tr>
                                 <th></th>
                                 <th></th>
@@ -243,8 +242,8 @@
                                 <th></th>
                             </tr>
                             <tr>
-                                <th>Date</th>
-                                <th>Customer Name</th>
+                                <th class="text-start">Date</th>
+                                <th class="text-start">Customer Name</th>
                                 <th>Local Goverment</th>
                                 <th>DAWASA</th>
                                 <th>Surveyor</th>
@@ -257,7 +256,7 @@
                                 <tr>
                                     <td>{{ $request->created_at }}</td>
                                     <td>{{ $request->fullName }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if($request->lgoStatus == 'Pending')
                                             <span class="badge text-bg-warning p-2"><em>Pending</em></span>
                                         @elseif($request->lgoStatus == 'Approved')
@@ -266,7 +265,7 @@
                                             <span class="badge text-bg-danger p-2"><em>Rejected</em></span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @if($request->dawasaStatus == 'Pending')
                                             <span class="badge text-bg-warning p-2"><em>Pending</em></span>
                                         @elseif($request->dawasaStatus == 'Approved')
@@ -276,7 +275,7 @@
                                         @endif
                                     </td>
                                     
-                                    <td>
+                                    <td class="text-center">
                                       @if($request->staff_id ==NULL)
                                       <span class="badge text-bg-secondary p-2"><em>Unassigned</em></span>
                                       @else
@@ -284,7 +283,7 @@
                                       @endif
                                     </td>
 
-                                    <td>
+                                    <td class="text-center">
                                       @if($request->dawasaStatus == 'Approved')
                                         @if($request->remainingDays['remainingDays'])
                                           <span class="badge text-bg-secondary p-2"><em>
@@ -301,7 +300,7 @@
                                         </em></span>
                                       @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="{{route('custcare.viewrequests', $request)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
                                     </td>
                                 </tr>
@@ -317,7 +316,6 @@
                     </table>
                   </div>
                   <!-- /.card-body -->
-                </div>
             </div>
         </div>
       </section>

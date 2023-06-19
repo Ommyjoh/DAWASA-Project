@@ -51,6 +51,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{ route('customer.invoices')}}" class="nav-link">
+              <i class="nav-icon fa fa-file"></i>
+              <p>
+               Invoices
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-thumbs-down"></i>
               <p>

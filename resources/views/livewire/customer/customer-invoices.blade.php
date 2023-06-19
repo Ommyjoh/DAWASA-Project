@@ -25,7 +25,7 @@
                   with font-awesome or any other icon font library -->
               <h5 class="text-info ml-2">Navigations</h4>
               <li class="nav-item">
-                <a href="{{route('customer.dashboard')}}" class="nav-link {{ request()->is('customer/dashboard') ? 'active' : '' }}" class="nav-link" class="nav-link">
+                <a href="{{route('customer.dashboard')}}" class="nav-link {{ request()->is('customer/dashboard') ? 'active' : '' }}" class="nav-link">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
@@ -34,19 +34,28 @@
               </li>
     
               <li class="nav-item">
-                <a href="{{route('customer.listrequests')}}" class="nav-link {{ request()->is('customer/listrequests') ? 'active' : '' }}" class="nav-link" class="nav-link" class="nav-link">
+                <a href="{{route('customer.listrequests')}}" class="nav-link {{ request()->is('customer/listrequests') ? 'active' : '' }}" class="nav-link" class="nav-link">
                   <i class="nav-icon fa fa-tint"></i>
                   <p>
                     Connection Requests
                   </p>
                 </a>
               </li>
-
+    
               <li class="nav-item">
                 <a href="{{route('customer.surveyors')}}" class="nav-link {{ request()->is('customer/listsurveyors') ? 'active' : '' }}" class="nav-link" class="nav-link">
                   <i class="nav-icon fa fa-tasks"></i>
                   <p>
                     Site Surveyors
+                  </p>
+                </a>
+              </li>
+    
+              <li class="nav-item">
+                <a href="{{ route('customer.invoices')}}" class="nav-link {{ request()->is('customer/invoices') ? 'active' : '' }}">
+                  <i class="nav-icon fa fa-file"></i>
+                  <p>
+                   Invoices
                   </p>
                 </a>
               </li>
@@ -107,16 +116,16 @@
       <!-- Content Header (Page header) -->
       <div class="content-header">
           <div class="container-fluid">
-              <div class="row mb-2">
+              <div class="row">
                   <div class="col-sm-6">
-                      <h5 class="m-0">All connection Requests</h5>
+                      <h5 class="m-0">All Invoices</h5>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
-                      <ol class="breadcrumb float-sm-right">
-                          <li class="breadcrumb-item"><a href="{{ route('customer.dashboard')}}">Home</a></li>
-                          <li class="breadcrumb-item active">Connection Requests</li>
-                      </ol>
-                  </div><!-- /.col -->
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{ route('customer.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active">All invoices</li>
+                    </ol>
+                </div><!-- /.col -->
               </div><!-- /.row -->
           </div><!-- /.container-fluid -->
       </div>
@@ -132,66 +141,39 @@
       <section class="content">
         <div class="container-fluid">
           <div class="col-12">
+              <div >
                   <div class="card-body">
-                    <div class="mb-2">
-                      <a href="{{ route('customer.createrequest')}}"><button style="border-radius: 20px" class="btn btn-primary"> <i class="nav-icon fa fa-plus-circle"></i> New Request</button></a>
-                    </div>
                     <table class="table table-striped table-bordered">
-                      <thead class="bg-secondary p-2 text-center text-white bg-opacity-75 text-info">
+                        <thead class="bg-secondary p-2 text-white bg-opacity-75 text-info">
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th colspan="2">Progress</th>
-                                <th></th>
+                                <th>Date</th>
+                                <th>Invoice #</th>
+                                <th>Customer Name</th>
+                                <th>Job Title</th>
+                                <th>Control Number</th>
+                                <th>Amount</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Action</th>
                             </tr>
-                            <tr>
-                                <th class="text-start">Date</th>
-                                <th class="text-start">Name</th>
-                                <th>Status</th>
-                                <th>Local Goverment</th>
-                                <th>DAWASA</th>
-                                <th>Action</th>
-                            </tr>
-                          </thead>
+                        </thead>
                           <tbody>
-                            @forelse($requests as $request)
+                            @forelse($invoices as $invoice)
                                 <tr>
-                                    <td>{{ $request->created_at }}</td>
-                                    <td>{{ $request->fullName }}</td>
-                                    <td class="text-center"><span class="badge text-bg-info p-2">Submitted</span></td>
-                                    <td  class="text-center">
-                                        @if($request->lgoStatus == 'Pending')
-                                            <span class="badge text-bg-warning p-2">Pending</span>
-                                        @elseif($request->lgoStatus == 'Approved')
-                                            <span class="badge text-bg-success p-2">Approved</span>
-                                        @else
-                                            <span class="badge text-bg-danger p-2">Rejected</span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $invoice->created_date }}</td>
+                                    <td>{{ $invoice->invoiceNo }}</td>
+                                    <td>{{ $invoice->fullName }}</td>
+                                    <td>{{ $invoice->jobTitle }}</td>
+                                    <td class="text-center">{{ $invoice->controlNumber }}</td>
+                                    <td class="text-end">{{ number_format(($invoice->total_amount -($invoice->total_amount * 0.18)) + 50000 + 26000 +2000) }}/=</td>
+                                    <td class="text-center"><em class="float-center badge text-bg-danger">{{ $invoice->paymentStatus }}</em></td>
                                     <td class="text-center">
-                                        @if($request->dawasaStatus == 'Pending')
-                                            <span class="badge text-bg-warning p-2">Pending</span>
-                                        @elseif($request->dawasaStatus == 'Approved')
-                                            <span class="badge text-bg-success p-2">Approved</span>
-                                        @else
-                                            <span class="badge text-bg-danger p-2">Rejected</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{route('customer.viewrequest', $request)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                        @if($request->dawasaStatus != 'Approved')
-                                          <a wire:click.prevent="requestDeleteConfirmation({{ $request->id }})" href="#"><i class="nav-icon fa fa-trash text-danger mr-2" title="delete"></i></a>
-                                        @endif
-                                        @if($request->lgoNote != NULL | $request->dawasaNote != NULL )
-                                          <a wire:click.prevent="showReasonModal({{ $request }})" href="#"><i class="nav-icon fa fa-info text-info" title="view"></i></a>
-                                        @endif
+                                        <a href="{{ route('customer.viewinvoice', $invoice->id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
                                     </td>
                                 </tr>
                             @empty
                               <tr>
-                                <td colspan="7" class="text-center p-4">
-                                    No connection request found at the moment!
+                                <td colspan="8" class="text-center p-4">
+                                    No invoice found at the moment!
                                 </td>
                               </tr>
                             @endforelse
@@ -206,20 +188,4 @@
       </section>
       <!-- /.content -->
     </div>
-
-    <div class="modal fade" id="lgoForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h3 class="modal-title fs-5 text-danger" id="exampleModalLabel">
-                      <span><b> <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Reason for Request Rejection</b></span>
-                  </h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body text-center p-4">
-                 <h6>{{ $note }}</h6>
-              </div>
-          </div>
-      </div>
-  </div>
   </div>

@@ -10,7 +10,9 @@ class ListRequestsToCustCare extends Component
     public function render()
     {
 
-        $requests = ConnectionRequest::where('lgoStatus', 'Approved')->latest()->get();
+        $requests = ConnectionRequest::where('lgoStatus', 'Approved')
+                    ->where('surveyorStatus', 'Pending')
+                    ->latest()->get();
         return view('livewire.staff.custcare.list-requests-to-cust-care', [
             'requests'=> $requests
         ]);
