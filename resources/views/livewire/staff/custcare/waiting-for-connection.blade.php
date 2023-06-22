@@ -67,91 +67,98 @@
                 </ul>
               </li>
     
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-tint"></i>
-                    <p>
-                        Manage Requests
-                        <i class="right fas fa-angle-right"></i>
-                    </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
-                                <i class="nav-icon fa fa-globe"></i>
-                                <p>
-                                All Requests
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa fa-hourglass-end"></i>
-                                <p>
-                                Waiting Connection
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
+              <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="nav-icon fa fa-list"></i>
-                    <p>
-                    Manage Surveying
+                  <i class="nav-icon fa fa-tint"></i>
+                  <p>
+                    Manage Requests
                     <i class="right fas fa-angle-right"></i>
-                    </p>
+                  </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                    <a href="{{route('surveyor.listtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listtasks') ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-hourglass-end"></i>
-                        <p>
-                        Pending Surveying
-                        </p>
-                    </a>
+                        <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-globe"></i>
+                            <p>
+                            All Requests
+                            </p>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('surveyor.listsettledtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listsettledtasks') ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-tasks"></i>
+                        <a href="{{ route('custcare.waitingforconnection')}}" class="nav-link">
+                            <i class="nav-icon fa fa-hourglass-end"></i>
                             <p>
-                            Settled Surveying
+                            Waiting Connection
                             </p>
                         </a>
                     </li>
                 </ul>
             </li>
-
+    
             <li class="nav-item">
               <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-file"></i>
-              <p>
-                  Manage Invoices
+                <i class="nav-icon fa fa-list"></i>
+                <p>
+                  Manage Surveying
                   <i class="right fas fa-angle-right"></i>
-              </p>
+                </p>
               </a>
               <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                      <a href="{{route('surveyor.requeststoinvoice')}}" class="nav-link {{ request()->is('staff/surveyor/requeststoinvoice') ? 'active' : '' }}">
-                          <i class="nav-icon fa fa-edit"></i>
-                          <p>
-                          Create Invoice
-                          </p>
-                      </a>
+                <li class="nav-item">
+                  <a href="{{route('surveyor.listtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listtasks') ? 'active' : '' }}">
+                      <i class="nav-icon fa fa-hourglass-end"></i>
+                      <p>
+                      Pending Surveying
+                      </p>
+                  </a>
                   </li>
                   <li class="nav-item">
-                      <a href="{{route('surveyor.allinvoices')}}" class="nav-link">
-                        <i class="nav-icon fa fa-object-group"></i>
+                      <a href="{{route('surveyor.listsettledtasks')}}" class="nav-link {{ request()->is('staff/surveyor/listsettledtasks') ? 'active' : '' }}">
+                          <i class="nav-icon fa fa-tasks"></i>
                           <p>
-                          All Invoices
+                          Settled Surveying
                           </p>
                       </a>
                   </li>
               </ul>
-            </li>
-
+          </li>
     
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fa fa-file"></i>
+            <p>
+                Manage Invoices
+                <i class="right fas fa-angle-right"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('surveyor.requeststoinvoice')}}" class="nav-link {{ request()->is('staff/surveyor/requeststoinvoice') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-edit"></i>
+                        <p>
+                        Create Invoice
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('surveyor.allinvoices')}}" class="nav-link">
+                      <i class="nav-icon fa fa-object-group"></i>
+                        <p>
+                        All Invoices
+                        </p>
+                    </a>
+                </li>
+            </ul>
+          </li>
+    
+          <li class="nav-item">
+            <a href="{{ route('engineer.allinvoices')}}" class="nav-link">
+              <i class="nav-icon fa fa-file"></i>
+              <p>
+               Invoices
+              </p>
+            </a>
+          </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fa fa-thumbs-down"></i>
@@ -208,12 +215,12 @@
           <div class="container-fluid">
               <div class="row">
                   <div class="col-sm-6">
-                      <h5 class="m-0">All Invoices</h5>
+                      <h5 class="m-0">Waiting for Connection</h5>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('staff.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">All invoices</li>
+                        <li class="breadcrumb-item active">Waiting for Connection</li>
                     </ol>
                 </div><!-- /.col -->
               </div><!-- /.row -->
@@ -236,50 +243,33 @@
                     <table class="table table-striped table-bordered">
                         <thead class="bg-secondary p-2 text-white bg-opacity-75 text-info">
                             <tr>
-                                <th>Date</th>
-                                <th>Invoice #</th>
+                                <th>#</th>
                                 <th>Customer Name</th>
+                                <th>Phone No</th>
                                 <th>Job Title</th>
-                                <th>Amount</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Engineer Status</th>
+                                <th>Service Required</th>
+                                <th>District</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                           <tbody>
-                            @forelse($invoices as $invoice)
-                                <tr>
-                                    <td>{{ $invoice->created_date }}</td>
-                                    <td>12658797</td>
-                                    <td>{{ $invoice->fullName }}</td>
-                                    <td>{{ $invoice->jobTitle }}</td>
-                                    <td>{{ number_format(($invoice->total_amount -($invoice->total_amount * 0.18)) + 50000 + 26000 +2000) }}/=</td>
+                            @forelse($connectionRequests as $connectionRequest)
+                               <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{$connectionRequest->fullName}}</td>
+                                    <td>{{$connectionRequest->phone}}</td>
+                                    <td>{{$connectionRequest->jobTitle}}</td>
+                                    <td>{{$connectionRequest->servRequired}}</td>
+                                    <td>{{$connectionRequest->district}}</td>
                                     <td class="text-center">
-                                      @if($invoice->paymentStatus === 'Not Paid')
-                                        <em class="float-center badge text-bg-danger">{{ $invoice->paymentStatus }}</em>
-                                      @elseif($invoice->paymentStatus === 'Paid') 
-                                        <em class="float-center badge text-bg-success">{{ $invoice->paymentStatus }}</em>
-                                      @endif                               
+                                        <a href="{{ route('custcare.viewcustomerfile', $connectionRequest->id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
+                                        <a href="#"><i class="nav-icon fa fa-print text-info mr-2"></i></a>
                                     </td>
-                                    <td class="text-center">
-                                      @if($invoice->engineerStatus === 'Pending')
-                                        <em class="float-center badge text-bg-warning">{{ $invoice->engineerStatus }}</em>
-                                      @elseif($invoice->engineerStatus === 'Approved')
-                                        <em class="float-center badge text-bg-success">{{ $invoice->engineerStatus }}</em>
-                                      @elseif($invoice->engineerStatus === 'Rejected')
-                                        <em class="float-center badge text-bg-danger">{{ $invoice->engineerStatus }}</em>
-                                      @else
-                                        <em class="float-center badge text-bg-warning">"Pending"</em>
-                                      @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{ route('engineer.engineerviewinvoice', $invoice->connection_requests_id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                    </td>
-                                </tr>
+                               </tr>
                             @empty
                               <tr>
-                                <td colspan="8" class="text-center p-4">
-                                    No invoice found at the moment!
+                                <td colspan="7" class="text-center p-4">
+                                    No request ready for connection!
                                 </td>
                               </tr>
                             @endforelse

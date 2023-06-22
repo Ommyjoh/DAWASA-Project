@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('custcare.waitingforconnection')}}" class="nav-link">
                         <i class="nav-icon fa fa-hourglass-end"></i>
                         <p>
                         Waiting Connection

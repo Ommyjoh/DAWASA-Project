@@ -115,165 +115,165 @@
         <!-- Main content -->
           <section class="content">
             <div class="container-fluid">
-                  <div class="card">
-                      <div class="card-body">
-                            <div class="row">
-                                <div class="d-flex justify-content-center align-items-center text-center">
-                                    <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="75" height="80" class="brand-image">
-                                    <h4> <b> <br> DAWASA WATER SUPPLY AND SANITATION AUTHORITY <br><h5><b>ISO 9001:2015 CERTIFIED</b></h5></b> </h4>
-                                    <img src="{{ asset('backend/dist/img/dawasa.png') }}" alt="AdminLTE Logo" width="120" height="80" class="brand-image">
-                                </div>
-                                <div class="text-center">
-                                    <p>DAWASA building, Dunga/malanga Road, Mwananyamala Area <br>
-                                        P.O BOX 1573, Dar es Salaam - Tanzania | Tel +255 22 2760006/+255 22 27600015 <br>
-                                        Fax: <a href="call:+255 22 2762480">+255 22 2762480</a> | Email: <a href="Mailto:ceo@dawasa.go.tz">ceo@dawasa.go.tz</a> | Website: <a href="https://www.dawasa.go.tz/en" target="_blank">www.dawasa.go.tz</a> <br>
-                                        Info@dawasa.co.tz / 0800110064 / *150*00# (Bure)
-                                    </p>
-                                </div>
-                                <div class="text-center text-success">
-                                    <h4><b><u>{{ $request->jobTitle }} Invoice</u></b>
-                                    </h4>
-                                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                        <div class="d-flex justify-content-center align-items-center text-center">
+                            <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="75" height="80" class="brand-image">
+                            <h4> <b> <br> DAWASA WATER SUPPLY AND SANITATION AUTHORITY <br><h5><b>ISO 9001:2015 CERTIFIED</b></h5></b> </h4>
+                            <img src="{{ asset('backend/dist/img/dawasa.png') }}" alt="AdminLTE Logo" width="120" height="80" class="brand-image">
+                        </div>
+                        <div class="text-center">
+                            <p>DAWASA building, Dunga/malanga Road, Mwananyamala Area <br>
+                                P.O BOX 1573, Dar es Salaam - Tanzania | Tel +255 22 2760006/+255 22 27600015 <br>
+                                Fax: <a href="call:+255 22 2762480">+255 22 2762480</a> | Email: <a href="Mailto:ceo@dawasa.go.tz">ceo@dawasa.go.tz</a> | Website: <a href="https://www.dawasa.go.tz/en" target="_blank">www.dawasa.go.tz</a> <br>
+                                Info@dawasa.co.tz / 0800110064 / *150*00# (Bure)
+                            </p>
+                        </div>
+                        <div class="text-center text-success">
+                            <h4><b><u>{{ $request->jobTitle }} Invoice</u></b>
+                            </h4>
+                        </div>
 
-                                <div class="d-flex justify-content-between my-2 px-4 ml-4 pl-4">
-                                    <div class="col-12 col-md-4 pl-4">
-                                        <h6><b>Invoice No:</b> 998876</h6>
-                                    </div>
-  
-                                    <div class="col-12 col-md-4 pl-4">
-                                        <h6><b>Control Number:</b>
-                                          @if(empty($uniqueControlNumbers))
-                                            <em>None</em>
-                                          @else
-                                            {{$uniqueControlNumbers[0]}}
-                                          @endif
-                                        </h6>
-                                    </div>
+                        <div class="d-flex justify-content-between my-2 px-4 ml-4 pl-4">
+                            <div class="col-12 col-md-4 pl-4">
+                                <h6><b>Invoice No:</b> 998876</h6>
+                            </div>
 
-                                    <div class="col-12 col-md-4 pl-4">
-                                        <h6><b>Date:</b> {{\Illuminate\Support\Carbon::now()->toDateString()}}</h6>
-                                    </div>
-  
-                                </div>
+                            <div class="col-12 col-md-4 pl-4">
+                                <h6><b>Control Number:</b>
+                                  @if(empty($uniqueControlNumbers))
+                                    <em>None</em>
+                                  @else
+                                    {{$uniqueControlNumbers[0]}}
+                                  @endif
+                                </h6>
+                            </div>
 
-                                <div class="d-flex justify-content-between my-2 px-4 ml-4">
-                                    <div class="col-12 col-md-4 pl-4">
-                                        <h6><b>Customer:</b> {{ $request->fullName }}</h6>
-                                    </div>
-                                    
-                                    <div class="col-12 col-md-4 pl-4">
-                                        <h6><b>Street:</b> {{ $request->street }}</h6>
-                                    </div>
-                                    
-                                    <div class="col-12 col-md-4 pl-4">
-                                        <h6><b>Phone:</b> {{ $request->phone }}</h6>
-                                    </div>
-  
-                                </div>
+                            <div class="col-12 col-md-4 pl-4">
+                                <h6><b>Date:</b> {{\Illuminate\Support\Carbon::now()->toDateString()}}</h6>
+                            </div>
 
-                                <div class="card-body p-0 mt-4">
-                                    <table class="table table-striped">
-                                    <thead class="bg-success p-2 text-white bg-opacity-75">
-                                        <tr>
-                                            <th style="width: 20px">#</th>
-                                            <th>DESCRIPTION</th>
-                                            <th class="text-center">QTY</th>
-                                            <th class="text-center">UNIT</th>
-                                            <th class="text-center">RATE</th>
-                                            <th class="text-center">AMOUNT</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($invoices as $invoice)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $invoice->description }}</td>
-                                                <td class="text-center">{{ $invoice->qty }}</td>
-                                                <td class="text-center">{{ $invoice->unit }}</td>
-                                                <td class="text-end">{{number_format($invoice->amount/$invoice->qty)}}</td>
-                                                <td class="text-end">{{ number_format($invoice->amount) }}</td>
-                                            </tr>
-                                        @endforeach
-                                        <tr>
-                                            <td></td>
-                                            <td>Total Cost</td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-end"></td>
-                                            <td class="text-end">{{ number_format($totalAmount) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td>18% VAT</td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-end"></td>
-                                            <td class="text-end">{{ number_format($vat) }}</td>
-                                        </tr>
+                        </div>
 
-                                        <tr>
-                                            <td></td>
-                                            <td>New Connection Fee</td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-end"></td>
-                                            <td class="text-end">{{ number_format($newConnectionFee) }}</td>
-                                        </tr>
+                        <div class="d-flex justify-content-between my-2 px-4 ml-4">
+                            <div class="col-12 col-md-4 pl-4">
+                                <h6><b>Customer:</b> {{ $request->fullName }}</h6>
+                            </div>
+                            
+                            <div class="col-12 col-md-4 pl-4">
+                                <h6><b>Street:</b> {{ $request->street }}</h6>
+                            </div>
+                            
+                            <div class="col-12 col-md-4 pl-4">
+                                <h6><b>Phone:</b> {{ $request->phone }}</h6>
+                            </div>
 
-                                        <tr>
-                                            <td></td>
-                                            <td>Meter Deposit Fee</td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-end"></td>
-                                            <td class="text-end">{{ number_format($meterDepositFee) }}</td>
-                                        </tr>
+                        </div>
 
-                                        <tr>
-                                            <td></td>
-                                            <td>Excavation and Backfilling</td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-end"></td>
-                                            <td class="text-end">{{ number_format($backfillingFee) }}</td>
-                                        </tr>
+                        <div class="card-body p-0 mt-4">
+                            <table class="table table-striped">
+                            <thead class="bg-success p-2 text-white bg-opacity-75">
+                                <tr>
+                                    <th style="width: 20px">#</th>
+                                    <th>DESCRIPTION</th>
+                                    <th class="text-center">QTY</th>
+                                    <th class="text-center">UNIT</th>
+                                    <th class="text-center">RATE</th>
+                                    <th class="text-center">AMOUNT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($invoices as $invoice)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $invoice->description }}</td>
+                                        <td class="text-center">{{ $invoice->qty }}</td>
+                                        <td class="text-center">{{ $invoice->unit }}</td>
+                                        <td class="text-end">{{number_format($invoice->amount/$invoice->qty)}}</td>
+                                        <td class="text-end">{{ number_format($invoice->amount) }}</td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <td></td>
+                                    <td>Total Cost</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end">{{ number_format($totalAmount) }}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>18% VAT</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end">{{ number_format($vat) }}</td>
+                                </tr>
 
-                                        <tr>
-                                            <td></td>
-                                            <td><b>Grand Total</b></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-end"></td>
-                                            <td class="text-end"><b>{{ number_format($grandTotal) }}/=</b></td>
-                                        </tr>
-                                    </tbody>
-                                    </table>
-                                </div>
+                                <tr>
+                                    <td></td>
+                                    <td>New Connection Fee</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end">{{ number_format($newConnectionFee) }}</td>
+                                </tr>
 
+                                <tr>
+                                    <td></td>
+                                    <td>Meter Deposit Fee</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end">{{ number_format($meterDepositFee) }}</td>
+                                </tr>
 
-                                <div class="text-start mt-2">
-                                  <div class="col-md-12">
-                                      <p> <b>Coordinates: </b> {{$request->cordX}}, {{$request->cordY}} <b>Nearest Meter:</b> {{$request->distance}}m<sup>3 </p>
-                                    </div>
-                                </div>
+                                <tr>
+                                    <td></td>
+                                    <td>Excavation and Backfilling</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end">{{ number_format($backfillingFee) }}</td>
+                                </tr>
 
-                                <div class="text-center mt-2">
-                                    <div class="col-md-12">
-                                        <p> Unaweza kufanya malipo kupitia <b>M-Pesa, Tigo Pesa, Airtel Money au HaloPesa.</b> <br> Pia unaweza kufanya malipo kupitia Benki za <b>CRDB, NMB, NBC na Stanbic Bank </b> tu. <br> Kwa msaada zaidi tupigie kupitia namba <b>0800110064</b> bure.</p>
-                                    </div>
-                                </div>
+                                <tr>
+                                    <td></td>
+                                    <td><b>Grand Total</b></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-end"></td>
+                                    <td class="text-end"><b>{{ number_format($grandTotal) }}/=</b></td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
 
 
-                              <div class="text-center mt-4">
-                                <div class="col-md-12">
-                                  <p> <b>Reference: </b>DWS-NCF <b>Revision: </b>0  <b>Date: </b> {{ now()->format('M d, Y') }} <a href="https://www.dawasa.go.tz/en" target="_blank"> DAWASA</a></p>
-                                </div>
-                              </div>
-                                  
-                      <!-- /.card-body -->
+                        <div class="text-start mt-2">
+                          <div class="col-md-12">
+                              <p> <b>Coordinates: </b> {{$request->cordX}}, {{$request->cordY}} <b>Nearest Meter:</b> {{$request->distance}}m<sup>3 </p>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-2">
+                            <div class="col-md-12">
+                                <p> Unaweza kufanya malipo kupitia <b>M-Pesa, Tigo Pesa, Airtel Money au HaloPesa.</b> <br> Pia unaweza kufanya malipo kupitia Benki za <b>CRDB, NMB, NBC na Stanbic Bank </b> tu. <br> Kwa msaada zaidi tupigie kupitia namba <b>0800110064</b> bure.</p>
+                            </div>
+                        </div>
+
+
+                      <div class="text-center mt-4">
+                        <div class="col-md-12">
+                          <p> <b>Reference: </b>DWS-NCF <b>Revision: </b>0  <b>Date: </b> {{ now()->format('M d, Y') }} <a href="https://www.dawasa.go.tz/en" target="_blank"> DAWASA</a></p>
+                        </div>
                       </div>
+                          
+                  <!-- /.card-body -->
+                    </div>
                   </div>
-    
+  
                 </div>
               </form>
           </section>

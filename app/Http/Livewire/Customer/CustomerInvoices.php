@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Customer;
 
 use App\Models\ConnectionRequest;
-use App\Models\Invoice;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -28,11 +27,6 @@ class CustomerInvoices extends Component
             ->groupBy('connection_requests.id', 'invoices.controlNumber', 'invoices.paymentStatus', 'invoices.invoiceNo', 'connection_requests.jobTitle', 'connection_requests.fullName', 'created_date')
             ->get();
     
-    
-    
-
-
-        // dd($invoices);
 
         return view('livewire.customer.customer-invoices', [
             'invoices' => $invoices
