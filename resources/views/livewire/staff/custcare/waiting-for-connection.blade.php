@@ -263,7 +263,7 @@
                                     <td>{{$connectionRequest->district}}</td>
                                     <td class="text-center">
                                         <a href="{{ route('custcare.viewcustomerfile', $connectionRequest->id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                        <a href="#"><i class="nav-icon fa fa-print text-info mr-2"></i></a>
+                                        <a href="#"><i class="nav-icon fa fa-check-circle text-info"></i></a>
                                     </td>
                                </tr>
                             @empty

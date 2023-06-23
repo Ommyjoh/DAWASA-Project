@@ -8,13 +8,14 @@ use Livewire\Component;
 class ViewCustomerFile extends Component
 {
 
-    public $request, $invoices, $totalAmount, $uniqueControlNumbers;
+    public $request, $invoices, $totalAmount, $uniqueControlNumbers, $uniqueInvoiceNumber;
 
     public function mount(ConnectionRequest $request){
         $this->request = $request;
         $this->invoices = $this->request->invoice;
         $this->totalAmount = $this->invoices->sum('amount');
         $this->uniqueControlNumbers = $this->invoices->pluck('controlNumber')->unique();
+        $this->uniqueInvoiceNumber = $this->invoices->pluck('invoiceNo')->unique();
 
     }
     public function render()

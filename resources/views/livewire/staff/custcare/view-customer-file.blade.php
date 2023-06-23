@@ -213,8 +213,6 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <form wire:submit.prevent="saveChanges" autocomplete="off">
-            @csrf
             <div class="card">
                 <div class="ribbon-wrapper ribbon-xl">
                     <div class="ribbon bg-success text-lg">
@@ -311,7 +309,6 @@
             
 
             </div>
-          </form>
 
           <div class="card">
             <div class="ribbon-wrapper ribbon-xl">
@@ -643,6 +640,164 @@
               </div>
             </div>
 
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+              <div class="row">
+                  <div class="d-flex justify-content-center align-items-center text-center">
+                      <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="75" height="80" class="brand-image">
+                      <h4> <b> <br> DAWASA WATER SUPPLY AND SANITATION AUTHORITY <br><h5><b>ISO 9001:2015 CERTIFIED</b></h5></b> </h4>
+                      <img src="{{ asset('backend/dist/img/dawasa.png') }}" alt="AdminLTE Logo" width="120" height="80" class="brand-image">
+                  </div>
+                  <div class="text-center">
+                      <p>DAWASA building, Dunga/malanga Road, Mwananyamala Area <br>
+                          P.O BOX 1573, Dar es Salaam - Tanzania | Tel +255 22 2760006/+255 22 27600015 <br>
+                          Fax: <a href="call:+255 22 2762480">+255 22 2762480</a> | Email: <a href="Mailto:ceo@dawasa.go.tz">ceo@dawasa.go.tz</a> | Website: <a href="https://www.dawasa.go.tz/en" target="_blank">www.dawasa.go.tz</a> <br>
+                          Info@dawasa.co.tz / 0800110064 / *150*00# (Bure)
+                      </p>
+                  </div>
+
+                    <div class="mb-4 text-center text-uppercase">
+                        <h2><b>JOB HAND OVER</b></h2>
+                    </div>
+
+                    <div class="row mb-2 px-4">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label>REGION</label>
+                            <input style="width: 100%;" type="text" class="form-control" value="{{ $request->district }}" disabled>
+                          </div>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>REQUEST DATE</label>
+                              <input style="width: 100%;" type="text" class="form-control" value="{{ $request->created_at }}" disabled>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 px-4">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label>CUSTOMER NAME</label>
+                            <input style="width: 100%;" type="text" class="form-control" value="{{ $request->fullName }}" disabled>
+                          </div>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>LOCATION</label>
+                              <input style="width: 100%;" type="text" class="form-control" value="{{ $request->ward }} - {{ $request->street }}" disabled>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+
+                    <div class="row px-4">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label>CUSTOMER CATEGORY</label>
+                            <input style="width: 100%;" type="text" class="form-control" value="{{ $request->connReason }}" disabled>
+                          </div>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>INVOICE NUMBER</label>
+                              <input style="width: 100%;" type="text" class="form-control" value="{{ $uniqueInvoiceNumber[0] }}" disabled>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center text-success">
+                        <h5>To be filled after connection<b class="text-red">*</b></h5>
+                    </div>
+
+                    <div class="row mb-2 px-4">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label>METER SIZE</label>
+                            <input style="width: 100%;" type="text" class="form-control" disabled>
+                          </div>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>METER NUMBER</label>
+                              <input style="width: 100%;" type="text" class="form-control" disabled>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 px-4">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label>INITIAL READING</label>
+                            <input style="width: 100%;" type="text" class="form-control" disabled>
+                          </div>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>WORK DONE BY</label>
+                              <input style="width: 100%;" type="text" class="form-control" disabled>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 px-4">
+                        <div class="col-12 col-md-6">
+                          <div class="form-group">
+                            <label>CUSTOMER SIGNATURE</label>
+                            <input style="width: 100%;" type="text" class="form-control" disabled>
+                          </div>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                              <label>PLUMBER SIGNATURE</label>
+                              <input style="width: 100%;" type="text" class="form-control" disabled>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 px-4">
+                        <div class="form-group">
+                          <label>REMARKS</label>
+                          <textarea class="form-control rows="6" disabled></textarea>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+
+
+                    <div class="text-center mt-4">
+                    <div class="col-md-12">
+                        <p> <b>Reference: </b>DWS-JHF <b>Revision: </b>0  <b>Date: </b> {{ now()->format('M d, Y') }} <a href="https://www.dawasa.go.tz/en" target="_blank"> DAWASA</a></p>
+                    </div>
+                    </div>
+                    
+            <!-- /.card-body -->
+              </div>
+            </div>
+
+        </div>
+
+        <div class="my-4">
+            <button type="submit" class="btn btn-block btn-success"> <i class="nav-icon fa fa-print"></i> Print Customer File</button>
         </div>
       </section>
       <!-- /.content -->
