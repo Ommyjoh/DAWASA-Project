@@ -14,7 +14,33 @@ class RoleCheckHelper
             'role' => 'Admin',
             'id' => auth('staff')->id(),
         ])->first();
-        if (isset($admin) && $admin->role == 'Admin') {
+        if (isset($admin)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function isCustCare()
+    {
+        $admin = Staff::whereIn('role', ['Admin', 'Customer Care'])
+                ->where('id', auth('staff')->id())
+                ->first();
+
+        if (isset($admin)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function isSurveyor()
+    {
+        $admin = Staff::whereIn('role', ['Admin', 'Surveyor'])
+                ->where('id', auth('staff')->id())
+                ->first();
+                
+        if (isset($admin)) {
             return true;
         } else {
             return false;

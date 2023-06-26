@@ -87,24 +87,30 @@ Route::group(['prefix' => 'staff'], function () {
 
 Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
     Route::get('dashboard',[StaffDashboardController::class, 'dashboard'])->name('staff.dashboard');
-    Route::get('customers', ListCustomers::class)->name('staff.customers');
-    Route::get('lgo', ListLgo::class)->name('staff.lgo');
-    Route::get('custcare/allrequests', ListRequestsToCustCare::class)->name('custcare.allrequests');
-    Route::get('custcare/viewrequest/{request}', ViewRequestToCustCare::class)->name('custcare.viewrequests');
-    Route::get('custcare/waitingforconnection', WaitingForConnection::class)->name('custcare.waitingforconnection');
-    Route::get('custcare/viewcustomerfile/{request}', ViewCustomerFile::class)->name('custcare.viewcustomerfile');
-    Route::get('surveyor/listtasks', ListSurveyorRequests::class)->name('surveyor.listtasks');
-    Route::get('surveyor/listsettledtasks', ListSettledSurveying::class)->name('surveyor.listsettledtasks');
-    Route::get('surveyor/viewrequest/{request}', EditCustomerRequest::class)->name('surveyor.viewrequests');
-    Route::get('surveyor/requeststoinvoice', RequestsToInvoice::class)->name('surveyor.requeststoinvoice');
-    Route::get('surveyor/createinvoice/{request}', CreateInvoice::class)->name('surveyor.createinvoice');
-    Route::get('surveyor/allinvoices', AllInvoices::class)->name('surveyor.allinvoices');
-    Route::get('surveyor/surveyorviewinvoice/{connection_request_id}', SurveyorViewInvoice::class)->name('surveyor.surveyorviewinvoice');
     Route::get('engineer/allinvoices', EngineerInvoices::class)->name('engineer.allinvoices');
     Route::get('engineer/engieerviewinvoice/{connection_request_id}', EngineerViewInvoice::class)->name('engineer.engineerviewinvoice');
     
     Route::group(['middleware' => 'staff_mgt'], function () {
         Route::get('staffs', ListStaffs::class)->name('staff.allstaffs');
+    });
+
+    Route::group(['middleware' => 'cust_care_fncts'], function () {
+        Route::get('customers', ListCustomers::class)->name('staff.customers');
+        Route::get('lgo', ListLgo::class)->name('staff.lgo');
+        Route::get('custcare/allrequests', ListRequestsToCustCare::class)->name('custcare.allrequests');
+        Route::get('custcare/viewrequest/{request}', ViewRequestToCustCare::class)->name('custcare.viewrequests');
+        Route::get('custcare/waitingforconnection', WaitingForConnection::class)->name('custcare.waitingforconnection');
+        Route::get('custcare/viewcustomerfile/{request}', ViewCustomerFile::class)->name('custcare.viewcustomerfile');
+    });
+
+    Route::group(['middleware' => 'surveyor_fncts'], function () {
+        Route::get('surveyor/listtasks', ListSurveyorRequests::class)->name('surveyor.listtasks');
+        Route::get('surveyor/listsettledtasks', ListSettledSurveying::class)->name('surveyor.listsettledtasks');
+        Route::get('surveyor/viewrequest/{request}', EditCustomerRequest::class)->name('surveyor.viewrequests');
+        Route::get('surveyor/requeststoinvoice', RequestsToInvoice::class)->name('surveyor.requeststoinvoice');
+        Route::get('surveyor/createinvoice/{request}', CreateInvoice::class)->name('surveyor.createinvoice');
+        Route::get('surveyor/allinvoices', AllInvoices::class)->name('surveyor.allinvoices');
+        Route::get('surveyor/surveyorviewinvoice/{connection_request_id}', SurveyorViewInvoice::class)->name('surveyor.surveyorviewinvoice'); 
     });
 });
 

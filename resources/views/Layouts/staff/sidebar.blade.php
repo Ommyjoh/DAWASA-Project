@@ -33,7 +33,8 @@
               </p>
             </a>
           </li>
-
+          
+          @if(\App\Helpers\RoleCheckHelper::isCustCare())
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
@@ -65,7 +66,9 @@
               @endif
             </ul>
           </li>
-
+          @endif
+          
+          @if(\App\Helpers\RoleCheckHelper::isCustCare())
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tint"></i>
@@ -93,7 +96,9 @@
                 </li>
             </ul>
         </li>
+        @endif
 
+        @if(\App\Helpers\RoleCheckHelper::isSurveyor())
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fa fa-list"></i>
@@ -121,7 +126,9 @@
               </li>
           </ul>
       </li>
+      @endif
 
+      @if(\App\Helpers\RoleCheckHelper::isSurveyor())
       <li class="nav-item">
         <a href="#" class="nav-link">
         <i class="nav-icon fa fa-file"></i>
@@ -149,6 +156,7 @@
             </li>
         </ul>
       </li>
+      @endif
 
       <li class="nav-item">
         <a href="{{ route('engineer.allinvoices')}}" class="nav-link">
