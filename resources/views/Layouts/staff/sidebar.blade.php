@@ -69,42 +69,42 @@
           @endif
           
           @if(\App\Helpers\RoleCheckHelper::isCustCare())
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-tint"></i>
-              <p>
-                Manage Requests
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-globe"></i>
-                        <p>
-                        Pending Requests
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('custcare.waitingforconnection')}}" class="nav-link">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-tint"></i>
+                <p>
+                  Manage Requests
+                  <i class="right fas fa-angle-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                      <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
+                          <i class="nav-icon fa fa-globe"></i>
+                          <p>
+                          Pending Requests
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('custcare.waitingforconnection')}}" class="nav-link">
+                          <i class="nav-icon fa fa-hourglass-end"></i>
+                          <p>
+                          Waiting Connection
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('custcare.connectionfiles')}}" class="nav-link">
                         <i class="nav-icon fa fa-hourglass-end"></i>
                         <p>
-                        Waiting Connection
+                        Connection Complete
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{ route('custcare.connectionfiles')}}" class="nav-link">
-                      <i class="nav-icon fa fa-hourglass-end"></i>
-                      <p>
-                      Connection Complete
-                      </p>
-                  </a>
-                </li>
-            </ul>
-        </li>
-        @endif
+                  </li>
+              </ul>
+            </li>
+          @endif
 
         @if(\App\Helpers\RoleCheckHelper::isSurveyor())
         <li class="nav-item">
@@ -176,6 +176,42 @@
         </a>
       </li>
       @endif
+
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fa fa-folder-open"></i>
+          <p>
+            Reports
+            <i class="right fas fa-angle-right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('reports.requesttoconnection')}}" class="nav-link {{ request()->is('reports/requesttoconnection') ? 'active' : '' }}">
+                    <i class="nav-icon fa fa-rocket"></i>
+                    <p>
+                      Request to Connection
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-sign-language "></i>
+                    <p>
+                        Surveyors Perfomances
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('custcare.connectionfiles')}}" class="nav-link">
+                  <i class="nav-icon fa fa-compass"></i>
+                  <p>
+                    Location Analysis
+                  </p>
+              </a>
+            </li>
+        </ul>
+      </li>
 
           <h5 class="text-info mt-4 pt-4 ml-2">User Account</h5>
           <li class="nav-item">

@@ -76,6 +76,11 @@ class ConnectionRequest extends Model
         return Carbon::parse($value)->format('M d, Y');
     }
 
+    public function getConnApproveDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('M d, Y');
+    }
+
     public function getRemainingDaysAttribute()
 {
     $updatedDate = Carbon::parse($this->custCareApproveddate);
