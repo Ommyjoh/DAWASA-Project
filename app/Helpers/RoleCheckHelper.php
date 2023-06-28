@@ -46,4 +46,17 @@ class RoleCheckHelper
             return false;
         }
     }
+
+    public static function isEngineer()
+    {
+        $admin = Staff::whereIn('role', ['Admin', 'Engineer'])
+                ->where('id', auth('staff')->id())
+                ->first();
+                
+        if (isset($admin)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

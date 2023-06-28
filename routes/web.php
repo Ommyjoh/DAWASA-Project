@@ -7,12 +7,16 @@ use App\Http\Controllers\Staff\StaffDashboardController;
 use App\Http\Controllers\staff\StaffLoginController;
 use App\Http\Livewire\Customer\CreateRequest;
 use App\Http\Livewire\Customer\CustomerInvoices;
+use App\Http\Livewire\Customer\ListConnectedRequests;
 use App\Http\Livewire\Customer\ListConnectionRequests;
 use App\Http\Livewire\Customer\ListCustomerSurveyors;
 use App\Http\Livewire\Customer\ViewCustomerRequest;
 use App\Http\Livewire\Customer\ViewInvoice;
 use App\Http\Livewire\Lgo\ListLgoConnectionRequests;
 use App\Http\Livewire\Lgo\ViewConnectionRequest;
+use App\Http\Livewire\Staff\Custcare\ConnectionCompleteFiles;
+use App\Http\Livewire\Staff\Custcare\CustCareApproveFile;
+use App\Http\Livewire\Staff\Custcare\CustomerCompleteFiles;
 use App\Http\Livewire\Staff\Custcare\ListRequestsToCustCare;
 use App\Http\Livewire\Staff\Custcare\ViewCustomerFile;
 use App\Http\Livewire\Staff\Custcare\ViewRequestToCustCare;
@@ -69,6 +73,7 @@ Route::group(['prefix' => 'customer', 'middleware' => 'auth'], function () {
     Route::get('listsurveyors', ListCustomerSurveyors::class)->name('customer.surveyors');
     Route::get('invoices', CustomerInvoices::class)->name('customer.invoices');
     Route::get('viewinvoice/{connection_request_id}', ViewInvoice::class)->name('customer.viewinvoice');
+    Route::get('connectedrequests', ListConnectedRequests::class)->name('customer.connectedrequests');
 });
 
 /*
@@ -87,8 +92,6 @@ Route::group(['prefix' => 'staff'], function () {
 
 Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
     Route::get('dashboard',[StaffDashboardController::class, 'dashboard'])->name('staff.dashboard');
-    Route::get('engineer/allinvoices', EngineerInvoices::class)->name('engineer.allinvoices');
-    Route::get('engineer/engieerviewinvoice/{connection_request_id}', EngineerViewInvoice::class)->name('engineer.engineerviewinvoice');
     
     Route::group(['middleware' => 'staff_mgt'], function () {
         Route::get('staffs', ListStaffs::class)->name('staff.allstaffs');
@@ -101,6 +104,9 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
         Route::get('custcare/viewrequest/{request}', ViewRequestToCustCare::class)->name('custcare.viewrequests');
         Route::get('custcare/waitingforconnection', WaitingForConnection::class)->name('custcare.waitingforconnection');
         Route::get('custcare/viewcustomerfile/{request}', ViewCustomerFile::class)->name('custcare.viewcustomerfile');
+        Route::get('custcare/approvefile/{request}', CustCareApproveFile::class)->name('custcare.approvefile');
+        Route::get('custcare/connectionfiles', ConnectionCompleteFiles::class)->name('custcare.connectionfiles');
+        Route::get('custcare/completefile/{request}', CustomerCompleteFiles::class)->name('custcare.completefile');
     });
 
     Route::group(['middleware' => 'surveyor_fncts'], function () {
@@ -111,6 +117,11 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
         Route::get('surveyor/createinvoice/{request}', CreateInvoice::class)->name('surveyor.createinvoice');
         Route::get('surveyor/allinvoices', AllInvoices::class)->name('surveyor.allinvoices');
         Route::get('surveyor/surveyorviewinvoice/{connection_request_id}', SurveyorViewInvoice::class)->name('surveyor.surveyorviewinvoice'); 
+    });
+
+    Route::group(['middleware' => 'engineer_fncts'], function () {
+        Route::get('engineer/allinvoices', EngineerInvoices::class)->name('engineer.allinvoices');
+        Route::get('engineer/engieerviewinvoice/{connection_request_id}', EngineerViewInvoice::class)->name('engineer.engineerviewinvoice');
     });
 });
 

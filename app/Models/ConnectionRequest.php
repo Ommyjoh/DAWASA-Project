@@ -39,7 +39,16 @@ class ConnectionRequest extends Model
         'distance',
         'cordX',
         'cordY',
-        'surveyorApprovedDate'
+        'surveyorApprovedDate',
+        'connApproveDate',
+        'isConnected',
+        'meterNo',
+        'initialReading',
+        'remarks',
+        'connDays',
+        'plumber',
+        'meterSize',
+        'Authorizer'
     ];
 
     public function user()

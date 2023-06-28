@@ -51,7 +51,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('customer.invoices')}}" class="nav-link">
+            <a href="{{ route('customer.invoices')}}" class="nav-link {{ request()->is('customer/invoices') ? 'active' : '' }}">
               <i class="nav-icon fa fa-file"></i>
               <p>
                Invoices
@@ -60,22 +60,14 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-thumbs-down"></i>
+            <a href="{{ route('customer.connectedrequests')}}" class="nav-link {{ request()->is('customer/connectedrequests') ? 'active' : '' }}">
+              <i class="nav-icon fa fa-thumbs-up"></i>
               <p>
-                Manage Complaints
+                Connected Requests
               </p>
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-credit-card"></i>
-              <p>
-                Payments
-              </p>
-            </a>
-          </li>
 
           <h5 class="text-info mt-4 pt-4 ml-2">User Account</h5>
           <li class="nav-item">

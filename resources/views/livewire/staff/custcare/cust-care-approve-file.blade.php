@@ -34,7 +34,8 @@
                   </p>
                 </a>
               </li>
-    
+              
+              @if(\App\Helpers\RoleCheckHelper::isCustCare())
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fa fa-users"></i>
@@ -66,7 +67,9 @@
                   @endif
                 </ul>
               </li>
-    
+              @endif
+              
+              @if(\App\Helpers\RoleCheckHelper::isCustCare())
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fa fa-tint"></i>
@@ -94,7 +97,9 @@
                     </li>
                 </ul>
             </li>
+            @endif
     
+            @if(\App\Helpers\RoleCheckHelper::isSurveyor())
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-list"></i>
@@ -122,7 +127,9 @@
                   </li>
               </ul>
           </li>
+          @endif
     
+          @if(\App\Helpers\RoleCheckHelper::isSurveyor())
           <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="nav-icon fa fa-file"></i>
@@ -150,7 +157,9 @@
                 </li>
             </ul>
           </li>
+          @endif
     
+          @if(\App\Helpers\RoleCheckHelper::isEngineer())
           <li class="nav-item">
             <a href="{{ route('engineer.allinvoices')}}" class="nav-link">
               <i class="nav-icon fa fa-file"></i>
@@ -159,23 +168,7 @@
               </p>
             </a>
           </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fa fa-thumbs-down"></i>
-                  <p>
-                    Manage Complaints
-                  </p>
-                </a>
-              </li>
-    
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fa fa-credit-card"></i>
-                  <p>
-                    Payments
-                  </p>
-                </a>
-              </li>
+          @endif
     
               <h5 class="text-info mt-4 pt-4 ml-2">User Account</h5>
               <li class="nav-item">
@@ -207,81 +200,111 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-  
-    <div class="content-wrapper">
 
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="col-sm-6">
-                      <h5 class="m-0">Waiting for Connection</h5>
-                  </div><!-- /.col -->
-                  <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('staff.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Waiting for Connection</li>
-                    </ol>
-                </div><!-- /.col -->
-              </div><!-- /.row -->
-          </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
-      @if(session()->has('success'))
-        <div class="alert alert-success alert-dismissible fade show mx-4" role="alert">
-          <strong> <i class="fa fa-check-circle mr-1"></i>{{ session('success') }}</strong> 
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      @endif
+    <div class="content-wrapper p-2">
+        <section class="content">
+            <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                      <div class="d-flex justify-content-center align-items-center text-center">
+                          <img src="{{ asset('backend/dist/img/tz.JFIF') }}" alt="AdminLTE Logo" width="75" height="80" class="brand-image">
+                          <h4> <b> <br> DAWASA WATER SUPPLY AND SANITATION AUTHORITY <br><h5><b>ISO 9001:2015 CERTIFIED</b></h5></b> </h4>
+                          <img src="{{ asset('backend/dist/img/dawasa.png') }}" alt="AdminLTE Logo" width="120" height="80" class="brand-image">
+                      </div>
+                      <div class="text-center">
+                          <p>DAWASA building, Dunga/malanga Road, Mwananyamala Area <br>
+                              P.O BOX 1573, Dar es Salaam - Tanzania | Tel +255 22 2760006/+255 22 27600015 <br>
+                              Fax: <a href="call:+255 22 2762480">+255 22 2762480</a> | Email: <a href="Mailto:ceo@dawasa.go.tz">ceo@dawasa.go.tz</a> | Website: <a href="https://www.dawasa.go.tz/en" target="_blank">www.dawasa.go.tz</a> <br>
+                              Info@dawasa.co.tz / 0800110064 / *150*00# (Bure)
+                          </p>
+                      </div>
     
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-          <div class="col-12">
-              <div >
-                  <div class="card-body">
-                    <table class="table table-striped table-bordered">
-                        <thead class="bg-secondary p-2 text-white bg-opacity-75 text-info">
-                            <tr>
-                                <th>#</th>
-                                <th>Customer Name</th>
-                                <th>Phone No</th>
-                                <th>Job Title</th>
-                                <th>Service Required</th>
-                                <th>District</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                          <tbody>
-                            @forelse($connectionRequests as $connectionRequest)
-                               <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{$connectionRequest->fullName}}</td>
-                                    <td>{{$connectionRequest->phone}}</td>
-                                    <td>{{$connectionRequest->jobTitle}}</td>
-                                    <td>{{$connectionRequest->servRequired}}</td>
-                                    <td>{{$connectionRequest->district}}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('custcare.viewcustomerfile', $connectionRequest->id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                        <a href="{{ route('custcare.approvefile', $connectionRequest->id)}}"><i class="nav-icon fa fa-check-circle text-info"></i></a>
-                                    </td>
-                               </tr>
-                            @empty
-                              <tr>
-                                <td colspan="7" class="text-center p-4">
-                                    No request ready for connection!
-                                </td>
-                              </tr>
-                            @endforelse
-                           
-                          </tbody>
-                    </table>
+                        <div class="mb-4 text-center text-uppercase">
+                            <h4><b class="text-success">UPDATE CONNECTION DETAILS</b></h4>
+                        </div>
+    
+                        <form wire:submit.prevent="saveChanges" autocomplete="off">
+                            @csrf
+                            <div class="row mb-2 mx-2">
+                                <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>METER SIZE</label>
+                                    <input wire:model.defer='state.meterSize' style="width: 100%;" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <!-- /.form-group -->
+        
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>METER NUMBER</label>
+                                    <input wire:model.defer='state.meterNumber' style="width: 100%;" type="text" class="form-control">
+                                    </div>
+                                    <!-- /.form-group -->
+                                </div>
+                            </div>
+        
+                            <div class="row mb-2 mx-2">
+                                <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>INITIAL READING</label>
+                                    <input wire:model.defer='state.initialReading' style="width: 100%;" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <!-- /.form-group -->
+        
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>WORK DONE BY</label>
+                                    <input wire:model.defer='state.plumber' style="width: 100%;" type="text" class="form-control">
+                                    </div>
+                                    <!-- /.form-group -->
+                                </div>
+                            </div>
+        
+                            <div class="row mb-2 mx-2">
+                                <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label>DAYS TO COMPLETE</label>
+                                    <input wire:model.defer='state.daysComplete' style="width: 100%;" type="text" class="form-control">
+                                </div>
+                                </div>
+                                <!-- /.form-group -->
+        
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                    <label>AUTHORIZED BY</label>
+                                    <input wire:model.defer='state.Authorizer' style="width: 100%;" type="text" class="form-control">
+                                    </div>
+                                    <!-- /.form-group -->
+                                </div>
+        
+                            </div>
+        
+                            <div class="col-12 px-2">
+                                <div class="form-group mx-2 px-2">
+                                <label>REMARKS</label>
+                                <textarea wire:model.defer='state.remarks' class="form-control rows="6"></textarea>
+                                </div>
+                                <!-- /.form-group -->
+                            </div>
+
+                            <div class="my-4">
+                                <button type="submit" class="btn btn-block btn-success">Update Customer File</button>
+                            </div>
+                        </form>
+    
+    
+                        <div class="text-center mt-4">
+                        <div class="col-md-12">
+                            <p> <b>Reference: </b>DWS-JHF <b>Revision: </b>0  <b>Date: </b> {{ now()->format('M d, Y') }} <a href="https://www.dawasa.go.tz/en" target="_blank"> DAWASA</a></p>
+                        </div>
+                        </div>
+                        
+                <!-- /.card-body -->
                   </div>
-                  <!-- /.card-body -->
                 </div>
+    
             </div>
-        </div>
-      </section>
-      <!-- /.content -->
+        </section>
     </div>
-  </div>
+</div>

@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'staff_mgt' => \App\Http\Middleware\StaffMgtMiddleware::class,
         'cust_care_fncts' => \App\Http\Middleware\AdminCustCareMiddleware::class,
         'surveyor_fncts' => \App\Http\Middleware\AdminSurveyorMiddleware::class,
+        'engineer_fncts' => \App\Http\Middleware\AdminEngineerMiddleware::class,
     ];
 }

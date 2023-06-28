@@ -82,7 +82,7 @@
                     <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-globe"></i>
                         <p>
-                        All Requests
+                        Pending Requests
                         </p>
                     </a>
                 </li>
@@ -93,6 +93,14 @@
                         Waiting Connection
                         </p>
                     </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('custcare.connectionfiles')}}" class="nav-link">
+                      <i class="nav-icon fa fa-hourglass-end"></i>
+                      <p>
+                      Connection Complete
+                      </p>
+                  </a>
                 </li>
             </ul>
         </li>
@@ -158,6 +166,7 @@
       </li>
       @endif
 
+      @if(\App\Helpers\RoleCheckHelper::isEngineer())
       <li class="nav-item">
         <a href="{{ route('engineer.allinvoices')}}" class="nav-link">
           <i class="nav-icon fa fa-file"></i>
@@ -166,23 +175,7 @@
           </p>
         </a>
       </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-thumbs-down"></i>
-              <p>
-                Manage Complaints
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-credit-card"></i>
-              <p>
-                Payments
-              </p>
-            </a>
-          </li>
+      @endif
 
           <h5 class="text-info mt-4 pt-4 ml-2">User Account</h5>
           <li class="nav-item">
