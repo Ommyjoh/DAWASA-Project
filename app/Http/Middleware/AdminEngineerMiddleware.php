@@ -20,6 +20,8 @@ class AdminEngineerMiddleware
             return $next($request);
         } else if(Auth::guard('staff')->check() && auth('staff')->user()->role === 'Engineer'){
             return $next($request);
+        }else if(Auth::guard('staff')->check() && auth('staff')->user()->role === 'Manager'){
+            return $next($request);
         }else{
             return redirect()->route('unauthorized');
         }

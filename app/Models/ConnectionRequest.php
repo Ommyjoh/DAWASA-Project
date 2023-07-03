@@ -94,6 +94,19 @@ class ConnectionRequest extends Model
     ];
 }
 
+public function getRemainingDaysForConnectionAttribute()
+{
+    $updatedDate = Carbon::parse($this->invoicePayDate);
+    $today = Carbon::now();
+    $remainingDays = $updatedDate->diffInDays($today);
+    $daysPassed = max($remainingDays - 7, 0);
+
+    return [
+        'remainingDays' => max(7 - $remainingDays, 0),
+        'daysPassed' => $daysPassed,
+    ];
+}
+
 public function getSurveyorApprovedDateAttribute($value)
     {
         return Carbon::parse($value)->format('M d, Y');

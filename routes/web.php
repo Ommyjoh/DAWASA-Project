@@ -21,9 +21,12 @@ use App\Http\Livewire\Staff\Custcare\ListRequestsToCustCare;
 use App\Http\Livewire\Staff\Custcare\ViewCustomerFile;
 use App\Http\Livewire\Staff\Custcare\ViewRequestToCustCare;
 use App\Http\Livewire\Staff\Custcare\WaitingForConnection;
+use App\Http\Livewire\Staff\Engineer\CompleteReportFile;
+use App\Http\Livewire\Staff\Engineer\ConnectionCompleteReport;
 use App\Http\Livewire\Staff\Engineer\EngineerInvoices;
 use App\Http\Livewire\Staff\Engineer\EngineerViewInvoice;
 use App\Http\Livewire\Staff\Engineer\RequestToConnectionReport;
+use App\Http\Livewire\Staff\Engineer\WaitingConnectionReport;
 use App\Http\Livewire\Staff\Surveyor\AllInvoices;
 use App\Http\Livewire\Staff\Surveyor\CreateInvoice;
 use App\Http\Livewire\Staff\Surveyor\EditCustomerRequest;
@@ -124,6 +127,9 @@ Route::group(['prefix' => 'staff', 'middleware' => 'staff'], function () {
         Route::get('engineer/allinvoices', EngineerInvoices::class)->name('engineer.allinvoices');
         Route::get('engineer/engieerviewinvoice/{connection_request_id}', EngineerViewInvoice::class)->name('engineer.engineerviewinvoice');
         Route::get('reports/requesttoconnection', RequestToConnectionReport::class)->name('reports.requesttoconnection');
+        Route::get('reports/waitingforconnection', WaitingConnectionReport::class)->name('reports.waitingforconnection');
+        Route::get('reports/connectioncomplete', ConnectionCompleteReport::class)->name('reports.connectioncomplete');
+        Route::get('reports/completefile/{request}', CompleteReportFile::class)->name('reports.completefile');
     });
 });
 

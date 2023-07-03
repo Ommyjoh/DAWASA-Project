@@ -49,7 +49,7 @@ class RoleCheckHelper
 
     public static function isEngineer()
     {
-        $admin = Staff::whereIn('role', ['Admin', 'Engineer'])
+        $admin = Staff::whereIn('role', ['Admin', 'Engineer', 'manager'])
                 ->where('id', auth('staff')->id())
                 ->first();
                 

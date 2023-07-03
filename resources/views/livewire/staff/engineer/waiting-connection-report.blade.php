@@ -221,7 +221,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('reports.requesttoconnection')}}" class="nav-link {{ request()->is('staff/reports/requesttoconnection') ? 'active' : '' }}">
+            <a href="{{ route('reports.requesttoconnection')}}" class="nav-link {{ request()->is('reports/requesttoconnection') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-rocket"></i>
                 <p>
                   Request to Connection
@@ -261,7 +261,7 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-</aside>
+  </aside>
   
     <div class="content-wrapper">
 
@@ -305,7 +305,6 @@
                                 <th>Service Required</th>
                                 <th>District</th>
                                 <th class="text-center">Remaining Days</th>
-                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                           <tbody>
@@ -333,10 +332,6 @@
                                           Not yet
                                         </em></span>
                                       @endif
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{ route('custcare.viewcustomerfile', $connectionRequest->id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                        <a href="{{ route('custcare.approvefile', $connectionRequest->id)}}"><i class="nav-icon fa fa-check-circle text-info"></i></a>
                                     </td>
                                </tr>
                             @empty

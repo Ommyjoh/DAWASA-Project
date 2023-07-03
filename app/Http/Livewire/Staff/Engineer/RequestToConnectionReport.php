@@ -22,13 +22,13 @@ class RequestToConnectionReport extends Component
 
             if ($this->filter !== 'all') {
                 if ($this->filter === 'excellent') {
-                    $query->whereBetween(DB::raw('DATEDIFF(connApproveDate, created_at)'), [1, 7]);
+                    $query->whereBetween(DB::raw('DATEDIFF(connApproveDate, created_at)'), [1, 20]);
                 } elseif ($this->filter === 'good') {
-                    $query->whereBetween(DB::raw('DATEDIFF(connApproveDate, created_at)'), [8, 10]);
+                    $query->whereBetween(DB::raw('DATEDIFF(connApproveDate, created_at)'), [21, 25]);
                 } elseif ($this->filter === 'medium') {
-                    $query->whereBetween(DB::raw('DATEDIFF(connApproveDate, created_at)'), [11, 15]);
+                    $query->whereBetween(DB::raw('DATEDIFF(connApproveDate, created_at)'), [26, 30]);
                 } elseif ($this->filter === 'poor') {
-                    $query->where(DB::raw('DATEDIFF(connApproveDate, created_at)'), '>', 16);
+                    $query->where(DB::raw('DATEDIFF(connApproveDate, created_at)'), '>', 30);
                 }
             }
 

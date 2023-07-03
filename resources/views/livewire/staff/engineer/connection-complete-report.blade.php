@@ -221,7 +221,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('reports.requesttoconnection')}}" class="nav-link {{ request()->is('staff/reports/requesttoconnection') ? 'active' : '' }}">
+            <a href="{{ route('reports.requesttoconnection')}}" class="nav-link {{ request()->is('reports/requesttoconnection') ? 'active' : '' }}">
                 <i class="nav-icon fa fa-rocket"></i>
                 <p>
                   Request to Connection
@@ -270,12 +270,12 @@
           <div class="container-fluid">
               <div class="row">
                   <div class="col-sm-6">
-                      <h5 class="m-0">Waiting for Connection</h5>
+                      <h5 class="m-0">Completed Connections</h5>
                   </div><!-- /.col -->
                   <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('staff.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Waiting for Connection</li>
+                        <li class="breadcrumb-item active">Connection Complete</li>
                     </ol>
                 </div><!-- /.col -->
               </div><!-- /.row -->
@@ -300,11 +300,11 @@
                             <tr>
                                 <th>#</th>
                                 <th>Customer Name</th>
-                                <th>Phone No</th>
-                                <th>Job Title</th>
-                                <th>Service Required</th>
-                                <th>District</th>
-                                <th class="text-center">Remaining Days</th>
+                                <th class="text-center">Meter No</th>
+                                <th class="text-center">Initial Reading</th>
+                                <th>Plumber</th>
+                                <th>Authorized</th>
+                                <th class="text-center">Connection Days</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -313,35 +313,24 @@
                                <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{$connectionRequest->fullName}}</td>
-                                    <td>{{$connectionRequest->phone}}</td>
-                                    <td>{{$connectionRequest->jobTitle}}</td>
-                                    <td>{{$connectionRequest->servRequired}}</td>
-                                    <td>{{$connectionRequest->district}}</td>
+                                    <td class="text-center">{{$connectionRequest->meterNo}}</td>
+                                    <td class="text-center">{{$connectionRequest->initialReading}}m<sup>3</sup></td>
+                                    <td>{{$connectionRequest->plumber}}</td>
+                                    <td>{{$connectionRequest->Authorizer}}</td>
                                     <td class="text-center">
-                                      @if($connectionRequest->dawasaStatus == 'Approved')
-                                        @if($connectionRequest->remainingDaysForConnection['remainingDays'])
-                                          <span class="badge text-bg-success p-2"><em>
-                                            {{ $connectionRequest->remainingDaysForConnection['remainingDays'] }} days left
-                                          </em></span>
+                                        @if($connectionRequest->connDays > 7)
+                                            <em class="float-center badge text-bg-danger">{{ $connectionRequest->connDays }} days</em>
                                         @else
-                                          <span class="badge text-bg-danger p-2"><em>
-                                            {{ $connectionRequest->remainingDaysForConnection['daysPassed'] }} overdue days
-                                          </em></span>
+                                            <em class="float-center badge text-bg-success">{{ $connectionRequest->connDays }} days</em>
                                         @endif
-                                      @else
-                                        <span class="badge text-bg-secondary p-2"><em>
-                                          Not yet
-                                        </em></span>
-                                      @endif
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('custcare.viewcustomerfile', $connectionRequest->id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
-                                        <a href="{{ route('custcare.approvefile', $connectionRequest->id)}}"><i class="nav-icon fa fa-check-circle text-info"></i></a>
+                                        <a href="{{route('reports.completefile', $connectionRequest)}}"><i class="nav-icon fa fa-file text-primary mr-2"></i></a>
                                     </td>
                                </tr>
                             @empty
                               <tr>
-                                <td colspan="7" class="text-center p-4">
+                                <td colspan="8" class="text-center p-4">
                                     No request ready for connection!
                                 </td>
                               </tr>

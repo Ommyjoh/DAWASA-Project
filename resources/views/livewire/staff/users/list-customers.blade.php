@@ -34,7 +34,8 @@
               </p>
             </a>
           </li>
-
+          
+          @if(\App\Helpers\RoleCheckHelper::isCustCare())
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
@@ -66,35 +67,47 @@
               @endif
             </ul>
           </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-tint"></i>
-              <p>
-                Manage Requests
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
-                        <i class="nav-icon fa fa-globe"></i>
+          @endif
+          
+          @if(\App\Helpers\RoleCheckHelper::isCustCare())
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-tint"></i>
+                <p>
+                  Manage Requests
+                  <i class="right fas fa-angle-right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                      <a href="{{route('custcare.allrequests')}}" class="nav-link {{ request()->is('staff/custcare/allrequests') ? 'active' : '' }}">
+                          <i class="nav-icon fa fa-pause"></i>
+                          <p>
+                          Pending Requests
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{{ route('custcare.waitingforconnection')}}" class="nav-link {{ request()->is('staff/custcare/waitingforconnection') ? 'active' : '' }}">
+                          <i class="nav-icon fa fa-hourglass-end"></i>
+                          <p>
+                          Waiting Connection
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('custcare.connectionfiles')}}" class="nav-link {{ request()->is('staff/custcare/connectionfiles') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-check-circle"></i>
                         <p>
-                        All Requests
+                        Connection Complete
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-hourglass-end"></i>
-                        <p>
-                        Waiting Connection
-                        </p>
-                    </a>
-                </li>
-            </ul>
-        </li>
+                  </li>
+              </ul>
+            </li>
+          @endif
 
+        @if(\App\Helpers\RoleCheckHelper::isSurveyor())
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fa fa-list"></i>
@@ -122,7 +135,9 @@
               </li>
           </ul>
       </li>
+      @endif
 
+      @if(\App\Helpers\RoleCheckHelper::isSurveyor())
       <li class="nav-item">
         <a href="#" class="nav-link">
         <i class="nav-icon fa fa-file"></i>
@@ -141,7 +156,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('surveyor.allinvoices')}}" class="nav-link">
+                <a href="{{route('surveyor.allinvoices')}}" class="nav-link {{ request()->is('staff/surveyor/allinvoices') ? 'active' : '' }}">
                   <i class="nav-icon fa fa-object-group"></i>
                     <p>
                     All Invoices
@@ -150,24 +165,72 @@
             </li>
         </ul>
       </li>
+      @endif
 
+      @if(\App\Helpers\RoleCheckHelper::isEngineer())
+      <li class="nav-item">
+        <a href="{{ route('engineer.allinvoices')}}" class="nav-link {{ request()->is('staff/engineer/allinvoices') ? 'active' : '' }}">
+          <i class="nav-icon fa fa-file"></i>
+          <p>
+           Invoices
+          </p>
+        </a>
+      </li>
+      @endif
+
+      @if(\App\Helpers\RoleCheckHelper::isEngineer())
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fa fa-folder-open"></i>
+          <p>
+            Reports
+            <i class="right fas fa-angle-right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+            {{-- <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fa fa-sign-language "></i>
+                    <p>
+                        Surveyors Perfomances
+                    </p>
+                </a>
+            </li> --}}
+            {{-- <li class="nav-item">
+              <a href="#" class="nav-link">
+                  <i class="nav-icon fa fa-compass"></i>
+                  <p>
+                    Location Analysis
+                  </p>
+              </a>
+            </li> --}}
+            <li class="nav-item">
+              <a href="{{ route('reports.waitingforconnection')}}" class="nav-link {{ request()->is('staff/reports/waitingforconnection') ? 'active' : '' }}">
+                  <i class="nav-icon fa fa-hourglass-end"></i>
+                  <p>
+                  Waiting Connection
+                  </p>
+              </a>
+          </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-thumbs-down"></i>
-              <p>
-                Manage Complaints
-              </p>
+            <a href="{{ route('reports.connectioncomplete')}}" class="nav-link {{ request()->is('staff/reports/connectioncomplete') ? 'active' : '' }}">
+                <i class="nav-icon fa fa-check-circle"></i>
+                <p>
+                Connection Complete
+                </p>
             </a>
           </li>
-
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-credit-card"></i>
-              <p>
-                Payments
-              </p>
+            <a href="{{ route('reports.requesttoconnection')}}" class="nav-link {{ request()->is('reports/requesttoconnection') ? 'active' : '' }}">
+                <i class="nav-icon fa fa-rocket"></i>
+                <p>
+                  Request to Connection
+                </p>
             </a>
-          </li>
+        </li>
+        </ul>
+      </li>
+      @endif
 
           <h5 class="text-info mt-4 pt-4 ml-2">User Account</h5>
           <li class="nav-item">

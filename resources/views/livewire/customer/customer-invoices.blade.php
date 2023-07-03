@@ -165,7 +165,13 @@
                                     <td>{{ $invoice->jobTitle }}</td>
                                     <td class="text-center">{{ $invoice->controlNumber }}</td>
                                     <td class="text-end">{{ number_format(($invoice->total_amount -($invoice->total_amount * 0.18)) + 50000 + 26000 +2000) }}/=</td>
-                                    <td class="text-center"><em class="float-center badge text-bg-danger">{{ $invoice->paymentStatus }}</em></td>
+                                    <td class="text-center">
+                                    @if($invoice->paymentStatus === 'Paid')
+                                      <em class="float-center badge text-bg-success">{{ $invoice->paymentStatus }}</em>
+                                    @else
+                                      <em class="float-center badge text-bg-danger">{{ $invoice->paymentStatus }}</em>
+                                    @endif
+                                    </td>
                                     <td class="text-center">
                                         <a href="{{ route('customer.viewinvoice', $invoice->id)}}"><i class="nav-icon fa fa-eye text-primary mr-2"></i></a>
                                     </td>
